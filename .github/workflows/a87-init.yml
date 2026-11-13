@@ -1,0 +1,51 @@
+name: A87 3D
+on: workflow_dispatch
+permissions:
+  contents: write
+jobs:
+  ingest:
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v4
+      - run: sudo apt-get update -qq && sudo apt-get install -y -qq imagemagick zip
+      - name: 준비
+        run: |
+          python3 - <<'PY'
+          import os,urllib.request,subprocess,zipfile,tarfile
+          packs=[
+           dict(slug='crates-chests-coins-barrels',name='Crates Chests Coins and Barrels Collection',file='medieval_items.zip',page='https://opengameart.org/content/crates-chests-coins-and-barrels-collection',url='https://opengameart.org/sites/default/files/medieval_items.zip',img='https://opengameart.org/sites/default/files/medieval_items.jpg',author='mabaci',date='2025-01-26',size='902.1KB',tags='crate,chest,barrel,prop,3d',lic='CC0'),
+           dict(slug='dungeon-interior-kit',name='Dungeon interior kit',file='dungeon_interior_kit.tar.gz',page='https://opengameart.org/content/dungeon-interior-kit',url='https://opengameart.org/sites/default/files/dungeon_interior_kit.tar.gz',img='https://opengameart.org/sites/default/files/dungeon_kit_0.png',author='humble squirrel',date='2024-12-24',size='1.9MB',tags='dungeon,interior,prop,3d',lic='CC0'),
+          ]
+          for p in packs:
+              d=p['slug']
+              os.makedirs(d,exist_ok=True)
+              f=os.path.join(d,p['file'])
+              urllib.request.urlretrieve(p['url'],f)
+              sz=os.path.getsize(f)
+              assert sz>10000, (d,sz)
+              try:
+                  urllib.request.urlretrieve(p['img'],'/tmp/pv')
+                  subprocess.run(['convert','/tmp/pv','-resize','1200x1200>','-quality','85',os.path.join(d,'preview.jpg')],check=True)
+              except Exception as e: print('preview skip',d,e)
+              m='\n'.join(['# '+p['name'],'','- 출처 URL: '+p['page'],'- 받은 파일: '+p['file']+' ('+p['size']+')','- 라이선스: '+p['lic'],'- 제작자: '+p['author'],'- 공개일: '+p['date'],'- 파일 크기(바이트): '+str(sz),'- 태그: '+p['tags'],'- 표기 요구: 없음 (CC0)','- AI 생성 여부: 출처 페이지에 언급 없음',''])
+              open(os.path.join(d,'pack.md'),'w').write(m)
+              l='\n'.join([p['name'],'','출처 URL: '+p['page'],'표기 라이선스: '+p['lic'],'제작자: '+p['author'],'공개일: '+p['date'],'','이 파일은 수집자가 출처 페이지의 라이선스 표기를 기록한 것입니다.','원본 배포물에 라이선스 파일이 포함되어 있지 않으면 이 파일이 그 역할을 합니다.',''])
+              open(os.path.join(d,'LICENSE-SOURCE.txt'),'w').write(l)
+              print(d,sz)
+          r=['# assets-3d-lowpoly-2','','3D 로우폴리 모델 2호 저장소. glTF(GLB)·OBJ 등 게임엔진/웹에서 바로 쓸 수 있는 형식의 CC0·CC-BY 팩. 1호 저장소(assets-3d-lowpoly, 약 692MB)가 700MB에 근접해 새 라운드의 3D 팩은 이 저장소에 둡니다. CC-BY 팩은 사용 시 저작자 표기 필요 (각 팩 LICENSE-SOURCE.txt에 원본 저작자·정확한 CC 버전·출처·변경 내역 기록).','','## 수록 팩','']
+          for p in packs:
+              r+=['### '+p['name'],'![%s 미리보기](%s/preview.jpg)'%(p['name'],p['slug']),'- 파일: `%s` (%s) — 저장소 내 포함'%(p['file'],p['size']),'- 제작: %s / 라이선스: %s / 원본: %s'%(p['author'],p['lic'],p['page']),'']
+          r+=['## 다운로드','5MB를 넘는 zip은 릴리스 첨부로 올립니다. 이번 팩은 모두 저장소에 직접 포함되어 있습니다.','']
+          open('README.md','w').write('\n'.join(r))
+          print('readme ok')
+          PY
+      - name: 커밋
+        run: |
+          git config user.name "sigco3111"
+          git config user.email "sigco3111@gmail.com"
+          git add README.md crates-chests-coins-barrels
+          git commit -m "에셋: Crates Chests Coins and Barrels Collection 추가"
+          git push
+          git add dungeon-interior-kit
+          git commit -m "에셋: Dungeon interior kit 추가"
+          git push
