@@ -20,3 +20,12 @@
 ### Low Poly Stalls
 - 파일: lightdreamerlabs-3d-stalls.zip (703.1KB) — 저장소 내 포함
 - 제작: lightdreamerlabs / 라이선스: CC0 / 원본: https://opengameart.org/content/low-poly-stalls
+
+### low_poly_swords
+- 파일: swords_obj.zip / 제작: Q2DENJINDREW / 라이선스: CC0 / 원본: https://opengameart.org/content/lowpolyswords
+
+### 3D Character Pack
+- 파일: bravos_game_br_2024.zip / 제작: byzmod3d / 라이선스: CC0 / 원본: https://opengameart.org/content/3d-character-pack
+
+### 3D Human Parts Pack
+- 파일: 3d_human_parts_pack.zip / 제작: byzmod3d / 라이선스: CC0 / 원본: https://opengameart.org/content/3d-human-parts-pack
