@@ -16,3 +16,7 @@
 
 ## 다운로드
 5MB를 넘는 zip은 릴리스 첨부로 올립니다. 이번 팩은 모두 저장소에 직접 포함되어 있습니다.
+
+### Low Poly Stalls
+- 파일: lightdreamerlabs-3d-stalls.zip (703.1KB) — 저장소 내 포함
+- 제작: lightdreamerlabs / 라이선스: CC0 / 원본: https://opengameart.org/content/low-poly-stalls
