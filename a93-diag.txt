@@ -1,8 +1,70 @@
-Everything up-to-date
+remote: warning: See https://gh.io/lfs for more information.        
+remote: warning: File knight-2/armor.blend is 67.89 MB; this is larger than GitHub's recommended maximum file size of 50.00 MB        
+remote: warning: GH001: Large files detected. You may want to try Git Large File Storage - https://git-lfs.github.com.        
+To https://github.com/sigco3111/assets-3d-lowpoly-2
+   5a1993c..f8361ec  HEAD -> main
 REPO assets-3d-lowpoly-2 MODE upload
 CATALOG_DATA_ROWS(raw fetch) 1882
 SIZE_BEFORE_MB du: 21
 CANDIDATES 398
-SIZE_AFTER_MB du: 21
+PAGE engameart.org/content/faq len 72036 name FAQ art True
+LIC-REJECT FAQ | 
+PAGE rg/content/3d-walls-props len 38343 name 3d walls props art True
+DUP 3d walls props
+PAGE org/content/knight-statue len 46634 name Knight statue art True
+DUP Knight statue
+DUP Treasure Chest
+DUP Tiny weeds 2
+DUP Cethiel's Weapons 3D
+DUP Racing Kit
+DUP Cethiel's Dragon 3D
+DUP Knight lying
+DUP simple 3d crystals (unwrapped, simple texture)
+DUP BA-2 (Blast All Bot Mark 2)
+DUP Modular RPG Characters
+DUP Grass Pack #01
+DUP LowPoly Modular Dungeon Pack
+DUP Watercraft Kit
+DUP Wooden Bridge
+PICK Various Small Arms (Assault Rifles, Sniper, Pistol) CC0 tabasco https://opengameart.org/content/various-small-arms-assault-rifles-sniper-pistol
+NOZIP Gnarly Tools
+DUP Rabbit
+DUP Food Pack
+DUP High quality industrial asset pack
+DUP Platformer Kit
+DUP Desert Rock
+LIC-REJECT Base Human Models (Low Poly) for Blender 2.5x | license(s):&nbsp; gpl 3.0 cc-by-sa 3.0 <div class="f
+DUP Undead male
+DUP Tropical plant 02
+DUP Very Low Poly Human
+LIC-REJECT Kingdom Weapon Set | license(s):&nbsp; cc-by-sa 3.0 collections:&nbsp; 00 isometric stuff 3d fantasy <a href="/content/3
+DUP Blocky Characters
+DUP Crate & Barrel bundle
+DUP Free Hi-Tech Sci-Fi IT thing
+NOZIP space ship 3d&2d
+DUP Cannabis plants
+DUP Fox and Shiba
+DUP Tower Defense Kit
+DUP Concrete barriers
+DUP 3TD Harbour Pack
+DUP RPG Item collection 1
+DUP RPG Item collection 2
+DUP RPG Item collection 3
+DUP LowPoly Animated Farm Animal Pack
+NOZIP Grass Pack #02
+DUP Free houseplants
+DUP Medieval Blacksmith
+DUP Grapple Girl
+DUP Sci-fi environment pack
+DUP Fish (Animated)
+DUP 3TD Tropical Environment Pack v2.0
+PICK Dinnerware CC-BY clint-bellanger https://opengameart.org/content/dinnerware
+NOZIP Troll Mauler
+DUP Stone coffin
+PICK Knight CC-BY piacenti https://opengameart.org/content/knight-2
+ADDED Various Small Arms (Assault Rifles, Sniper, Pistol) thumb: previews/various-small-arms-assault-rifles-sniper-pistol.png
+ADDED Dinnerware thumb: previews/dinnerware.png
+ADDED Knight thumb: previews/knight-2.png
+SIZE_AFTER_MB du: 113
 API_SIZE_MB 124.8
-UPLOAD_DONE 0 packs
+UPLOAD_DONE 3 packs
