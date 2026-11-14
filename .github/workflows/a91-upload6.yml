@@ -1,0 +1,37 @@
+name: a91-upload6
+on: workflow_dispatch
+permissions:
+  contents: write
+jobs:
+  run:
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v4
+      - name: upload
+        run: |
+          set -euo pipefail
+          git config user.name "sigco3111"
+          git config user.email "sigco3111@gmail.com"
+          sudo apt-get update -qq >/dev/null
+          sudo apt-get install -y -qq imagemagick p7zip-full >/dev/null
+          curl -sSfL https://raw.githubusercontent.com/sigco3111/game-asset-catalog/main/catalog.csv -o /tmp/catalog.csv
+          if grep -qiF -- "Weapon Box pack 2,assets-" /tmp/catalog.csv; then echo "SKIP duplicate"; exit 0; fi
+          slug=weapon-box-pack-2
+          mkdir -p $slug
+          curl -fL --retry 3 "https://opengameart.org/sites/default/files/weapon_box_2_0.7z" -o "$slug/$slug.7z"
+          rm -rf /tmp/x; mkdir -p /tmp/x
+          7z x -y -o/tmp/x "$slug/$slug.7z" >/dev/null
+          img=$(find /tmp/x -type f \( -iname '*.png' -o -iname '*.jpg' -o -iname '*.jpeg' -o -iname '*.tga' \) -size +20k | head -n1)
+          git add -A
+          git commit -q -m "에셋: Weapon Box pack 2 추가"
+          if [ -n "$img" ]; then
+            convert "$img" -resize '480x480>' -strip /tmp/pv.png 2>/dev/null || true
+            if [ -f /tmp/pv.png ] && [ "$(stat -c%s /tmp/pv.png)" -gt 204800 ]; then
+              convert /tmp/pv.png -quality 85 /tmp/pv.jpg; cp /tmp/pv.jpg "$slug/preview.jpg"
+            else
+              cp /tmp/pv.png "$slug/preview.png"
+            fi
+            git add -A
+            git commit -q -m "썸네일: Weapon Box pack 2 추가"
+          fi
+          git push origin HEAD:main
