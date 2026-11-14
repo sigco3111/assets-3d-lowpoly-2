@@ -1,0 +1,42 @@
+name: a92-asset3d
+on: workflow_dispatch
+permissions:
+  contents: write
+jobs:
+  run:
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v4
+      - name: ingest
+        run: |
+          set -uo pipefail
+          git config user.name sigco3111
+          git config user.email sigco3111@gmail.com
+          mkdir -p previews
+          cat > /tmp/packs.tsv <<'EOF'
+          Stylised Fantasy Weapons|stylised-fantasy-weapons|https://opengameart.org/content/stylised-fantasy-weapons|mastahcez|CC-BY 3.0|3D 무기|weapon,fantasy,lowpoly,stylised
+          Modular Medieval House Pack 01|modular-medieval-house-pack-01|https://opengameart.org/content/modular-medieval-house-pack-01|hreikin|CC0|3D 건물|building,medieval,modular,lowpoly
+          Retro Medieval Kit|retro-medieval-kit|https://opengameart.org/content/retro-medieval-kit|Kenney|CC0|3D 환경|medieval,retro,lowpoly,kenney
+          EOF
+          while IFS='|' read -u 3 -r NAME SLUG PAGE AUTHOR LIC TYPE TAGS; do
+            echo "== $NAME"
+            curl -sSL -m 60 "$PAGE" -o /tmp/page.html || { echo SKIP page; continue; }
+            FILEURL=$(grep -o 'href="[^"]*sites/default/files/[^"]*"' /tmp/page.html | sed 's/^href="//;s/"$//' | grep -Ei '[.](zip|7z|rar|tgz)$' | head -1)
+            if [ -z "$FILEURL" ]; then echo SKIP nofile; continue; fi
+            case "$FILEURL" in /*) FILEURL=https://opengameart.org$FILEURL;; esac
+            EXT=$(echo "${FILEURL##*.}" | tr A-Z a-z)
+            D="$SLUG"; mkdir -p "$D/.tmp/x"
+            curl -sSL -m 300 "$FILEURL" -o "$D/.tmp/pack.$EXT" || { echo SKIP dl; rm -rf "$D"; continue; }
+            SZ=$(stat -c%s "$D/.tmp/pack.$EXT"); if [ "$SZ" -lt 2000 ]; then echo SKIP tiny; rm -rf "$D"; continue; fi
+            case "$EXT" in zip) unzip -q -o "$D/.tmp/pack.$EXT" -d "$D/.tmp/x" < /dev/null || true;; 7z) 7z x -y -o"$D/.tmp/x" "$D/.tmp/pack.$EXT" < /dev/null >/dev/null || true;; esac
+            IMG=$(find "$D/.tmp/x" -type f \( -iname '*.png' -o -iname '*.jpg' \) -size +8k -printf '%s\t%p\n' | sort -nr | head -1 | cut -f2)
+            if [ -z "$IMG" ]; then OG=$(grep -o 'property="og:image" content="[^"]*"' /tmp/page.html | head -1 | sed 's/.*content="//;s/"$//'); if [ -n "$OG" ]; then curl -sSL -m 60 "$OG" -o "$D/.tmp/og.img" && IMG="$D/.tmp/og.img"; fi; fi
+            if [ -n "$IMG" ] && [ -s "$IMG" ]; then convert "$IMG" -resize '480x480>' -strip "previews/$SLUG.png" < /dev/null || true; if [ -s "previews/$SLUG.png" ] && [ $(stat -c%s "previews/$SLUG.png") -gt 204800 ]; then convert "$IMG" -resize '480x480>' -strip -quality 85 "previews/$SLUG.jpg" < /dev/null || true; rm -f "previews/$SLUG.png"; fi; fi
+            PV=''; if [ -s "previews/$SLUG.png" ]; then PV=previews/$SLUG.png; elif [ -s "previews/$SLUG.jpg" ]; then PV=previews/$SLUG.jpg; fi
+            mv "$D/.tmp/pack.$EXT" "$D/$SLUG.$EXT"; rm -rf "$D/.tmp"
+            git add "$D"; git commit -q -m "에셋: $NAME 추가" < /dev/null
+            if [ -n "$PV" ]; then git add "$PV"; git commit -q -m "썸네일: $NAME 추가" < /dev/null; else echo NOPREVIEW $NAME; fi
+            echo "ADDED $NAME $PV"
+          done 3< /tmp/packs.tsv
+          git push origin HEAD:main
+          ls -R previews | head -50
