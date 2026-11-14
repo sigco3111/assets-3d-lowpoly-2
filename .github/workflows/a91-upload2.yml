@@ -1,0 +1,53 @@
+name: a91-upload2
+on: workflow_dispatch
+permissions:
+  contents: write
+jobs:
+  run:
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v4
+      - name: upload
+        env:
+          PACKS: |
+            LowPoly Buildings|lowpoly-buildings|https://opengameart.org/sites/default/files/Buildings%20pack%20by%20%40Quaternius.zip|https://opengameart.org/sites/default/files/buildingspack2_0.jpg
+            Mortis and Tenon Table|mortis-and-tenon-table|https://opengameart.org/sites/default/files/mortisandtenontable.zip|
+        run: |
+          set -uo pipefail
+          git config user.name "sigco3111"
+          git config user.email "sigco3111@gmail.com"
+          sudo apt-get update -qq >/dev/null
+          sudo apt-get install -y -qq imagemagick unzip p7zip-full >/dev/null
+          curl -sSfL https://raw.githubusercontent.com/sigco3111/game-asset-catalog/main/catalog.csv -o /tmp/catalog.csv
+          n=0
+          while IFS='|' read -r name slug url prev; do
+            [ -z "${name:-}" ] && continue
+            if grep -qiF -- "$name,assets-" /tmp/catalog.csv; then echo "SKIP duplicate: $name"; continue; fi
+            if [ "$n" -ge 1 ]; then echo "LIMIT reached, skip $name"; continue; fi
+            echo "ADD $name"
+            mkdir -p "$slug"
+            curl -fL --retry 3 "$url" -o "/tmp/$slug.zip" || { echo "DOWNLOAD FAIL $name"; rm -rf "$slug"; continue; }
+            cp "/tmp/$slug.zip" "$slug/$slug.zip"
+            rm -rf /tmp/x; mkdir -p /tmp/x
+            unzip -q -o "/tmp/$slug.zip" -d /tmp/x >/dev/null 2>&1 || 7z x -y -o/tmp/x "/tmp/$slug.zip" >/dev/null 2>&1 || true
+            img=$(find /tmp/x -type f \( -iname '*.png' -o -iname '*.jpg' -o -iname '*.jpeg' -o -iname '*.webp' -o -iname '*.tga' \) -size +20k | head -n1)
+            if [ -z "$img" ] && [ -n "$prev" ]; then curl -fL "$prev" -o /tmp/pvsrc.img && img=/tmp/pvsrc.img; fi
+            git add -A
+            git commit -q -m "에셋: $name 추가" || true
+            if [ -n "$img" ]; then
+              convert "$img" -resize '480x480>' -strip /tmp/pv.png 2>/dev/null
+              if [ -f /tmp/pv.png ] && [ "$(stat -c%s /tmp/pv.png)" -gt 204800 ]; then
+                convert /tmp/pv.png -quality 85 /tmp/pv.jpg; cp /tmp/pv.jpg "$slug/preview.jpg"; pv="$slug/preview.jpg"
+              else
+                cp /tmp/pv.png "$slug/preview.png"; pv="$slug/preview.png"
+              fi
+              git add -A
+              git commit -q -m "썸네일: $name 추가" || true
+              echo "PREVIEW $name $pv"
+            else
+              echo "NOPREVIEW $name"
+            fi
+            n=$((n+1))
+          done <<< "$PACKS"
+          git push origin HEAD:main
+          echo "DONE n=$n"
