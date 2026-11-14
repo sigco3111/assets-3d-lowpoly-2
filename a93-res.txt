@@ -1,2 +1,5 @@
 
 
+Various Small Arms (Assault Rifles, Sniper, Pistol)|assets-3d-lowpoly-2|various-small-arms-assault-rifles-sniper-pistol/various-small-arms-assault-rifles-sniper-pistol.zip|previews/various-small-arms-assault-rifles-sniper-pistol.png|CC0|3D|tabasco|https://opengameart.org/content/various-small-arms-assault-rifles-sniper-pistol|3d,lowpoly,opengameart
+Dinnerware|assets-3d-lowpoly-2|dinnerware/dinnerware.zip|previews/dinnerware.png|CC-BY|3D|clint-bellanger|https://opengameart.org/content/dinnerware|3d,lowpoly,opengameart
+Knight|assets-3d-lowpoly-2|knight-2/knight-2.zip|previews/knight-2.png|CC-BY|3D|piacenti|https://opengameart.org/content/knight-2|3d,lowpoly,opengameart
