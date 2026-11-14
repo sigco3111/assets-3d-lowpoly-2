@@ -1,0 +1,52 @@
+name: a92-thumb3d
+on: workflow_dispatch
+permissions:
+  contents: write
+jobs:
+  run:
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v4
+      - name: thumb
+        run: |
+          set -uo pipefail
+          git config user.name sigco3111
+          git config user.email sigco3111@gmail.com
+          if ! command -v convert >/dev/null 2>&1 && ! command -v magick >/dev/null 2>&1; then sudo apt-get update -qq; sudo apt-get install -y -qq imagemagick; fi
+          mkdir -p previews
+          cat > /tmp/list.tsv <<'EOF'
+          stylised-fantasy-weapons|Stylised Fantasy Weapons|https://opengameart.org/content/stylised-fantasy-weapons
+          modular-medieval-house-pack-01|Modular Medieval House Pack 01|https://opengameart.org/content/modular-medieval-house-pack-01
+          retro-medieval-kit|Retro Medieval Kit|https://opengameart.org/content/retro-medieval-kit
+          EOF
+          while IFS='|' read -u 3 -r SLUG NAME PAGE; do
+            D="$SLUG"
+            ZIP=$(ls "$D" | head -1)
+            echo "== $NAME zip=$ZIP"
+            rm -rf /tmp/x; mkdir -p /tmp/x
+            case "$ZIP" in
+              *.zip) unzip -q -o "$D/$ZIP" -d /tmp/x < /dev/null || true;;
+              *.7z) 7z x -y -o/tmp/x "$D/$ZIP" < /dev/null >/dev/null || true;;
+            esac
+            IMG=$(find /tmp/x -type f \( -iname '*.png' -o -iname '*.jpg' -o -iname '*.jpeg' \) -size +8k -printf '%s\t%p\n' 2>/dev/null | sort -nr | head -1 | cut -f2)
+            echo "img_in_zip=$IMG"
+            if [ -z "$IMG" ]; then
+              curl -sSL -m 60 "$PAGE" -o /tmp/page.html || true
+              OG=$(grep -o 'https://opengameart.org/sites/default/files/[^" ]*' /tmp/page.html | grep -Ei '[.](png|jpg|jpeg)' | head -1)
+              echo "og=$OG"
+              if [ -n "$OG" ]; then curl -sSL -m 60 "$OG" -o /tmp/og.img && IMG=/tmp/og.img; fi
+            fi
+            if [ -z "$IMG" ] || [ ! -s "$IMG" ]; then echo "NOPREVIEW $NAME"; continue; fi
+            rm -f "previews/$SLUG.png" "previews/$SLUG.jpg"
+            convert "$IMG" -resize '480x480>' -strip "previews/$SLUG.png" < /dev/null 2>/tmp/err.txt || cat /tmp/err.txt
+            if [ ! -s "previews/$SLUG.png" ]; then echo "CONVERTFAIL $NAME"; continue; fi
+            if [ "$(stat -c%s "previews/$SLUG.png")" -gt 204800 ]; then
+              convert "$IMG" -resize '480x480>' -strip -quality 85 "previews/$SLUG.jpg" < /dev/null || true
+              rm -f "previews/$SLUG.png"
+              if [ ! -s "previews/$SLUG.jpg" ]; then echo "JPEGFAIL $NAME"; continue; fi
+            fi
+            git add previews; git commit -q -m "썸네일: $NAME 추가" < /dev/null
+            echo "THUMB OK $NAME"
+          done 3< /tmp/list.tsv
+          git push origin HEAD:main
+          ls previews
