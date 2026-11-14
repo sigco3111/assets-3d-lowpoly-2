@@ -1,5 +1,0 @@
-Source: https://opengameart.org/content/bird-bath
-Author: JeremyWoods
-License: CC0
-File: birdbath_0.zip
-Downloaded via OpenGameArt 2026-11-14 (A90 round). Files unmodified.
