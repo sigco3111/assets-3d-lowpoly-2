@@ -1,0 +1,123 @@
+name: a90-ingest
+on:
+  workflow_dispatch:
+permissions:
+  contents: write
+jobs:
+  run:
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v4
+        with:
+          fetch-depth: 0
+      - name: ingest
+        run: |
+          set -e
+          git config user.name "sigco3111"
+          git config user.email "sigco3111@users.noreply.github.com"
+          cat > /tmp/a90.py <<'PY'
+          import os, re, glob, subprocess, urllib.request
+          from PIL import Image
+
+          PACKS = [
+            dict(name="Bird Bath", slug="bird-bath", author="JeremyWoods", lic="CC0",
+                 page="https://opengameart.org/content/bird-bath", fname="birdbath.zip"),
+            dict(name="low poly iron ore", slug="low-poly-iron-ore", author="musher3004", lic="CC0",
+                 page="https://opengameart.org/content/low-poly-iron-ore", fname="stone.zip"),
+            dict(name="Chibi Neko by cosmix", slug="chibi-neko", author="zodiepupper", lic="CC0",
+                 page="https://opengameart.org/content/chibi-neko-by-cosmix", fname="chibineko.zip"),
+          ]
+          OLD = [
+            dict(name="Low Poly Stalls", slug="low-poly-stalls", page="https://opengameart.org/content/low-poly-stalls"),
+            dict(name="low_poly_swords", slug="low-poly-swords", page="https://opengameart.org/content/lowpolyswords"),
+            dict(name="3D Character Pack", slug="3d-character-pack", page="https://opengameart.org/content/3d-character-pack"),
+            dict(name="3D Human Parts Pack", slug="3d-human-parts-pack", page="https://opengameart.org/content/3d-human-parts-pack"),
+          ]
+
+          UA = {"User-Agent": "Mozilla/5.0"}
+
+          def get(url, dest):
+              req = urllib.request.Request(url, headers=UA)
+              with urllib.request.urlopen(req, timeout=120) as r, open(dest, "wb") as f:
+                  f.write(r.read())
+
+          def og_image(page):
+              req = urllib.request.Request(page, headers=UA)
+              html = urllib.request.urlopen(req, timeout=60).read().decode("utf-8", "ignore")
+              m = re.search(r'og:image"\s+content="([^"]+)"', html) or re.search(r'property="og:image" content="([^"]+)"', html)
+              return m.group(1) if m else None
+
+          def run(cmd):
+              subprocess.run(cmd, check=True)
+
+          def make_preview(src, slug):
+              os.makedirs("previews", exist_ok=True)
+              im = Image.open(src)
+              if im.mode not in ("RGB", "RGBA"):
+                  im = im.convert("RGBA")
+              im.thumbnail((480, 480))
+              p = "previews/%s.png" % slug
+              im.save(p, "PNG", optimize=True)
+              if os.path.getsize(p) > 200 * 1024:
+                  rgb = im.convert("RGB")
+                  q = "previews/%s.jpg" % slug
+                  rgb.save(q, "JPEG", quality=85, optimize=True)
+                  os.remove(p)
+                  return q
+              return p
+
+          for p in PACKS:
+              s = p["slug"]
+              if os.path.isdir(s):
+                  print("skip existing", s)
+                  continue
+              os.makedirs(s)
+              dst = os.path.join(s, p["fname"])
+              get("https://opengameart.org/sites/default/files/" + p["fname"], dst)
+              if p["fname"].endswith(".zip"):
+                  subprocess.run(["unzip", "-qo", dst, "-d", s], check=False)
+              with open(os.path.join(s, "LICENSE-SOURCE.txt"), "w") as f:
+                  f.write("Source: %s\nAuthor: %s\nLicense: %s\nFile: %s\nDownloaded via OpenGameArt on 2026-11-14 (A90 round). Files unmodified.\n" % (p["page"], p["author"], p["lic"], p["fname"]))
+              # thumbnail
+              imgs = [x for x in glob.glob(s + "/**/*", recursive=True) if x.lower().endswith((".png", ".jpg", ".jpeg", ".gif", ".bmp", ".webp"))]
+              src = max(imgs, key=os.path.getsize) if imgs else None
+              if not src:
+                  og = og_image(p["page"])
+                  if og:
+                      try:
+                          get(og, "/tmp/og.png"); src = "/tmp/og.png"
+                      except Exception as e:
+                          print("og fail", e)
+              prev = ""
+              if src:
+                  try:
+                      prev = make_preview(src, s)
+                  except Exception as e:
+                      print("preview fail", s, e)
+              run(["git", "add", s])
+              run(["git", "commit", "-m", "에셋: %s 추가" % p["name"]])
+              if prev:
+                  run(["git", "add", prev])
+                  run(["git", "commit", "-m", "썸네일: %s 추가" % p["name"]])
+              print("done", s, prev)
+
+          for o in OLD:
+              if os.path.exists("previews/%s.png" % o["slug"]) or os.path.exists("previews/%s.jpg" % o["slug"]):
+                  print("preview exists", o["slug"]); continue
+              og = og_image(o["page"])
+              if not og:
+                  print("no og", o["slug"]); continue
+              try:
+                  get(og, "/tmp/o.png")
+                  prev = make_preview("/tmp/o.png", o["slug"])
+                  run(["git", "add", prev])
+                  run(["git", "commit", "-m", "썸네일: %s 추가" % o["name"]])
+                  print("old preview", o["slug"], prev)
+              except Exception as e:
+                  print("old fail", o["slug"], e)
+
+          run(["git", "push", "origin", "HEAD:main"])
+          PY
+          sed -i 's/^          //' /tmp/a90.py
+          python3 -m pip install --quiet pillow
+          python3 /tmp/a90.py
