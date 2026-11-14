@@ -1,0 +1,20 @@
+name: a96-thumb2
+on:
+  workflow_dispatch:
+permissions:
+  contents: write
+jobs:
+  run:
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v4
+      - name: deps
+        run: |
+          sudo apt-get update -qq >/dev/null 2>&1 || true
+          sudo apt-get install -y -qq imagemagick unzip >/dev/null 2>&1 || true
+      - name: run
+        env:
+          REPO: assets-3d-lowpoly-2
+        run: |
+          curl -fsSL https://raw.githubusercontent.com/sigco3111/game-asset-catalog/main/tools/a96t2.py -o /tmp/a96t2.py
+          python3 /tmp/a96t2.py
