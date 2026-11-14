@@ -1,0 +1,16 @@
+name: a96-clean
+on:
+  workflow_dispatch:
+permissions:
+  contents: write
+jobs:
+  run:
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v4
+      - name: run
+        env:
+          REPO: assets-3d-lowpoly-2
+        run: |
+          curl -fsSL https://raw.githubusercontent.com/sigco3111/game-asset-catalog/main/tools/a96c.py -o /tmp/a96c.py
+          python3 /tmp/a96c.py
