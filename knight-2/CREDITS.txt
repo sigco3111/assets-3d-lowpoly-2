@@ -1,0 +1,5 @@
+Knight
+
+Author: piacenti
+Source: https://opengameart.org/content/knight-2
+License: CC-BY (see OpenGameArt page)
