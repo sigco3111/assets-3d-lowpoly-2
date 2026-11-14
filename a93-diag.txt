@@ -1,0 +1,8 @@
+Everything up-to-date
+REPO assets-3d-lowpoly-2 MODE upload
+CATALOG_DATA_ROWS(raw fetch) 1882
+SIZE_BEFORE_MB du: 21
+CANDIDATES 398
+SIZE_AFTER_MB du: 21
+API_SIZE_MB 124.8
+UPLOAD_DONE 0 packs
