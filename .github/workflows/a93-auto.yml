@@ -1,0 +1,148 @@
+name: a93-auto
+on: workflow_dispatch
+permissions:
+  contents: write
+jobs:
+  run:
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v4
+      - name: auto
+        run: |
+          set -euo pipefail
+          sudo apt-get update -qq >/dev/null 2>&1 || true
+          sudo apt-get install -y -qq p7zip-full >/dev/null 2>&1 || true
+          curl -sSL -o /tmp/catalog.csv https://raw.githubusercontent.com/sigco3111/game-asset-catalog/main/catalog.csv
+          git config user.name sigco3111
+          git config user.email sigco3111@gmail.com
+          python3 - <<'PY'
+          import os, re, csv, subprocess, shutil, urllib.request, urllib.parse
+
+          def get(u):
+              req = urllib.request.Request(u, headers={"User-Agent":"Mozilla/5.0 a93"})
+              return urllib.request.urlopen(req, timeout=60).read().decode("utf-8","ignore")
+
+          have = set()
+          with open("/tmp/catalog.csv", encoding="utf-8", newline="") as f:
+              for i, row in enumerate(csv.reader(f)):
+                  if i and row:
+                      have.add(row[0].strip().lower())
+          print("catalog rows", len(have))
+
+          urls = []
+          for p in range(8, 17):
+              u = "https://opengameart.org/art-search-advanced?keys=&field_art_type_tid%%5B%%5D=10&sort_by=count&sort_order=DESC&page=" + str(p)
+              try:
+                  h = get(u)
+              except Exception as e:
+                  print("LISTFAIL", p, str(e)[:60]); continue
+              for m in re.findall(r'href="/content/([a-z0-9][a-z0-9\-]+)"', h):
+                  c = "https://opengameart.org/content/" + m
+                  if c not in urls:
+                      urls.append(c)
+          print("urls", len(urls))
+
+          picks = []
+          for u in urls:
+              if len(picks) >= 3:
+                  break
+              try:
+                  h = get(u)
+              except Exception:
+                  continue
+              t = re.search(r"<h1[^>]*>(.*?)</h1>", h, re.S)
+              name = re.sub(r"<[^>]+>", "", t.group(1)).strip() if t else ""
+              name = re.sub(r"\s+", " ", name)
+              if not name or name.strip().lower() in have:
+                  continue
+              lic = ""
+              m = re.search(r"License\(s\)(.{0,500})", h, re.S)
+              blk = m.group(1) if m else ""
+              if "zero" in blk or "cc0" in blk.lower():
+                  lic = "CC0"
+              elif "licenses/by" in blk:
+                  lic = "CC-BY"
+              if not lic:
+                  continue
+              zs = re.findall(r'href="(https://opengameart\.org/sites/default/files/[^"]+?\.(?:zip|7z))"', h)
+              if not zs:
+                  continue
+              au = re.search(r"/users/([A-Za-z0-9_\-\.]+)", h)
+              picks.append(dict(name=name, page=u, zip=zs[0], lic=lic, author=au.group(1) if au else "OpenGameArt",
+                                slug=u.rsplit("/",1)[-1], typ="3D 환경", tags="lowpoly,3d,opengameart"))
+              print("PICK", name, lic, zs[0][-40:])
+
+          def sh(c):
+              subprocess.run(c, shell=True, check=True)
+
+          res = []
+          for p in picks:
+              d = p["slug"]
+              if os.path.isdir(d):
+                  continue
+              os.makedirs(d, exist_ok=True)
+              zp = "/tmp/" + d + ".zip"
+              req = urllib.request.Request(p["zip"], headers={"User-Agent":"Mozilla/5.0 a93"})
+              open(zp, "wb").write(urllib.request.urlopen(req, timeout=180).read())
+              ext = "zip" if p["zip"].endswith(".zip") else "7z"
+              shutil.copy(zp, os.path.join(d, d + "." + ext))
+              if ext == "zip":
+                  sh("cd '%s' && unzip -q -o '%s.zip' -d _x && cp -r _x/. . 2>/dev/null || true; rm -rf _x" % (d, d))
+              else:
+                  sh("cd '%s' && 7z x -y '%s.7z' -o_x >/dev/null && cp -r _x/. . 2>/dev/null || true; rm -rf _x" % (d, d))
+              ents = [e for e in os.listdir(d) if e != d + "." + ext]
+              if len(ents) == 1 and os.path.isdir(os.path.join(d, ents[0])):
+                  sub = os.path.join(d, ents[0])
+                  for e in os.listdir(sub):
+                      shutil.move(os.path.join(sub, e), os.path.join(d, e))
+                  os.rmdir(sub)
+              imgs = []
+              for root, _, fs in os.walk(d):
+                  for f in fs:
+                      if f.lower().endswith((".png",".jpg",".jpeg")):
+                          imgs.append(os.path.join(root, f))
+              src = None
+              for i in imgs:
+                  if os.path.basename(i).lower().startswith("preview"):
+                      src = i; break
+              if not src and imgs:
+                  src = max(imgs, key=os.path.getsize)
+              if not src:
+                  try:
+                      h = get(p["page"])
+                      m = re.search(r'<meta[^>]+property="og:image"[^>]+content="([^"]+)"', h)
+                      if m:
+                          u2 = m.group(1)
+                          if u2.startswith("/"):
+                              u2 = "https://opengameart.org" + u2
+                          req = urllib.request.Request(u2, headers={"User-Agent":"Mozilla/5.0"})
+                          open("/tmp/og.img","wb").write(urllib.request.urlopen(req, timeout=60).read())
+                          src = "/tmp/og.img"
+                  except Exception as e:
+                      print("NOPREVIEW", str(e)[:60])
+              pv = ""
+              if src:
+                  os.makedirs("previews", exist_ok=True)
+                  sh("convert '%s'[0] -resize '480x480>' -strip /tmp/pv.png" % src)
+                  if os.path.getsize("/tmp/pv.png") > 200 * 1024:
+                      sh("convert /tmp/pv.png -quality 85 previews/%s.jpg" % d)
+                      pv = "previews/%s.jpg" % d
+                  else:
+                      shutil.copy("/tmp/pv.png", "previews/%s.png" % d)
+                      pv = "previews/%s.png" % d
+              if "CC-BY" in p["lic"]:
+                  open(os.path.join(d, "CREDITS.txt"), "w", encoding="utf-8").write(
+                      p["name"] + "\n\nAuthor: " + p["author"] + "\nSource: " + p["page"] + "\nLicense: " + p["lic"] + "\n")
+              sh("git add -A '%s'" % d)
+              sh('git commit -q -m "에셋: %s 추가"' % p["name"])
+              if pv:
+                  sh("git add '%s'" % pv)
+                  sh('git commit -q -m "썸네일: %s 추가"' % p["name"])
+              res.append("|".join([p["name"], "assets-3d-lowpoly-2", d + "/" + d + "." + ext, pv, p["lic"], p["typ"], p["author"], p["page"], p["tags"]]))
+              print("ADDED", p["name"], pv)
+          open("a93-res.txt", "a", encoding="utf-8").write("\n".join(res) + "\n")
+          print("DONE", len(res))
+          PY
+          git add a93-res.txt
+          git commit -q -m "A93: 결과 기록" || true
+          git push origin HEAD:main
