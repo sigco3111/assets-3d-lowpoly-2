@@ -1,4 +1,4 @@
-name: 임시 수집 A98 3D
+name: 임시 정리 3D
 
 on:
   workflow_dispatch:
@@ -7,13 +7,14 @@ permissions:
   contents: write
 
 jobs:
-  ingest:
+  clean:
     runs-on: ubuntu-latest
     steps:
       - uses: actions/checkout@v4
-      - name: 팩 2개 수집과 커밋
-        env:
-          GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
+      - name: 임시 파일 삭제
         run: |
-          curl -sSfL "https://raw.githubusercontent.com/sigco3111/game-asset-catalog/main/tools/tmp_a98_collect.py" -o /tmp/collect.py
-          python3 /tmp/collect.py 3d
+          git config user.name "sigco3111"
+          git config user.email "sigco3111k@gmail.com"
+          git rm -q --ignore-unmatch .github/workflows/tmp-a98.yml
+          git commit -m "정리: A98 임시 파일 삭제" || echo "nothing to commit"
+          git push origin HEAD:main
