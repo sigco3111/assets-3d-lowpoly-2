@@ -14,3 +14,9 @@
 ![Fjordfall Characters 미리보기](fjordfall-characters/preview.jpg)
 - 파일: `fjordfall-characters.zip` (2.4MB) — 저장소 내 포함
 - 제작: Jonathan Maddison / 라이선스: CC BY 4.0 (AI 생성) / 원본: https://github.com/AgenticGameDevs/generated-assets
+
+
+### Golem Knight
+![Golem Knight 미리보기](golem-knight/preview.jpg)
+- 파일: `golem.zip` (62.8KB) — 저장소 내 포함
+- 제작: Q2DENJINDREW / 라이선스: CC0 / 원본: https://opengameart.org/content/golem-knight
