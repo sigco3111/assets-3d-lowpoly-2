@@ -20,3 +20,9 @@
 ![Golem Knight 미리보기](golem-knight/preview.jpg)
 - 파일: `golem.zip` (62.8KB) — 저장소 내 포함
 - 제작: Q2DENJINDREW / 라이선스: CC0 / 원본: https://opengameart.org/content/golem-knight
+
+
+### Painting Pack
+![Painting Pack 미리보기](painting-pack/preview.jpg)
+- 파일: `paintings_textured.zip` (5.9MB) — 릴리스 첨부
+- 제작: EmoPreben / 라이선스: CC0 / 원본: https://opengameart.org/content/painting-pack
