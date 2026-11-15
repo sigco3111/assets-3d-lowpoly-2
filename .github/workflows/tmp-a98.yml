@@ -1,0 +1,19 @@
+name: 임시 수집 A98 3D
+
+on:
+  workflow_dispatch:
+
+permissions:
+  contents: write
+
+jobs:
+  ingest:
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v4
+      - name: 팩 2개 수집과 커밋
+        env:
+          GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
+        run: |
+          curl -sSfL "https://raw.githubusercontent.com/sigco3111/game-asset-catalog/main/tools/tmp_a98_collect.py" -o /tmp/collect.py
+          python3 /tmp/collect.py 3d
