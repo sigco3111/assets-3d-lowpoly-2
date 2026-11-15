@@ -1,0 +1,27 @@
+name: 임시 이름 정리 A98
+
+on:
+  workflow_dispatch:
+
+permissions:
+  contents: write
+
+jobs:
+  fix:
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v4
+      - name: zip 이름 공백 제거
+        run: |
+          set -e
+          git config user.name "sigco3111"
+          git config user.email "sigco3111k@gmail.com"
+          cd lowpoly-survival-item-pack
+          git mv "Survival items.zip" survival-items.zip
+          sed -i 's/- 받은 파일: Survival items.zip/- 받은 파일: survival-items.zip/' pack.md
+          cd ..
+          sed -i 's/`Survival items.zip`/`survival-items.zip`/g' README.md
+          git add -A
+          git rm -q .github/workflows/fix-a98.yml
+          git commit -m "정리: survival item 팩 zip 이름에서 공백 제거"
+          git push origin HEAD:main
