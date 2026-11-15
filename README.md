@@ -26,3 +26,15 @@
 ![Painting Pack 미리보기](painting-pack/preview.jpg)
 - 파일: `paintings_textured.zip` (5.9MB) — 릴리스 첨부
 - 제작: EmoPreben / 라이선스: CC0 / 원본: https://opengameart.org/content/painting-pack
+
+수록 팩: 23팩
+
+### Lowpoly survival item pack
+![Lowpoly survival item pack 미리보기](lowpoly-survival-item-pack/preview.png)
+- 파일: `Survival items.zip` (279.4KB) — 저장소 내 포함
+- 제작: artie31 / 라이선스: CC0 / 원본: https://opengameart.org/content/lowpoly-survival-item-pack
+
+### LOW POLY 3D MODEL PACKS
+![LOW POLY 3D MODEL PACKS 미리보기](low-poly-3d-model-packs/preview.jpg)
+- 파일: `model_pack_low_poly.zip` (517.6KB) — 저장소 내 포함
+- 제작: byzmod3d / 라이선스: CC0 / 원본: https://opengameart.org/content/low-poly-3d-model-packs
