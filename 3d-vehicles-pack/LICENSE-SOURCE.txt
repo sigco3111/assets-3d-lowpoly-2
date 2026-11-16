@@ -1,0 +1,7 @@
+팩: 3D Vehicles Pack
+출처: https://opengameart.org/content/3d-vehicles-pack
+라이선스: CC0 1.0 (출처 페이지 표기)
+제작자: mehrasaur
+공개일: 2018-04-05
+다운로드: https://opengameart.org/sites/default/files/vehicle_pack.zip
+확인: 2026-11-16 OpenGameArt 팩 페이지에 CC0 표기 확인
