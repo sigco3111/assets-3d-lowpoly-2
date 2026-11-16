@@ -1,7 +1,15 @@
 index names: 1873
-SKIP dup: Free Modular Low Poly Dungeon Pack
-SKIP dup: Cethiel's Weapons 3D
-SKIP dup: Blocky Characters
-SKIP dup: Treasure Pack
-SKIP dup: Minigolf Kit
-SUMMARY []
+page https://opengameart.org/content/low-poly-halloween-kit len 25554 hasCC0 True
+license field: &nbsp;     <img src='https://opengameart.or
+zips: ['https://opengameart.org/sites/default/files/free_halloween_kit_assetquest.zip']
+downloaded free_halloween_kit_assetquest.zip bytes 8242033
+$ gh release create v1.0 --title v1.0 --notes '3D 로우폴리 팩 zip 첨부' || true
+$ gh release upload v1.0 "/tmp/free_halloween_kit_assetquest.zip" --clobber
+$ git add -A low-poly-halloween-kit
+$ git -c user.name="sigco3111" -c user.email="sigco3111k@gmail.com" commit -m "에셋: Low-Poly Halloween Kit 추가"
+$ git push origin HEAD:main
+ADDED: Low-Poly Halloween Kit
+SKIP dup: Modular Dungeon 2 - 3D Models
+SKIP dup: Tower Defense Kit
+SKIP dup: Modular Castle Level Construction Kit
+SUMMARY [{"slug": "low-poly-halloween-kit", "name": "Low-Poly Halloween Kit", "zip": "free_halloween_kit_assetquest.zip", "mb": 7.9, "files": 80, "big": true}]
