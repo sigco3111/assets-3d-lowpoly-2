@@ -1,0 +1,52 @@
+[main 6e3b7ff] 에셋: Fantasy Town Kit 추가
+ 6 files changed, 139 insertions(+)
+ create mode 100644 fantasy-town-kit/CREDITS.txt
+ create mode 100644 fantasy-town-kit/LICENSE-CC0.txt
+ create mode 100644 fantasy-town-kit/LICENSE-SOURCE.txt
+ create mode 100644 fantasy-town-kit/kenney_fantasy-town-kit_2.0.zip
+ create mode 100644 fantasy-town-kit/pack.md
+ create mode 100644 fantasy-town-kit/preview.png
+To https://github.com/sigco3111/assets-3d-lowpoly-2
+   b8232dc..6e3b7ff  main -> main
+[main d428516] 에셋: Cartoon Low Poly trees and forest 추가
+ 6 files changed, 139 insertions(+)
+ create mode 100644 cartoon-low-poly-trees-and-forest/CREDITS.txt
+ create mode 100644 cartoon-low-poly-trees-and-forest/LICENSE-CC0.txt
+ create mode 100644 cartoon-low-poly-trees-and-forest/LICENSE-SOURCE.txt
+ create mode 100644 cartoon-low-poly-trees-and-forest/gtlf_e_obj.zip
+ create mode 100644 cartoon-low-poly-trees-and-forest/pack.md
+ create mode 100644 cartoon-low-poly-trees-and-forest/preview.png
+To https://github.com/sigco3111/assets-3d-lowpoly-2
+   6e3b7ff..d428516  main -> main
+[main ca291cc] 에셋: Low poly cave assets 추가
+ 6 files changed, 139 insertions(+)
+ create mode 100644 low-poly-cave-assets/CREDITS.txt
+ create mode 100644 low-poly-cave-assets/LICENSE-CC0.txt
+ create mode 100644 low-poly-cave-assets/LICENSE-SOURCE.txt
+ create mode 100644 low-poly-cave-assets/low-poly-cave-assets.zip
+ create mode 100644 low-poly-cave-assets/pack.md
+ create mode 100644 low-poly-cave-assets/preview.png
+To https://github.com/sigco3111/assets-3d-lowpoly-2
+   d428516..ca291cc  main -> main
+ADDED Fantasy Town Kit 3854691
+ADDED Cartoon Low Poly trees and forest 1698030
+ADDED Low poly cave assets 1623519
+Traceback (most recent call last):
+  File "<stdin>", line 32, in <module>
+  File "<stdin>", line 10, in get
+  File "/usr/lib/python3.14/urllib/request.py", line 187, in urlopen
+    return opener.open(url, data, timeout)
+           ~~~~~~~~~~~^^^^^^^^^^^^^^^^^^^^
+  File "/usr/lib/python3.14/urllib/request.py", line 493, in open
+    response = meth(req, response)
+  File "/usr/lib/python3.14/urllib/request.py", line 602, in http_response
+    response = self.parent.error(
+        'http', request, response, code, msg, hdrs)
+  File "/usr/lib/python3.14/urllib/request.py", line 531, in error
+    return self._call_chain(*args)
+           ~~~~~~~~~~~~~~~~^^^^^^^
+  File "/usr/lib/python3.14/urllib/request.py", line 464, in _call_chain
+    result = func(*args)
+  File "/usr/lib/python3.14/urllib/request.py", line 611, in http_error_default
+    raise HTTPError(req.full_url, code, msg, hdrs, fp)
+urllib.error.HTTPError: HTTP Error 404: Not Found
