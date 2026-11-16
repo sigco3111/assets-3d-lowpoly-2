@@ -1,0 +1,85 @@
+name: a106-3d2
+on:
+  workflow_dispatch:
+permissions:
+  contents: write
+jobs:
+  run:
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v4
+      - name: deps
+        run: sudo apt-get update -qq >/dev/null 2>&1; sudo apt-get install -y -qq imagemagick >/dev/null 2>&1
+      - name: run
+        env:
+          GH_TOKEN: ${{ github.token }}
+        run: |
+          python3 - <<'PY' > /tmp/l.txt 2>&1 || true
+          import os,io,csv,re,zipfile,subprocess,urllib.request,urllib.parse
+          C=[
+           {"name":"PSX Style Cars","slug":"psx-style-cars","author":"GGBotNet","page":"https://opengameart.org/content/psx-style-cars","files":["https://opengameart.org/sites/default/files/psx%5Fstyle%5Fcars%5Fby%5Fggbot%5Faugust2023.zip"],"img":"https://opengameart.org/sites/default/files/cars_cover_art.png","tags":"3d,lowpoly,car,vehicle"},
+           {"name":"Treasure chest","slug":"treasure-chest","author":"KillGorack","page":"https://opengameart.org/content/treasure-chest-6","files":["https://opengameart.org/sites/default/files/treasure%5Fchest%5F02%5F0.zip"],"img":"https://opengameart.org/sites/default/files/preview_1371.png","tags":"3d,lowpoly,prop,treasure"},
+           {"name":"Cube Pets","slug":"cube-pets","author":"Kenney","page":"https://opengameart.org/content/cube-pets","files":["https://opengameart.org/sites/default/files/kenney%5Fcube-pets%5F1.0%5F0.zip"],"img":"https://opengameart.org/sites/default/files/preview_1365.png","tags":"3d,lowpoly,animal,character"},
+           {"name":"Pirate Kit","slug":"pirate-kit","author":"Kenney","page":"https://opengameart.org/content/pirate-kit","files":["https://opengameart.org/sites/default/files/kenney%5Fpirate-kit%5F2.1.zip"],"img":"https://opengameart.org/sites/default/files/preview_1364.png","tags":"3d,lowpoly,pirate,ship"},
+           {"name":"Factory Kit","slug":"factory-kit","author":"Kenney","page":"https://opengameart.org/content/factory-kit","files":["https://opengameart.org/sites/default/files/kenney%5Ffactory-kit%5F3.0.zip"],"img":"https://opengameart.org/sites/default/files/preview_1382.png","tags":"3d,lowpoly,factory,industrial"},
+           {"name":"Modular Space Kit","slug":"modular-space-kit","author":"Kenney","page":"https://opengameart.org/content/modular-space-kit","files":["https://opengameart.org/sites/default/files/kenney%5Fmodular-space-kit%5F1.0.zip"],"img":"https://opengameart.org/sites/default/files/preview_1363.png","tags":"3d,lowpoly,space,sci-fi"},
+           {"name":"Emotional Ghosts","slug":"emotional-ghosts","author":"JellyLion","page":"https://opengameart.org/content/emotional-ghosts","files":["https://opengameart.org/sites/default/files/sad%5Fghost.zip","https://opengameart.org/sites/default/files/happyghostv2%5F0.zip"],"img":"https://opengameart.org/sites/default/files/screenshot_2026-02-18_100323.png","tags":"3d,lowpoly,character,ghost"},
+          ]
+          def get(u):
+              r=urllib.request.Request(u,headers={"User-Agent":"vooy-asset-bot/1.0"})
+              return urllib.request.urlopen(r,timeout=180).read()
+          cat=get("https://raw.githubusercontent.com/sigco3111/game-asset-catalog/main/catalog.csv").decode("utf-8")
+          names={row[0].strip().lower() for row in csv.reader(io.StringIO(cat)) if row}
+          lic=get("https://creativecommons.org/publicdomain/zero/1.0/legalcode.txt").decode("utf-8")
+          subprocess.run(["git","config","user.name","sigco3111"],check=True)
+          subprocess.run(["git","config","user.email","101856311+sigco3111@users.noreply.github.com"],check=True)
+          cnt=0
+          for c in C:
+              slug=c["slug"]
+              if cnt>=3: break
+              if os.path.isdir(slug) or c["name"].lower() in names:
+                  print("SKIP",c["name"]); continue
+              os.makedirs(slug)
+              files=[]
+              if "scrape" in c:
+                  page=get("https://opengameart.org/content/"+c["scrape"]).decode("utf-8","replace")
+                  links=sorted(set(re.findall(r"/sites/default/files/[A-Za-z0-9%_.\-]+\.(?:obj|blend|fbx|mtl)",page)))
+                  for l in links:
+                      fn=urllib.parse.unquote(l.split("/")[-1])
+                      open(os.path.join(slug,fn),"wb").write(get("https://opengameart.org"+l))
+                      files.append(fn)
+              else:
+                  for u in c["files"]:
+                      fn=urllib.parse.unquote(u.split("/")[-1])
+                      open(os.path.join(slug,fn),"wb").write(get(u))
+                      files.append(fn)
+              zname=slug+".zip"
+              if len(files)==1 and files[0].endswith(".zip"):
+                  os.rename(os.path.join(slug,files[0]),os.path.join(slug,zname))
+              else:
+                  with zipfile.ZipFile(os.path.join(slug,zname),"w",zipfile.ZIP_DEFLATED) as z:
+                      for fn in files: z.write(os.path.join(slug,fn),fn)
+                  for fn in files: os.remove(os.path.join(slug,fn))
+              size=os.path.getsize(os.path.join(slug,zname))
+              rel=""
+              if size>5*1024*1024:
+                  tag="a105-"+slug
+                  subprocess.run(["gh","release","create",tag,"-t",tag,"-n",c["name"]],check=True)
+                  subprocess.run(["gh","release","upload",tag,os.path.join(slug,zname)],check=True)
+                  os.remove(os.path.join(slug,zname))
+                  rel="https://github.com/sigco3111/assets-3d-lowpoly-2/releases/download/"+tag+"/"+zname
+              md="# "+c["name"]+"\n\n- 출처 URL: "+c["page"]+"\n- 받은 파일 수: "+str(len(files))+"\n- 라이선스: CC0\n- 제작자: "+c["author"]+"\n- zip 크기(바이트): "+str(size)+"\n- 태그: "+c["tags"]+"\n- AI 생성 여부: 출처 페이지에 언급 없음\n"
+              open(os.path.join(slug,"pack.md"),"w").write(md)
+              open(os.path.join(slug,"LICENSE-SOURCE.txt"),"w").write(c["name"]+"\n\n출처 URL: "+c["page"]+"\n표기 라이선스: CC0\n제작자: "+c["author"]+"\n")
+              open(os.path.join(slug,"CREDITS.txt"),"w").write(c["name"]+" - "+c["author"]+"\n라이선스: CC0\n출처: "+c["page"]+"\n")
+              open(os.path.join(slug,"LICENSE-CC0.txt"),"w").write(lic)
+              open("/tmp/srcimg","wb").write(get(c["img"]))
+              subprocess.run(["convert","/tmp/srcimg[0]","-resize","800x800>",os.path.join(slug,"preview.png")],check=True)
+              subprocess.run(["git","add","-A"],check=True)
+              subprocess.run(["git","commit","-m","에셋: "+c["name"]+" 추가"],check=True)
+              subprocess.run(["git","push"],check=True)
+              cnt+=1
+              print("MANIFEST|"+c["name"]+"|"+slug+"|"+(rel if rel else slug+"/"+zname)+"|"+str(size))
+          print("DONE")
+          PY
+          cat /tmp/l.txt
