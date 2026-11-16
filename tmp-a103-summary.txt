@@ -1,0 +1,4 @@
+CANDIDATES 247
+LICFAIL FAQ
+OK crab-low-poly-animated-3d-model | page=https://opengameart.org/content/crab-low-poly-animated-3d-model | file=crab-low-poly-animated-3d-model/crab_0.zip | preview=crab-low-poly-animated-3d-model/preview.png | bytes=991997 | files=6 | author=methodical pixel | license=CC0 | ext=.png 4, .blend 1, .xcf 1 | rc=0
+OK tree-and-plants-low-poly-3d-models | page=https://opengameart.org/content/tree-and-plants-low-poly-3d-models | file=releases/download/v1.0/trees_and_plants_0.zip | preview=tree-and-plants-low-poly-3d-models/preview.png | bytes=6637381 | files=24 | author=methodical pixel | license=CC0 | ext=.blend 17, .png 4, .xcf 3 | rc=0
