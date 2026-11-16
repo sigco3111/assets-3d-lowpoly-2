@@ -1,0 +1,7 @@
+wheel
+
+출처 URL: https://opengameart.org/content/wheel
+확인 시각: 2026-11-17 07:03 KST (GitHub Actions 러너에서 출처 페이지 확인)
+출처 페이지 License(s) 원문: CC0
+판정 라이선스: CC0
+제작자: musher3004
