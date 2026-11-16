@@ -1,0 +1,74 @@
+name: a104-go3
+on:
+  workflow_dispatch:
+permissions:
+  contents: write
+jobs:
+  run:
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v4
+      - name: deps
+        run: sudo apt-get update -qq >/dev/null 2>&1; sudo apt-get install -y -qq imagemagick >/dev/null 2>&1
+      - name: run
+        run: |
+          python3 - <<'PY' > /tmp/l.txt 2>&1 || true
+          import os,sys,io,csv,zipfile,subprocess,urllib.request
+          C=[
+           {"name":"Fantasy Town Kit","slug":"fantasy-town-kit","author":"Kenney","page":"https://opengameart.org/content/fantasy-town-kit","zips":["kenney_fantasy-town-kit_2.0.zip"],"img":"https://opengameart.org/sites/default/files/preview_1345.png"},
+           {"name":"Cartoon Low Poly trees and forest","slug":"cartoon-low-poly-trees-and-forest","author":"allen yatsura","page":"https://opengameart.org/content/cartoon-low-poly-trees-and-forest","zips":["gtlf_e_obj.zip"],"img":"https://opengameart.org/sites/default/files/low_0.gif"},
+           {"name":"Low poly cave assets","slug":"low-poly-cave-assets","author":"agdg reject","page":"https://opengameart.org/content/low-poly-cave-assets","files":["cave_bacon.obj","cave_pillar1.obj","cave_stalac.obj","cave_stalac2.obj","cave_stalag2.obj","cave_stone.obj","cave_straws.obj","texture.png"],"img":"https://opengameart.org/sites/default/files/screenshot_68.png"},
+           {"name":"Low Poly Weapon Pack","slug":"low-poly-weapon-pack","author":"byzmod3d","page":"https://opengameart.org/content/low-poly-weapon-pack","files":["ak47.obj","kar98k.obj","m16.obj","stg44.obj","rpg7.obj","magnum_44.obj","pistol.obj","v2.obj","mode.obj","mode2.obj","12_gauge.obj","colt_1849.obj","sniper.obj","colt_1911.obj"],"img":"https://opengameart.org/sites/default/files/k-1.png"},
+          ]
+          def get(u):
+              r=urllib.request.Request(u,headers={"User-Agent":"vooy-asset-bot/1.0"})
+              return urllib.request.urlopen(r,timeout=120).read()
+          cat=get("https://raw.githubusercontent.com/sigco3111/game-asset-catalog/main/catalog.csv").decode("utf-8")
+          names={row[0].strip().lower() for row in csv.reader(io.StringIO(cat)) if row}
+          lic=get("https://creativecommons.org/publicdomain/zero/1.0/legalcode.txt").decode("utf-8")
+          subprocess.run(["git","config","user.name","sigco3111"],check=True)
+          subprocess.run(["git","config","user.email","101856311+sigco3111@users.noreply.github.com"],check=True)
+          added=[]
+          for c in C:
+              slug=c["slug"]
+              if os.path.isdir(slug) or c["name"].lower() in names:
+                  print("SKIP",c["name"]); continue
+              os.makedirs(slug)
+              if "zips" in c:
+                  zname=c["zips"][0]
+                  data=get("https://opengameart.org/sites/default/files/"+urllib.parse.quote(zname))
+                  open(os.path.join(slug,zname),"wb").write(data)
+                  zp=os.path.join(slug,zname)
+              else:
+                  zname=slug+".zip"
+                  zp=os.path.join(slug,zname)
+                  zf=zipfile.ZipFile(zp,"w",zipfile.ZIP_DEFLATED)
+                  for fn in c["files"]:
+                      b=get("https://opengameart.org/sites/default/files/"+urllib.parse.quote(fn))
+                      zf.writestr(fn,b)
+                  zf.close()
+                  data=open(zp,"rb").read()
+              n=len(zipfile.ZipFile(zp).namelist())
+              open(os.path.join(slug,"pack.md"),"w").write(
+                "# "+c["name"]+"\n\n- 출처 URL: "+c["page"]+"\n- 받은 파일: "+zname+" (%.1fMB)\n"%(len(data)/1048576.0)+
+                "- 라이선스: CC0\n- 제작자: "+c["author"]+"\n- 파일 수: "+str(n)+"\n- 파일 크기(바이트): "+str(len(data))+
+                "\n- 태그: lowpoly,3d\n- AI 생성 여부: 출처 페이지에 언급 없음\n")
+              open(os.path.join(slug,"LICENSE-SOURCE.txt"),"w").write(
+                c["name"]+"\n\n출처 URL: "+c["page"]+"\n표기 라이선스: CC0\n제작자: "+c["author"]+"\n")
+              open(os.path.join(slug,"CREDITS.txt"),"w").write(
+                c["name"]+" - "+c["author"]+"\n라이선스: CC0\n출처: "+c["page"]+"\n")
+              open(os.path.join(slug,"LICENSE-CC0.txt"),"w").write(lic)
+              open("/tmp/srcimg","wb").write(get(c["img"]))
+              subprocess.run(["convert","/tmp/srcimg[0]","-resize","800x800>",os.path.join(slug,"preview.png")],check=True)
+              subprocess.run(["git","add","-A"],check=True)
+              subprocess.run(["git","commit","-m","에셋: "+c["name"]+" 추가"],check=True)
+              subprocess.run(["git","push"],check=True)
+              added.append(c["name"])
+              print("ADDED",c["name"],len(data))
+          print("DONE",len(added))
+          PY
+          cat /tmp/l.txt
+          cp /tmp/l.txt a104-log2.txt
+          git add a104-log2.txt
+          git commit -m 'tmp: A104 3D 로그2' || true
+          git push || true
