@@ -41,9 +41,9 @@
 ### 3D Vehicles Pack ![3D Vehicles Pack 미리보기](3d-vehicles-pack/preview.png)
 - 파일: `vehicle_pack.zip` (2.6MB) — 저장소 내 포함
 - 제작: mehrasaur / 라이선스: CC0 / 원본: https://opengameart.org/content/3d-vehicles-pack
-### Low Poly RPG Pack ![Low Poly RPG Pack 미리보기](low-poly-rpg-pack/preview.png)
+### Low Poly RPG Pack ![Low Poly RPG Pack 미리보기](low-poly-rpg-pack/preview.jpg)
 - 파일: [릴리스 v1.0 첨부 다운로드](https://github.com/sigco3111/assets-3d-lowpoly-2/releases/download/v1.0/ultimate_rpg_items_pack_by_quaternius_0.zip) (42.6MB) — 릴리스 첨부
 - 제작: quaternius / 라이선스: CC0 / 원본: https://opengameart.org/content/low-poly-rpg-pack
-### LowPoly Survival Pack ![LowPoly Survival Pack 미리보기](lowpoly-survival-pack/preview.png)
+### LowPoly Survival Pack ![LowPoly Survival Pack 미리보기](lowpoly-survival-pack/preview.jpg)
 - 파일: [릴리스 v1.0 첨부 다운로드](https://github.com/sigco3111/assets-3d-lowpoly-2/releases/download/v1.0/survival_pack_-_sept_2020.zip) (5.7MB) — 릴리스 첨부
 - 제작: quaternius / 라이선스: CC0 / 원본: https://opengameart.org/content/lowpoly-survival-pack
