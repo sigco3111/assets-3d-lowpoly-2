@@ -1,0 +1,6 @@
+start 3
+catalog rows 1917
+SKIP Mushroom Enemy name in catalog
+SKIP Germanic style castle name in catalog
+SKIP Chibi Neko by cosmix name in catalog
+DONE 0
