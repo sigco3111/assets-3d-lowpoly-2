@@ -1,4 +1,7 @@
 index names: 1873
-SKIP dup: LowPoly House Interior Pack
-SKIP dup: Low Poly Food Pack
+SKIP dup: Free Modular Low Poly Dungeon Pack
+SKIP dup: Cethiel's Weapons 3D
+SKIP dup: Blocky Characters
+SKIP dup: Treasure Pack
+SKIP dup: Minigolf Kit
 SUMMARY []
