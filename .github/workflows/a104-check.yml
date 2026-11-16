@@ -1,0 +1,31 @@
+name: a104-check
+on:
+  workflow_dispatch:
+permissions:
+  contents: write
+jobs:
+  run:
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v4
+      - name: run
+        run: |
+          python3 - <<'PY' > a104-check.txt 2>&1 || true
+          import io,csv,urllib.request
+          N=["Factory Kit","Graveyard Kit","Fantasy Town Kit","Modular Dungeon Kit","Dungeon Building Kit","Low Poly Weapon Pack","backrooms builder kit","32 Low Poly Models","Plasma Electric Effect Animations","Gun Muzzle Flash Effects (Fire and Ion and Melee)","Rocket Thruster Effect Animations","Shape Particles"]
+          def get(u):
+              r=urllib.request.Request(u,headers={"User-Agent":"vooy-asset-bot/1.0"})
+              return urllib.request.urlopen(r,timeout=90).read()
+          cat=get("https://raw.githubusercontent.com/sigco3111/game-asset-catalog/main/catalog.csv").decode("utf-8")
+          rows=list(csv.reader(io.StringIO(cat)))
+          names={row[0].strip().lower() for row in rows if row}
+          print("rows",len(rows))
+          for n in N:
+              print(("DUP " if n.lower() in names else "NEW ")+n)
+          PY
+          cat a104-check.txt
+          git config user.name sigco3111
+          git config user.email 101856311+sigco3111@users.noreply.github.com
+          git add a104-check.txt
+          git commit -m 'tmp: A104 후보 확인' || true
+          git push || true
