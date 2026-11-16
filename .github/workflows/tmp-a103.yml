@@ -1,0 +1,148 @@
+name: tmp-a103
+on:
+  workflow_dispatch: {}
+permissions:
+  contents: write
+jobs:
+  build:
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v4
+      - name: build
+        env:
+          GH_TOKEN: ${{ secrets.GITHUB_TOKEN }}
+        run: |
+          python3 - <<'PY'
+          import csv, io, json, os, re, subprocess, urllib.request, zipfile, shutil
+          TAG = 'v1.0'
+          UA = {'User-Agent': 'Mozilla/5.0 (X11; Linux x86_64) AppleWebKit/537.36 Chrome/120 Safari/537.36'}
+          def get(u, binary=False):
+              req = urllib.request.Request(u, headers=UA)
+              data = urllib.request.urlopen(req, timeout=300).read()
+              return data if binary else data.decode('utf-8', 'replace')
+          def plain(s):
+              return re.sub(r'<[^>]+>', ' ', s)
+          PACKS = [
+           {"title":"Painting Pack","slug":"painting-pack","page":"https://opengameart.org/content/painting-pack","zip":"paintings_textured.zip","author":"EmoPreben","license":"CC0","tags":"painting,frame,prop,lowpoly,3d"},
+           {"title":"Germanic style castle","slug":"germanic-style-castle","page":"https://opengameart.org/content/germanic-style-castle","zip":"germanic_castle.zip","author":"_Creature_","license":"CC0","tags":"castle,medieval,building,environment,3d"},
+           {"title":"Humanoid SoulsLike Animations","slug":"humanoid-soulslike-animations","page":"https://opengameart.org/content/humanoid-soulslike-animations","zip":"straighswordanimationpack.zip","author":"Gres","license":"CC0","tags":"character,animated,sword,human,lowpoly,3d"}
+          ]
+          try:
+              cat = get('https://raw.githubusercontent.com/sigco3111/game-asset-catalog/main/catalog.csv')
+          except Exception:
+              cat = ''
+          names = set()
+          urls = set()
+          if cat:
+              for row in csv.DictReader(io.StringIO(cat)):
+                  names.add((row.get('name') or '').strip().lower())
+                  urls.add((row.get('source_url') or '').strip())
+          try:
+              cc0 = get('https://creativecommons.org/publicdomain/zero/1.0/legalcode.txt')
+          except Exception:
+              cc0 = 'CC0 1.0 Universal (Public Domain Dedication) - https://creativecommons.org/publicdomain/zero/1.0/'
+          out = []
+          for p in PACKS:
+              slug = p['slug']
+              d = slug
+              if p['title'].strip().lower() in names or p['page'] in urls:
+                  out.append('SKIP dup ' + slug)
+                  continue
+              if os.path.exists(os.path.join(d, 'pack.md')):
+                  out.append('SKIP exists ' + slug)
+                  continue
+              try:
+                  html = get(p['page'])
+              except Exception as e:
+                  out.append('ERR page ' + slug + ' ' + str(e))
+                  continue
+              licseg = plain(html[html.find('License(s)'):][:1200])
+              if p['license'] not in licseg:
+                  out.append('LICFAIL ' + slug + ' | ' + licseg[:120])
+                  continue
+              m = re.search(r'property="og:image" content="([^"]+)"', html)
+              prev = m.group(1) if m else ''
+              if '/sites/default/files/' not in prev:
+                  m = re.search(r'src="(/sites/default/files/[^"]+\.(?:png|jpe?g|gif))"', html)
+                  prev = ('https://opengameart.org' + m.group(1)) if m else ''
+              zname = p['zip']
+              m = re.search(r'href="((?:https://opengameart\.org)?/sites/default/files/[^"]*' + re.escape(zname) + r')"', html)
+              if not m:
+                  out.append('NOFILE ' + slug)
+                  continue
+              zurl = m.group(1)
+              if zurl.startswith('/'):
+                  zurl = 'https://opengameart.org' + zurl
+              os.makedirs(d, exist_ok=True)
+              tmp = '/tmp/' + zname
+              try:
+                  data = get(zurl, True)
+              except Exception as e:
+                  out.append('ERR zip ' + slug + ' ' + str(e))
+                  continue
+              open(tmp, 'wb').write(data)
+              size = len(data)
+              if size > 25 * 1024 * 1024:
+                  out.append('TOOBIG %s %d' % (slug, size))
+                  continue
+              names_z = []
+              try:
+                  zf = zipfile.ZipFile(tmp)
+                  names_z = [n for n in zf.namelist() if not n.endswith('/') and '__MACOSX' not in n]
+              except Exception as e:
+                  out.append('BADZIP ' + slug + ' ' + str(e))
+              exts = {}
+              for n in names_z:
+                  e2 = os.path.splitext(n)[1].lower()
+                  exts[e2] = exts.get(e2, 0) + 1
+              ext_txt = ', '.join('%s %d' % (k or 'none', v) for k, v in sorted(exts.items(), key=lambda x: -x[1])[:6])
+              if size > 5 * 1024 * 1024:
+                  subprocess.run(['gh', 'release', 'create', TAG, '--title', TAG, '--notes', 'release assets'], check=False, capture_output=True)
+                  subprocess.run(['gh', 'release', 'upload', TAG, tmp, '--clobber'], check=False)
+                  file_col = 'releases/download/%s/%s' % (TAG, zname)
+              else:
+                  shutil.copy(tmp, os.path.join(d, zname))
+                  file_col = '%s/%s' % (slug, zname)
+              pv_rel = ''
+              if prev:
+                  ext = os.path.splitext(prev.split('?')[0])[1].lower()
+                  if ext not in ('.png', '.jpg', '.jpeg'):
+                      ext = '.png'
+                  try:
+                      pdata = get(prev, True)
+                      if len(pdata) > 1000:
+                          open(os.path.join(d, 'preview' + ext), 'wb').write(pdata)
+                          pv_rel = '%s/preview%s' % (slug, ext)
+                  except Exception as e:
+                      out.append('NOPREVIEW ' + slug + ' ' + str(e))
+              open(os.path.join(d, 'LICENSE-CC0.txt'), 'w').write(cc0)
+              open(os.path.join(d, 'LICENSE-SOURCE.txt'), 'w').write(p['title'] + '\n\n출처 URL: ' + p['page'] + '\n표기 라이선스: ' + p['license'] + '\n제작자: ' + p['author'] + '\n\n이 파일은 수집자가 출처 페이지의 라이선스 표기를 기록한 것입니다.\n원본 배포물에 라이선스 파일이 포함되어 있지 않으면 이 파일이 그 역할을 합니다.\n')
+              open(os.path.join(d, 'CREDITS.txt'), 'w').write(p['title'] + ' — ' + p['author'] + '\n라이선스: ' + p['license'] + '\n출처: ' + p['page'] + '\n\nCC0는 저작자 표시를 요구하지 않지만 출처 표기를 권장합니다.\n')
+              md = ['# ' + p['title'], '',
+                    '- 출처 URL: ' + p['page'],
+                    '- 받은 파일: %s (%.1fMB)' % (zname, size / 1048576.0),
+                    '- 라이선스: ' + p['license'],
+                    '- 제작자: ' + p['author'],
+                    '- 파일 수: %d' % len(names_z),
+                    '- 파일 크기(바이트): %d' % size,
+                    '- 태그: ' + p['tags'],
+                    '- 표기 요구: 없음 (CC0)',
+                    '- AI 생성 여부: 출처 페이지에 언급 없음']
+              open(os.path.join(d, 'pack.md'), 'w').write('\n'.join(md) + '\n')
+              subprocess.run(['git', 'config', 'user.name', 'sigco3111'], check=True)
+              subprocess.run(['git', 'config', 'user.email', 'sigco3111@users.noreply.github.com'], check=True)
+              subprocess.run(['git', 'add', d], check=True)
+              r = subprocess.run(['git', 'commit', '-m', '에셋: ' + p['title'] + ' 추가'], capture_output=True, text=True)
+              if r.returncode != 0:
+                  out.append('COMMITFAIL ' + slug + ' ' + r.stderr[-200:])
+                  continue
+              subprocess.run(['git', 'pull', '--rebase', 'origin', 'main'], check=False, capture_output=True)
+              subprocess.run(['git', 'push', 'origin', 'HEAD:main'], check=False)
+              out.append('OK %s | bytes=%d | files=%d | file=%s | preview=%s | ext=%s | author=%s | license=%s' % (slug, size, len(names_z), file_col, pv_rel, ext_txt, p['author'], p['license']))
+          open('tmp-a103-summary.txt', 'w').write('\n'.join(out) + '\n')
+          print('\n'.join(out))
+          subprocess.run(['git', 'add', 'tmp-a103-summary.txt'], check=False)
+          subprocess.run(['git', 'commit', '-m', 'tmp: A103 3D 수집 요약'], check=False, capture_output=True)
+          subprocess.run(['git', 'push', 'origin', 'HEAD:main'], check=False)
+          
+          PY
