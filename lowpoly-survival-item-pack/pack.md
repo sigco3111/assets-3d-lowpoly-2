@@ -1,7 +1,7 @@
 # Lowpoly survival item pack
 
 - 출처 URL: https://opengameart.org/content/lowpoly-survival-item-pack
-- 받은 파일: Survival items.zip (279.4KB)
+- 받은 파일: survival-items.zip (279.4KB)
 - 라이선스: CC0
 - 제작자: artie31
 - 공개일: 2020-03-13

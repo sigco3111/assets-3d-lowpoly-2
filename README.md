@@ -31,7 +31,7 @@
 
 ### Lowpoly survival item pack
 ![Lowpoly survival item pack 미리보기](lowpoly-survival-item-pack/preview.png)
-- 파일: `Survival items.zip` (279.4KB) — 저장소 내 포함
+- 파일: `survival-items.zip` (279.4KB) — 저장소 내 포함
 - 제작: artie31 / 라이선스: CC0 / 원본: https://opengameart.org/content/lowpoly-survival-item-pack
 
 ### LOW POLY 3D MODEL PACKS
