@@ -1,0 +1,26 @@
+name: a104-probe
+on:
+  workflow_dispatch:
+permissions:
+  contents: write
+jobs:
+  run:
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v4
+      - name: probe
+        run: |
+          python3 --version
+          python3 -c 'print("inline-ok")'
+          python3 - <<'PY'
+          print('heredoc-ok')
+          for i in range(2):
+              print('loop', i)
+          PY
+          git config user.name sigco3111
+          git config user.email 101856311+sigco3111@users.noreply.github.com
+          date -u > a104-probe.txt
+          python3 -c 'print("x")' >> a104-probe.txt
+          git add a104-probe.txt
+          git commit -m 'tmp: A104 프로브'
+          git push
