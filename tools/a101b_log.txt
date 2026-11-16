@@ -1,6 +1,4 @@
-index names 2049
-SKIP dup: Low Poly Nature Pack
-page bytes 35216 cc0 True
-zip hrefs []
-SKIP no zip: https://opengameart.org/content/low-poly-medieval-models-163-cc0-village-castle-interiors-props-weapons-food-dungeon-nature
-SUMMARY []
+names 2049
+DUP Low Poly Nature Pack
+page 35216 cc0 True
+zips []
