@@ -1,0 +1,4 @@
+OK 50-monsters-pack-3d | files=286 | bytes=2310543 | file=50-monsters-pack-3d/50_monsters_pack_3d_version_1.0.zip | preview=50-monsters-pack-3d/preview.png | ext=.png 229, .obj 56, .txt 1 | haslic=False
+OK tiny-treats-charming-kitchen-set | files=348 | bytes=4446862 | file=tiny-treats-charming-kitchen-set/tiny_treats_charming_kitchen_1.0.zip | preview=tiny-treats-charming-kitchen-set/preview.png | ext=.fbx 110, .mtl 59, .obj 59, .bin 55, .gltf 55, .png 7 | haslic=True
+OK tiny-treats-pretty-park-set | files=187 | bytes=3027160 | file=tiny-treats-pretty-park-set/tiny_treats_pretty_park_1.0.zip | preview=tiny-treats-pretty-park-set/preview.png | ext=.fbx 56, .mtl 30, .obj 30, .bin 28, .gltf 28, .png 12 | haslic=True
+OK free-lowpoly-pond-kit | files=93 | bytes=12609592 | file=releases/download/v1.0/free_pond_kit_assetquest.zip | preview=free-lowpoly-pond-kit/preview.jpg | ext=.fbx 89, .txt 2, .tga 1, .png 1 | haslic=True
