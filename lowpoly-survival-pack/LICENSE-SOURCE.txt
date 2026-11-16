@@ -1,0 +1,7 @@
+팩: LowPoly Survival Pack
+출처: https://opengameart.org/content/lowpoly-survival-pack
+라이선스: CC0 1.0 (출처 페이지 표기)
+제작자: quaternius
+공개일: 2021-06-18
+다운로드: https://opengameart.org/sites/default/files/survival_pack_-_sept_2020.zip
+확인: 2026-11-16 OpenGameArt 팩 페이지에 CC0 표기 확인
