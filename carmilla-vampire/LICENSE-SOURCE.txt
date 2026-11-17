@@ -1,0 +1,5 @@
+출처 페이지: https://opengameart.org/content/carmilla-vampire
+라이선스(출처 페이지 License(s)): CC-BY 4.0
+원본 zip: https://opengameart.org/sites/default/files/carmilla_vampire.zip
+zip sha256: 24c93ec9249d73269faa086b5c18f53934c11b0b54ed14cf4db83df94c4a3351
+확인: 2026-11-18 KST (A114 러너)
