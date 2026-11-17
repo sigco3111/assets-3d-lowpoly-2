@@ -1,0 +1,44 @@
+name: collect-kk3
+on:
+  push:
+    branches: [main]
+    paths: [.github/workflows/collect-kk3.yml]
+jobs:
+  kk:
+    runs-on: ubuntu-latest
+    timeout-minutes: 10
+    steps:
+      - uses: actions/setup-python@v5
+        with:
+          python-version: '3.12'
+      - name: check kaykit repos
+        run: |
+          python3 - <<'PY'
+          import csv, io, time, urllib.request, sys, traceback
+          UA={'User-Agent':'asset-collector'}
+          def get(u):
+              return urllib.request.urlopen(urllib.request.Request(u, headers=UA), timeout=60).read().decode('utf-8','replace')
+          try:
+              cat = list(csv.DictReader(io.StringIO(get('https://raw.githubusercontent.com/sigco3111/game-asset-catalog/main/catalog.csv?t=%d' % int(time.time())), newline='')))
+              srcs = set(r['source_url'].strip().rstrip('/').lower() for r in cat)
+              names = set(r['name'].strip().lower() for r in cat)
+              base = 'https://github.com/KayKit-Game-Assets/'
+              tried = ['KayKit-Dungeon-Remastered-1.0','KayKit-Character-Pack-Adventures-1.0','KayKit-Space-Base-Bits-1.0','KayKit-City-Builder-Bits-1.0','KayKit-Character-Pack-Skeletons-1.0','KayKit-Forest-Nature-Pack-1.0','KayKit-Platformer-Pack-1.0','KayKit-Resource-Bits-1.0','KayKit-Block-Bits-1.0','KayKit-Halloween-Bits-1.0','KayKit-Restaurant-Bits-1.0','KayKit-Prototype-Bits-1.0','KayKit-Furniture-Bits-1.0','KayKit-Holiday-Bits-1.0']
+              for t in tried:
+                  u = base + t
+                  inc = (u.lower() in srcs)
+                  if inc: print('::notice::KK3 in_catalog %s' % t); continue
+                  try:
+                      get(u)
+                      lic = ''
+                      try: lic = get('https://raw.githubusercontent.com/KayKit-Game-Assets/%s/main/LICENSE' % t)
+                      except Exception: lic = 'no LICENSE file'
+                      mark = 'CC0' if 'CC0' in lic else ('CC-BY' if 'Attribution' in lic else 'unclear')
+                      print('::notice::KK3 uncollected %s | lic=%s' % (t, mark))
+                  except Exception as e:
+                      print('::notice::KK3 missing %s (%s)' % (t, str(e)[:40]))
+          except BaseException as e:
+              print('::error::KK3 ' + (('%s: %s' % (type(e).__name__, e))[:300]).replace(chr(10),' '))
+              traceback.print_exc()
+              sys.exit(1)
+          PY
