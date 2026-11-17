@@ -1,0 +1,30 @@
+name: collect-ap
+on:
+  push:
+    branches: [main]
+    paths: [.github/workflows/collect-ap.yml]
+jobs:
+  p:
+    runs-on: ubuntu-latest
+    timeout-minutes: 10
+    steps:
+      - uses: actions/setup-python@v5
+        with:
+          python-version: '3.12'
+      - name: probe ambientcg api
+        run: |
+          python3 - <<'PY'
+          import sys, traceback
+          print('::notice::AP start')
+          try:
+              import urllib.request, json
+              r = urllib.request.urlopen(urllib.request.Request('https://ambientcg.com/api/v2/full_json?type=Material&sort=Popular&limit=3', headers={'User-Agent':'asset-collector'}), timeout=60)
+              b = r.read(); print('::notice::AP api_bytes=%d' % len(b))
+              j = json.loads(b.decode('utf-8')); print('::notice::AP keys=' + ','.join(list(j.keys())[:6]) + ' found=%d' % len(j.get('foundAssets', [])))
+              a = j['foundAssets'][0] if j.get('foundAssets') else {}
+              print('::notice::AP first=' + str(a.get('assetId')) + ' | ' + str(a.get('displayName')))
+          except BaseException as e:
+              print('::error::AP ' + (type(e).__name__ + ': ' + str(e))[:300].replace(chr(10),' '))
+              traceback.print_exc()
+              sys.exit(1)
+          PY
