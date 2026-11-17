@@ -1,0 +1,46 @@
+name: collect-q3
+on:
+  push:
+    branches: [main]
+    paths: [.github/workflows/collect-q3.yml]
+jobs:
+  q:
+    runs-on: ubuntu-latest
+    timeout-minutes: 10
+    steps:
+      - uses: actions/checkout@v4
+        with:
+          fetch-depth: 1
+      - uses: actions/setup-python@v5
+        with:
+          python-version: '3.12'
+      - name: list candidates
+        run: |
+          python3 - <<'PY'
+          import csv, io, re, urllib.request, sys, time, traceback
+          UA={'User-Agent':'asset-collector'}
+          def get(u):
+              return urllib.request.urlopen(urllib.request.Request(u, headers=UA), timeout=60).read().decode('utf-8','replace')
+          try:
+              cu = 'https://raw.githubusercontent.com/sigco3111/game-asset-catalog/main/catalog.csv?t=%d' % int(time.time())
+              cat = list(csv.DictReader(io.StringIO(get(cu), newline='')))
+              have = set(r['source_url'].strip().rstrip('/').lower() for r in cat if r.get('source_url'))
+              names = set(r['name'].strip().lower() for r in cat)
+              idx = get('https://quaternius.com/')
+              pk = sorted(set(re.findall(r'https?://quaternius\.com/packs/[a-z0-9\-]+\.html|/packs/[a-z0-9\-]+\.html', idx)))
+              pk = [p if p.startswith('http') else 'https://quaternius.com' + p for p in pk]
+              print('::notice::Q3 index_packs=%d' % len(pk))
+              cand = [p for p in pk if p.rstrip('/').lower() not in have]
+              print('::notice::Q3 uncollected=%d' % len(cand))
+              for p in cand[:12]:
+                  h = get(p)
+                  t = re.search(r'<title>([^<]*)', h)
+                  lic = re.findall(r'CC0|CC-BY[^<\s]{0,12}|License[^<]{0,30}', h)
+                  z = re.findall(r'href="([^"]*(?:zip|drive\.google|itch\.io)[^"]*)"', h)
+                  print('::notice::Q3 cand %s | title=%s | lic=%s | dl=%s' % (p, (t.group(1) if t else '?')[:80], ','.join(sorted(set(lic)))[:80], ' ; '.join(z[:3])[:220]))
+          except BaseException as e:
+              print('::error::Q3 ' + (('%s: %s' % (type(e).__name__, e))[:300]).replace('\n',' '))
+              traceback.print_exc()
+              sys.exit(1)
+          
+          PY
