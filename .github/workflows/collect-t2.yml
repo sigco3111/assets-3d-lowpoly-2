@@ -1,0 +1,27 @@
+name: collect-t2
+on:
+  push:
+    branches: [main]
+    paths: [.github/workflows/collect-t2.yml]
+jobs:
+  t:
+    runs-on: ubuntu-latest
+    timeout-minutes: 10
+    steps:
+      - uses: actions/checkout@v4
+        with:
+          fetch-depth: 1
+      - uses: actions/setup-python@v5
+        with:
+          python-version: '3.12'
+      - name: list hrefs
+        run: |
+          python3 - <<'PY'
+          import re, urllib.request
+          h = urllib.request.urlopen(urllib.request.Request('https://quaternius.com/packs/animatedtanks.html', headers={'User-Agent':'asset-collector'}), timeout=60).read().decode('utf-8','replace')
+          for x in sorted(set(re.findall(r'href="([^"]+)"', h))):
+              print('::notice::H ' + x[:110])
+          for x in sorted(set(re.findall(r'(?:src|data-[a-z-]+)="([^"]+\.(?:zip|glb|fbx|png))"', h)))[:6]:
+              print('::notice::S ' + x[:110])
+          print('::notice::H scripts=%d' % len(re.findall(r'<script', h)))
+          PY
