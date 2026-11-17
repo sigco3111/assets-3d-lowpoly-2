@@ -1,0 +1,4 @@
+Source: https://polyhaven.com/a/grass_medium_01
+License: CC0
+Checked: 2026-11-17 (GitHub Actions runner)
+Quote: All assets (HDRIs, textures and 3D models) on this site ... are licensed as CC0 (polyhaven.com/license, 2026-11-17 확인)
