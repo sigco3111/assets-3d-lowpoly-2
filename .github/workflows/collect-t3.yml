@@ -1,0 +1,26 @@
+name: collect-t3
+on:
+  push:
+    branches: [main]
+    paths: [.github/workflows/collect-t3.yml]
+jobs:
+  t:
+    runs-on: ubuntu-latest
+    timeout-minutes: 10
+    steps:
+      - uses: actions/checkout@v4
+        with:
+          fetch-depth: 1
+      - uses: actions/setup-python@v5
+        with:
+          python-version: '3.12'
+      - name: find zip links
+        run: |
+          python3 - <<'PY'
+          import re, urllib.request
+          h = urllib.request.urlopen(urllib.request.Request('https://quaternius.com/packs/animatedtanks.html', headers={'User-Agent':'asset-collector'}), timeout=60).read().decode('utf-8','replace')
+          m = sorted(set(re.findall(r'[^\s"\'<>]{0,60}(?:\.zip|drive\.google|itch\.io|download)[^\s"\'<>]{0,60}', h, re.I)))
+          for x in m[:15]:
+              print('::notice::Z ' + x[:115])
+          print('::notice::Z count=%d' % len(m))
+          PY
