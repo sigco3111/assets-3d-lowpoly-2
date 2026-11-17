@@ -1,0 +1,65 @@
+name: collect-std
+on:
+  push:
+    branches: [main]
+    paths: [triggers/collect-run.txt, .github/workflows/collect-std.yml]
+  workflow_dispatch:
+jobs:
+  std:
+    runs-on: ubuntu-latest
+    timeout-minutes: 30
+    permissions:
+      contents: write
+    steps:
+      - uses: actions/checkout@v4
+        with:
+          fetch-depth: 0
+      - uses: actions/setup-python@v5
+        with:
+          python-version: '3.12'
+      - name: candidate scan (dry-run scope)
+        run: |
+          python3 - <<'PY'
+          import csv, io, re, time, sys, traceback, urllib.request
+          UA={'User-Agent':'asset-collector'}
+          def get(u, t=60):
+              return urllib.request.urlopen(urllib.request.Request(u, headers=UA), timeout=t).read().decode('utf-8','replace')
+          def cfg():
+              kv={}
+              for ln in open('triggers/collect-run.txt', encoding='utf-8'):
+                  ln=ln.strip()
+                  if '=' in ln and not ln.startswith('#'):
+                      k,v=ln.split('=',1); kv[k.strip()]=v.strip()
+              return kv
+          ALLOW=re.compile(r'CC0|CC-BY(?![-\w])|MIT|GPL ?(?:2|3)|OGA-BY|Public Domain', re.I)
+          BLOCK=re.compile(r'-NC|-ND|-SA|NonCommercial|NoDerivatives|ShareAlike', re.I)
+          try:
+              c=cfg(); src=c.get('source','opengameart'); mx=int(c.get('max_packs','3')); dry=c.get('dry_run','false').lower()=='true'
+              print('::notice::STD cfg source=%s max_packs=%d dry_run=%s' % (src, mx, dry))
+              cat=list(csv.DictReader(io.StringIO(get('https://raw.githubusercontent.com/sigco3111/game-asset-catalog/main/catalog.csv?t=%d' % int(time.time())), newline='')))
+              srcs=set((r.get('source_url') or '').strip().rstrip('/').lower() for r in cat)
+              print('::notice::STD catalog_rows=%d' % len(cat))
+              if src!='opengameart':
+                  print('::notice::STD source %s not wired yet (dry-run scope)' % src); sys.exit(0)
+              html=get('https://opengameart.org/art-search-advanced?keys=&field_art_type_tid%5B%5D=9&sort_by=count&sort_order=DESC')
+              paths=list(dict.fromkeys(re.findall(r'href="(/content/[a-z0-9\-_]+)"', html)))
+              print('::notice::STD listed=%d' % len(paths))
+              kept=0; skipped=0
+              for path in paths:
+                  if kept>=mx: break
+                  url='https://opengameart.org'+path
+                  if url.lower() in srcs: skipped+=1; print('::notice::STD SKIP dup %s' % path); continue
+                  try: h=get(url)
+                  except Exception as e: skipped+=1; print('::notice::STD SKIP fetch %s' % path); continue
+                  m=re.search(r'License\(s\)(.{0,400})', h, re.S)
+                  lic=re.sub(r'<[^>]+>',' ', m.group(1) if m else '')
+                  lic=re.sub(r'\s+',' ',lic)[:80]
+                  if BLOCK.search(lic) or not ALLOW.search(lic): skipped+=1; print('::notice::STD SKIP lic %s [%s]' % (path, lic)); continue
+                  zips=len(re.findall(r'href="[^"]+\.(?:zip|7z|rar|tar\.gz)"', h, re.I))
+                  print('::notice::STD CAND %s lic=[%s] zips=%d' % (path, lic[:50], zips)); kept+=1
+              print('::notice::STD summary candidates=%d skipped=%d dry_run=%s' % (kept, skipped, dry))
+          except SystemExit: raise
+          except BaseException as e:
+              print('::error::STD '+(type(e).__name__+': '+str(e))[:300].replace(chr(10),' ')); traceback.print_exc(); sys.exit(1)
+          
+          PY
