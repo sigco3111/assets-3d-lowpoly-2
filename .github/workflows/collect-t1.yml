@@ -1,0 +1,55 @@
+name: collect-t1
+on:
+  push:
+    branches: [main]
+    paths: [.github/workflows/collect-t1.yml]
+jobs:
+  t:
+    runs-on: ubuntu-latest
+    timeout-minutes: 10
+    steps:
+      - uses: actions/checkout@v4
+        with:
+          fetch-depth: 1
+      - uses: actions/setup-python@v5
+        with:
+          python-version: '3.12'
+      - name: read tanks
+        run: |
+          python3 - <<'PY'
+          import csv, io, re, time, urllib.request, sys, traceback
+          UA={'User-Agent':'asset-collector'}
+          def get(u):
+              return urllib.request.urlopen(urllib.request.Request(u, headers=UA), timeout=60).read().decode('utf-8','replace')
+          try:
+              cat = list(csv.DictReader(io.StringIO(get('https://raw.githubusercontent.com/sigco3111/game-asset-catalog/main/catalog.csv?t=%d' % int(time.time())), newline='')))
+              print('::notice::T1 catalog_rows=%d' % len(cat))
+              names = set(r['name'].strip().lower() for r in cat)
+              srcs = set((r.get('source_url') or '').strip().rstrip('/').lower() for r in cat)
+              order = [('Animated Tanks Pack','animatedtanks'),('Animated Monster Pack','animatedmonster'),('Animated Fish Pack','animatedfish'),('Animated Men Pack','animatedmen')]
+              chosen = None
+              for nm, slug in order:
+                  url = 'https://quaternius.com/packs/%s.html' % slug
+                  dup = nm.lower() in names or any(slug in s for s in srcs)
+                  print('::notice::T1 check %s dup=%s' % (nm, dup))
+                  if not dup and chosen is None:
+                      chosen = (nm, slug, url)
+              if chosen is None:
+                  print('::error::T1 no candidate left'); sys.exit(1)
+              nm, slug, url = chosen
+              print('::notice::T1 CHOSEN %s %s' % (nm, url))
+              html = get(url)
+              print('::notice::T1 html_bytes=%d' % len(html))
+              lic = sorted(set(re.findall(r'CC0|CC-BY[^<\s"]{0,12}|Public Domain|License[^<]{0,30}', html)))
+              print('::notice::T1 license=' + ' | '.join(lic)[:110])
+              hr = re.findall(r'href="([^"]+)"', html)
+              for h in sorted(set(hr)):
+                  if re.search(r'zip|drive\.google|itch\.io|download|7z|rar|mega|dropbox', h, re.I):
+                      print('::notice::T1 LINK ' + h[:115])
+              print('::notice::T1 href_total=%d' % len(hr))
+          except BaseException as e:
+              print('::error::T1 ' + (('%s: %s' % (type(e).__name__, e))[:300]).replace('\n',' '))
+              traceback.print_exc()
+              sys.exit(1)
+          
+          PY
