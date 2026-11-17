@@ -1,0 +1,44 @@
+name: collect-kk1
+on:
+  push:
+    branches: [main]
+    paths: [.github/workflows/collect-kk1.yml]
+env:
+  SOURCE: kaykit
+  MAX_PACKS: '1'
+  DRY_RUN: 'false'
+jobs:
+  kk:
+    runs-on: ubuntu-latest
+    timeout-minutes: 10
+    steps:
+      - uses: actions/setup-python@v5
+        with:
+          python-version: '3.12'
+      - name: probe kaykit
+        run: |
+          python3 - <<'PY'
+          import csv, io, re, time, urllib.request, sys, traceback
+          UA={'User-Agent':'asset-collector'}
+          def get(u):
+              return urllib.request.urlopen(urllib.request.Request(u, headers=UA), timeout=60).read().decode('utf-8','replace')
+          try:
+              cat = list(csv.DictReader(io.StringIO(get('https://raw.githubusercontent.com/sigco3111/game-asset-catalog/main/catalog.csv?t=%d' % int(time.time())), newline='')))
+              print('::notice::KK catalog_rows=%d' % len(cat))
+              kk = [r for r in cat if 'kaykit' in (r.get('author','')+r.get('name','')+r.get('source_url','')).lower()]
+              print('::notice::KK existing_kaykit_rows=%d' % len(kk))
+              for r in kk[:5]: print('::notice::KK row ' + r['name'][:40] + ' | ' + r['source_url'][:80])
+              html = get('https://kaylousberg.com/game-assets')
+              print('::notice::KK page_bytes=%d' % len(html))
+              lic = sorted(set(re.findall(r'CC0|CC-BY[^<\s"]{0,12}|License[^<]{0,30}', html)))
+              print('::notice::KK license=' + ' | '.join(lic)[:110])
+              hr = re.findall(r'href="([^"]+)"', html)
+              for h in sorted(set(hr)):
+                  if re.search(r'github|zip|itch\.io|drive\.google|download', h, re.I):
+                      print('::notice::KK LINK ' + h[:115])
+              print('::notice::KK href_total=%d' % len(hr))
+          except BaseException as e:
+              print('::error::KK ' + (('%s: %s' % (type(e).__name__, e))[:300]).replace(chr(10),' '))
+              traceback.print_exc()
+              sys.exit(1)
+          PY
