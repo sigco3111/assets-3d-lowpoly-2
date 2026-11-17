@@ -47,3 +47,8 @@
 ### LowPoly Survival Pack ![LowPoly Survival Pack 미리보기](lowpoly-survival-pack/preview.jpg)
 - 파일: [릴리스 v1.0 첨부 다운로드](https://github.com/sigco3111/assets-3d-lowpoly-2/releases/download/v1.0/survival_pack_-_sept_2020.zip) (5.7MB) — 릴리스 첨부
 - 제작: quaternius / 라이선스: CC0 / 원본: https://opengameart.org/content/lowpoly-survival-pack
+
+### Shadowflame Samurai (게임용 변환 바디)
+- 파일: `shadowflame-samurai-game-body/7-shadowflame-samurai-game-body.zip` (4.1MB) — 저장소 내 포함
+- 제작: dark_igorek / 라이선스: CC BY 4.0 / 원본: https://sketchfab.com/3d-models/shadowflame-samurai-03def921ed814b3a9de5c5962b86a45c
+- 비고: Ashen Oath 인계분(i1 등록 2026-11-18), FBX→GLB 변환·텍스처 축소 적용된 게임용 바디. 표기·변경 명시 필수(팩 폴더 CREDITS.txt). 미리보기 없음. 파일명 접두 번호는 웹 업로드 방식의 한계
