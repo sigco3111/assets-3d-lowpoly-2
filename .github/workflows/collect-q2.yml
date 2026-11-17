@@ -1,0 +1,49 @@
+name: collect-q2
+on:
+  push:
+    branches: [main]
+    paths: [.github/workflows/collect-q2.yml]
+jobs:
+  q:
+    runs-on: ubuntu-latest
+    timeout-minutes: 10
+    steps:
+      - uses: actions/checkout@v4
+        with:
+          fetch-depth: 1
+      - uses: actions/setup-python@v5
+        with:
+          python-version: '3.12'
+      - name: read quaternius
+        run: |
+          python3 - <<'PY'
+          import csv, io, re, urllib.request, sys, time, traceback
+          UA={'User-Agent':'asset-collector'}
+          def get(u):
+              return urllib.request.urlopen(urllib.request.Request(u, headers=UA), timeout=60).read().decode('utf-8','replace')
+          try:
+              cu = 'https://raw.githubusercontent.com/sigco3111/game-asset-catalog/main/catalog.csv?t=%d' % int(time.time())
+              cat = list(csv.DictReader(io.StringIO(get(cu), newline='')))
+              print('::notice::Q2 catalog_rows=%d' % len(cat))
+              q = [r for r in cat if (r.get('author') or '').strip().lower() == 'quaternius']
+              print('::notice::Q2 quaternius_rows=%d' % len(q))
+              for r in q[:3]:
+                  print('::notice::Q2 qrow name=%s repo=%s file=%s source=%s license=%s' % (r['name'], r['repo'], r['file'], r['source_url'], r['license']))
+              dup = [r for r in cat if 'animatedguns' in (r.get('source_url') or '').lower() or 'animated guns' in (r.get('name') or '').lower()]
+              print('::notice::Q2 DUP_CHECK animatedguns_hits=%d' % len(dup))
+              for r in dup: print('::notice::Q2 DUP name=%s repo=%s source=%s' % (r['name'], r['repo'], r['source_url']))
+              html = get('https://quaternius.com/packs/animatedguns.html')
+              print('::notice::Q2 html_bytes=%d' % len(html))
+              lic = re.findall(r'License[^<]{0,80}|CC0[^<]{0,40}|QAL[^<]{0,60}', html)
+              print('::notice::Q2 license=%s' % (' | '.join(sorted(set(x.strip() for x in lic)))[:500]))
+              hrefs = re.findall(r'href="([^"]+)"', html)
+              for h in sorted(set(hrefs)):
+                  if re.search(r'zip|drive|itch|download|7z|rar|gdrive|dropbox|mega', h, re.I):
+                      print('::notice::Q2 link ' + h[:200])
+              print('::notice::Q2 total_href=%d' % len(hrefs))
+          except BaseException as e:
+              print('::error::Q2 ' + (('%s: %s' % (type(e).__name__, e))[:300]).replace('\n',' '))
+              traceback.print_exc()
+              sys.exit(1)
+          
+          PY
