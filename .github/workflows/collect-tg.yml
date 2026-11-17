@@ -1,0 +1,41 @@
+name: collect-tg
+on:
+  push:
+    branches: [main]
+    paths: [.github/workflows/collect-tg.yml]
+jobs:
+  g:
+    runs-on: ubuntu-latest
+    timeout-minutes: 15
+    steps:
+      - uses: actions/setup-python@v5
+        with:
+          python-version: '3.12'
+      - name: read history and try public drive folder once
+        run: |
+          python3 - <<'PY'
+          import csv, io, re, subprocess, time, urllib.request, os, glob
+          UA={'User-Agent':'asset-collector'}
+          def get(u):
+              return urllib.request.urlopen(urllib.request.Request(u, headers=UA), timeout=60).read().decode('utf-8','replace')
+          cat = list(csv.DictReader(io.StringIO(get('https://raw.githubusercontent.com/sigco3111/game-asset-catalog/main/catalog.csv?t=%d' % int(time.time())), newline='')))
+          q = [r for r in cat if (r.get('author') or '').strip().lower()=='quaternius']
+          print('::notice::G qrows=%d' % len(q))
+          for r in q[:2]:
+              print('::notice::G row %s | %s | %s' % (r['name'], r['repo'], r['file'][:90]))
+          hist = get('https://raw.githubusercontent.com/sigco3111/game-asset-catalog/main/docs/COLLECTION-HISTORY.md?t=%d' % int(time.time()))
+          for ln in [l for l in hist.split('\n') if 'uaternius' in l][:4]:
+              print('::notice::G hist ' + ln[:115])
+          subprocess.run(['pip','install','-q','gdown'], check=False)
+          os.makedirs('/tmp/tanks', exist_ok=True)
+          FOLDER='https://drive.google.com/drive/folders/1tHX0RF9l4Nw4EZwxH6xWta0HsICU2h-G?usp=sharing'
+          p = subprocess.run(['gdown','--folder',FOLDER,'-O','/tmp/tanks','--remaining-ok'], capture_output=True, text=True, timeout=600)
+          out = (p.stdout + p.stderr)
+          for ln in out.split('\n'):
+              if re.search(r'quota|too many|sign in|login|captcha|denied|error|Failed', ln, re.I):
+                  print('::notice::G msg ' + ln[:150])
+          files = [f for f in glob.glob('/tmp/tanks/**/*', recursive=True) if os.path.isfile(f)]
+          print('::notice::G rc=%d files=%d total_bytes=%d' % (p.returncode, len(files), sum(os.path.getsize(f) for f in files)))
+          for f in sorted(files)[:30]:
+              print('::notice::G file %s %d' % (f.replace('/tmp/tanks/',''), os.path.getsize(f)))
+          PY
