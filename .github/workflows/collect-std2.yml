@@ -1,0 +1,68 @@
+name: collect-std2
+on:
+  push:
+    branches: [main]
+    paths: [triggers/collect-run.txt, .github/workflows/collect-std2.yml]
+  workflow_dispatch:
+jobs:
+  std:
+    runs-on: ubuntu-latest
+    timeout-minutes: 30
+    permissions:
+      contents: write
+    steps:
+      - uses: actions/checkout@v4
+        with:
+          fetch-depth: 0
+      - uses: actions/setup-python@v5
+        with:
+          python-version: '3.12'
+      - name: 3d candidate scan (dry-run scope)
+        run: |
+          python3 - <<'PY'
+          import csv, io, re, time, sys, traceback, urllib.request
+          UA={'User-Agent':'asset-collector'}
+          def get(u, t=60):
+              return urllib.request.urlopen(urllib.request.Request(u, headers=UA), timeout=t).read().decode('utf-8','replace')
+          def cfg():
+              kv={}
+              for ln in open('triggers/collect-run.txt', encoding='utf-8'):
+                  ln=ln.strip()
+                  if '=' in ln and not ln.startswith('#'):
+                      k,v=ln.split('=',1); kv[k.strip()]=v.strip()
+              return kv
+          ALLOW=re.compile(r'CC0|CC-BY[ -]?(?:3\.0|4\.0)|\bMIT\b|GPL ?(?:2|3)|OGA-BY ?(?:3\.0|4\.0)', re.I)
+          BLOCK=re.compile(r'-NC|-ND|-SA|NonCommercial|NoDerivatives|ShareAlike|CC-BY-NC', re.I)
+          THREED=re.compile(r'\.(?:blend|fbx|obj|glb|gltf|dae)\b|3D Art|3D Model', re.I)
+          try:
+              c=cfg(); mx=int(c.get('max_packs','3')); dry=c.get('dry_run','false').lower()=='true'; kind=c.get('kind','3d').lower()
+              print('::notice::STD2 cfg kind=%s max_packs=%d dry_run=%s' % (kind, mx, dry))
+              if kind!='3d': print('::error::STD2 this build handles kind=3d only'); sys.exit(1)
+              cat=list(csv.DictReader(io.StringIO(get('https://raw.githubusercontent.com/sigco3111/game-asset-catalog/main/catalog.csv?t=%d' % int(time.time())), newline='')))
+              srcs=set((r.get('source_url') or '').strip().rstrip('/').lower() for r in cat)
+              names=set((r.get('name') or '').strip().lower() for r in cat)
+              print('::notice::STD2 catalog_rows=%d' % len(cat))
+              paths=[]
+              for pg in range(6):
+                  html=get('https://opengameart.org/art-search-advanced?keys=&field_art_type_tid%5B%5D=4&sort_by=count&sort_order=DESC&page=' + str(pg))
+                  for p in re.findall(r'href="(/content/[a-z0-9\-_]+)"', html):
+                      if p not in paths: paths.append(p)
+              print('::notice::STD2 listed_pages=6 listed=%d' % len(paths))
+              kept=0; skipped=0
+              for path in paths:
+                  if kept>=mx: break
+                  url='https://opengameart.org'+path
+                  if url.lower() in srcs: skipped+=1; print('::notice::STD2 SKIP dup %s' % path); continue
+                  try: h=get(url)
+                  except Exception: skipped+=1; print('::notice::STD2 SKIP fetch %s' % path); continue
+                  m=re.search(r'License\(s\)(.{0,400})', h, re.S)
+                  lic=re.sub(r'\s+',' ', re.sub(r'<[^>]+>',' ', m.group(1) if m else ''))[:80]
+                  if BLOCK.search(lic) or not ALLOW.search(lic): skipped+=1; print('::notice::STD2 SKIP lic %s [%s]' % (path, lic[:50])); continue
+                  if not THREED.search(h): skipped+=1; print('::notice::STD2 SKIP not-3d %s' % path); continue
+                  zips=len(re.findall(r'href="[^"]+\.(?:zip|7z|rar|tar\.gz)"', h, re.I))
+                  print('::notice::STD2 CAND %s lic=[%s] zips=%d' % (path, lic[:40], zips)); kept+=1
+              print('::notice::STD2 summary candidates=%d skipped=%d dry_run=%s' % (kept, skipped, dry))
+          except SystemExit: raise
+          except BaseException as e:
+              print('::error::STD2 '+(type(e).__name__+': '+str(e))[:300].replace(chr(10),' ')); traceback.print_exc(); sys.exit(1)
+          PY
