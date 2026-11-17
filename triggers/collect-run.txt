@@ -1,0 +1,5 @@
+# collect-std 설정 (상설). 이 파일을 고쳐 커밋하면 수집 워크플로가 돕니다.
+source=opengameart
+kind=3d
+max_packs=3
+dry_run=true
