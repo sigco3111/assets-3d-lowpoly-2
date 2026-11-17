@@ -1,0 +1,7 @@
+"Shadowflame Samurai" by dark_igorek
+Source: https://sketchfab.com/3d-models/shadowflame-samurai-03def921ed814b3a9de5c5962b86a45c
+License: CC BY 4.0 — https://creativecommons.org/licenses/by/4.0/
+
+변경 사항 (CC BY 4.0 변경 명시): 템플릿 메시/리그 적용을 위한 변환, FBX→GLB 변환, 텍스처 축소와 머티리얼 조정이 적용된 게임용 바디입니다. 원본 애니메이션은 포함되지 않았습니다. 원작자는 이 프로젝트나 이 변환물을 보증하지 않습니다.
+
+참고 템플릿: https://github.com/achrefelouafi/SamuraiThirdPersonTemplateThreeJS (템플릿 코드는 MIT — 모델·애니메이션 콘텐츠의 라이선스를 바꾸지 않음)
