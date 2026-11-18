@@ -1,0 +1,6 @@
+zips ['goth-female-fleur-du-mal/goth-female-fleur-du-mal.zip']
+entries 3
+GOTH ERROR IndexError('list index out of range')
+gun before 2080989
+gun mode RGBA (1920, 1080)
+gun after 270302 (960, 540)
