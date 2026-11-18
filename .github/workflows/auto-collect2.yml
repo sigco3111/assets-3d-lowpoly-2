@@ -1,0 +1,49 @@
+name: auto-collect2
+on:
+  schedule:
+    - cron: "23 * * * *"
+  workflow_dispatch:
+    inputs:
+      dry_run:
+        description: "list candidates only"
+        required: false
+        type: boolean
+        default: true
+      max_packs:
+        description: "packs per run (default 2)"
+        required: false
+        type: string
+        default: "2"
+concurrency:
+  group: auto-collect
+  cancel-in-progress: false
+permissions:
+  contents: write
+jobs:
+  collect:
+    runs-on: ubuntu-latest
+    timeout-minutes: 40
+    steps:
+      - uses: actions/checkout@v4
+        with:
+          fetch-depth: 1
+      - name: 원본 auto-collect.yml 의 단계를 그대로 실행
+        env:
+          DRY: ${{ inputs.dry_run || 'false' }}
+          MAXP: ${{ inputs.max_packs || '2' }}
+          GH_TOKEN: ${{ secrets.GITHUB_TOKEN }}
+        run: |
+          python3 - <<'PY'
+          import json, os, subprocess, sys
+          if os.path.exists('triggers/auto-collect-stop.txt'):
+              print('STOP: kill-switch on')
+              sys.exit(0)
+          d = json.load(open('.github/workflows/auto-collect.yml'))
+          for st in d['jobs']['collect']['steps']:
+              if 'run' not in st:
+                  continue
+              print('== step:', st.get('name'), flush=True)
+              r = subprocess.run(['bash', '-c', st['run']])
+              if r.returncode != 0:
+                  sys.exit(r.returncode)
+          PY
