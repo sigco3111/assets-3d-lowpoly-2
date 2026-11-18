@@ -1,0 +1,6 @@
+title: Goth female - Fleur du Mal
+author: TiZeta
+source_url: https://opengameart.org/content/goth-female-fleur-du-mal
+license: CC-BY 3.0
+checked_at: 2026-11-18 (출처 페이지 License(s) 파싱)
+zip: goth-female-fleur-du-mal.zip
