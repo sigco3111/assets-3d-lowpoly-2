@@ -1,6 +1,0 @@
-src oga fleur.jpg (400, 316)
-goth preview bytes 134794 (400, 316)
-GOTH ERROR RuntimeError('done via oga')
-gun before 270302
-gun mode RGB (960, 540)
-gun after 270302 (960, 540)
