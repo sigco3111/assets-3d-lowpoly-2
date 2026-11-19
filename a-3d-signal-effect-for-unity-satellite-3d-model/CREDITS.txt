@@ -1,0 +1,5 @@
+A 3D signal effect for Unity + Satellite 3D Model
+제작자: FlexUnit
+출처: https://opengameart.org/content/a-3d-signal-effect-for-unity-satellite-3d-model
+라이선스: CC-BY 4.0
+표기: 필수: FlexUnit (opengameart.org), CC-BY 4.0
