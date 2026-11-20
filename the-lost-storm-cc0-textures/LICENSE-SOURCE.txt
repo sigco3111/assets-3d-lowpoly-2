@@ -1,0 +1,10 @@
+The Lost Storm CC0 PBR textures - extracted from the game (public/textures/).
+All textures are from Poly Haven (polyhaven.com), CC0 1.0: https://creativecommons.org/publicdomain/zero/1.0/
+Per-texture authors (as documented in the game's ASSETS.md):
+cobblestone_floor_08 (Rob Tuytel), monastery_stone_floor (Amal Kumar), rock_tile_floor (Charlotte Baglioni),
+brown_mud_03 (Rob Tuytel), brown_mud_rocks_01 (Rob Tuytel), forest_ground_04 (Rob Tuytel, Rico Cilliers),
+rocky_trail_02 (Amal Kumar), castle_wall_slates (Rob Tuytel), mossy_stone_wall (Amal Kumar),
+stacked_stone_wall (Dimitrios Savva), old_planks_02 (Rob Tuytel), rusty_metal_02 (Rob Tuytel),
+hessian_230 (colormass, Rico Cilliers), worn_plaster_wall (Dimitrios Savva), roof_slates_02 (Rob Tuytel),
+bark_brown_02 (Rob Tuytel), brown_leather (Rob Tuytel), aerial_beach_01 (Rob Tuytel)
+Changes: converted to WebP; textures/half/ contains half-size copies for the mobile quality tier.

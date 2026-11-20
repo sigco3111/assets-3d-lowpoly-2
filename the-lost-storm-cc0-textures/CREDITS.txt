@@ -1,0 +1,2 @@
+Textures: Poly Haven authors (see LICENSE-SOURCE.txt), CC0 1.0.
+Packaged from The Lost Storm Korean fan localization: https://github.com/sigco3111/the-lost-storm-ko

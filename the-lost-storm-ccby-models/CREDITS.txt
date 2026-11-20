@@ -1,0 +1,48 @@
+The Lost Storm CC-BY 4.0 models - extracted from the game, derivatives of the Sketchfab/100STYLE originals below.
+Per-file provenance and change notes: see ASSETS.md in https://github.com/sigco3111/the-lost-storm-ko (rows for public/models/...).
+All items CC BY 4.0: https://creativecommons.org/licenses/by/4.0/ (full text in CC-BY-4.0.txt).
+
+== Helmets (models/helms/{man,woman}/) ==
+Medieval Helmet | sanekcloff | https://sketchfab.com/3d-models/medieval-helmet-949b9f87336d483892c36eb8d4d46052 | CC BY 4.0 | [licenses/CC-BY-4.0.txt](licenses/CC-BY-4.0.txt) |
+Norman Helmet | Johnpaul.boyle | https://sketchfab.com/3d-models/norman-helmet-624fe4b3df49424eac3f55c6a051b7b5 | CC BY 4.0 | [licenses/CC-BY-4.0.txt](licenses/CC-BY-4.0.txt) |
+Helmet - Archery | Multipainkiller Studio | https://sketchfab.com/3d-models/helmet-archery-5b082c77519345b2a37d3beaff65418a | CC BY 4.0 | [licenses/CC-BY-4.0.txt](licenses/CC-BY-4.0.txt) |
+Barbuta Helmet | Multipainkiller Studio | https://sketchfab.com/3d-models/barbuta-helmet-69c05f5b114f4ec1a92eea3d36e1b078 | CC BY 4.0 | [licenses/CC-BY-4.0.txt](licenses/CC-BY-4.0.txt) |
+Visored Barbuta Helmet | Multipainkiller Studio | https://sketchfab.com/3d-models/visored-barbuta-helmet-8ce8003e097a4e30a5b96f612200f986 | CC BY 4.0 | [licenses/CC-BY-4.0.txt](licenses/CC-BY-4.0.txt) |
+Great Helm | guigodead | https://sketchfab.com/3d-models/great-helm-1a9c9bdaf84d48b2899b771bcd9bde8a | CC BY 4.0 | [licenses/CC-BY-4.0.txt](licenses/CC-BY-4.0.txt) |
+Bascinet Hundsgugel | Nuist | https://sketchfab.com/3d-models/bascinet-hundsgugel-a5ffb06276ce4ff6b82ae7083a9f5c43 | CC BY 4.0 | [licenses/CC-BY-4.0.txt](licenses/CC-BY-4.0.txt) |
+Medieval Bascinet with Visor | Pete.Panousis | https://sketchfab.com/3d-models/medieval-bascinet-with-visor-016b0f84c7394b5ca2006c1af3ba6aec | CC BY 4.0 | [licenses/CC-BY-4.0.txt](licenses/CC-BY-4.0.txt) |
+Gothic Bascinet asset | Lessien | https://sketchfab.com/3d-models/gothic-bascinet-asset-f6c5e9ee150342fa85c1ca36e5688625 | CC BY 4.0 | [licenses/CC-BY-4.0.txt](licenses/CC-BY-4.0.txt) |
+Evil Helmet | Pappak | https://sketchfab.com/3d-models/evil-helmet-2291802f3d004ab69ffdf1e73edee848 | CC BY 4.0 | [licenses/CC-BY-4.0.txt](licenses/CC-BY-4.0.txt) |
+Rusty Iron Mask | Adrien Munoz-Pascal (Audiophobia) | https://sketchfab.com/3d-models/rusty-iron-mask-efd61055f793456c999087e956fa9898 | CC BY 4.0 | [licenses/CC-BY-4.0.txt](licenses/CC-BY-4.0.txt) |
+Hel Crown | Lucia Lunadottir (bordiyan20035) | https://sketchfab.com/3d-models/hel-crown-97a33d6d690c42f0a09a2a20fa8fadc4 | CC BY 4.0 | [licenses/CC-BY-4.0.txt](licenses/CC-BY-4.0.txt) |
+Ornamented Great Helm | Joan LP (joanlahots) | https://sketchfab.com/3d-models/ornamented-great-helm-7b2e7f7c809b46dca7e90da810223dc9 | CC BY 4.0 | [licenses/CC-BY-4.0.txt](licenses/CC-BY-4.0.txt) |
+
+== Weapons (models/weapons/) ==
+Medieval Crossbow | Zbrojmistrz (zbrojmistrz) | https://sketchfab.com/3d-models/medieval-crossbow-a6f552629f53470f86be97deaddbd129 | CC BY 4.0 | [licenses/CC-BY-4.0.txt](licenses/CC-BY-4.0.txt) |
+Medieval crossbow 01 | Chellew (chellewwxy) | https://sketchfab.com/3d-models/medieval-crossbow-01-3a2010edc90346448017be61940eedfc | CC BY 4.0 | [licenses/CC-BY-4.0.txt](licenses/CC-BY-4.0.txt) |
+Medieval Crossbow (Game Model) | Michael Makivic (makivic) | https://sketchfab.com/3d-models/medieval-crossbow-game-model-697aa7fee7894ad2aa0e87ebc1b9d631 | CC BY 4.0 | [licenses/CC-BY-4.0.txt](licenses/CC-BY-4.0.txt) |
+Medieval crossbow 02 | Chellew (chellewwxy) | https://sketchfab.com/3d-models/medieval-crossbow-02-5126230f8e7e4def9bc573c6c5ba24cc | CC BY 4.0 | [licenses/CC-BY-4.0.txt](licenses/CC-BY-4.0.txt) |
+Crossbow | Charlie Tinley (Tnkii) | https://sketchfab.com/3d-models/crossbow-34cba117b05e4fed992f5700de9bb627 | CC BY 4.0 | [licenses/CC-BY-4.0.txt](licenses/CC-BY-4.0.txt) |
+Medieval crosbow | Cyril43 | https://sketchfab.com/3d-models/medieval-crosbow-0368b8111f5e4731beb025cd625b48a2 | CC BY 4.0 | [licenses/CC-BY-4.0.txt](licenses/CC-BY-4.0.txt) |
+Heavy Crossbow (Free) | wolfgar74 | https://sketchfab.com/3d-models/heavy-crossbow-free-1dc0b1e982a749c6a2fd595372b094c4 | CC BY 4.0 | [licenses/CC-BY-4.0.txt](licenses/CC-BY-4.0.txt) |
+Wooden staff | Mikhail Antonov (xeofox) | https://sketchfab.com/3d-models/wooden-staff-8ea51227d8d54b75882e856fe0bd4db7 | CC BY 4.0 | [licenses/CC-BY-4.0.txt](licenses/CC-BY-4.0.txt) |
+Snakehead Staff | headfinger (greattug) | https://sketchfab.com/3d-models/snakehead-staff-0556e75d9d4143c59835d78280a544d6 | CC BY 4.0 | [licenses/CC-BY-4.0.txt](licenses/CC-BY-4.0.txt) |
+Crescent Moon Staff | magiccc | https://sketchfab.com/3d-models/crescent-moon-staff-af4383e459654518b866d0d3e90bc928 | CC BY 4.0 | [licenses/CC-BY-4.0.txt](licenses/CC-BY-4.0.txt) |
+Dark Druid Staff | hellotaia | https://sketchfab.com/3d-models/dark-druid-staff-b927868476034a619f4476d06417dc97 | CC BY 4.0 | [licenses/CC-BY-4.0.txt](licenses/CC-BY-4.0.txt) |
+Fantasy Dark Magic Wand with Green Orb | Aldraz | https://sketchfab.com/3d-models/fantasy-dark-magic-wand-with-green-orb-e2c5a4676ef9408a8cb2ed9aa7454ffa | CC BY 4.0 | [licenses/CC-BY-4.0.txt](licenses/CC-BY-4.0.txt) |
+Stylized Necromancer Staff | RoyArcane (RoyzArcane) | https://sketchfab.com/3d-models/stylized-necromancer-staff-a461e28a3c3745b9b9908aff5fef0753 | CC BY 4.0 | [licenses/CC-BY-4.0.txt](licenses/CC-BY-4.0.txt) |
+Staff - Low Poly Medieval, CC0 | Avramania | https://sketchfab.com/3d-models/staff-low-poly-medieval-cc0-3b71fc881aaf4602ad53605474baf0ff | CC0 1.0 | [licenses/Avramania-Staff-CC0.txt](licenses/Avramania-Staff-CC0.txt) |
+Wizard Staff Model | danepaulson | https://sketchfab.com/3d-models/wizard-staff-model-80c720a6388846848065d91c7f4a74a3 | CC BY 4.0 | [licenses/CC-BY-4.0.txt](licenses/CC-BY-4.0.txt) |
+sword | Vanuartw (sketh) | https://sketchfab.com/3d-models/sword-f58b4cf0bb1943c3a6a059cec7c40c4f | CC BY 4.0 | [licenses/CC-BY-4.0.txt](licenses/CC-BY-4.0.txt) |
+Silver Bladed weapons - Fantasy weapon set | Peter Nox (Peter.Nox) | https://sketchfab.com/3d-models/silver-bladed-weapons-fantasy-weapon-set-d5189211a1d348b0a9d7ddc052a22989 | CC BY 4.0 | [licenses/CC-BY-4.0.txt](licenses/CC-BY-4.0.txt) |
+Katana Messer | Joan LP (joanlahots) | https://sketchfab.com/3d-models/katana-messer-b8324d6de28345f6a8010d7d495cef8b | CC BY 4.0 | [licenses/CC-BY-4.0.txt](licenses/CC-BY-4.0.txt) |
+Chevalier Sword | rubenve | https://sketchfab.com/3d-models/chevalier-sword-b2662f2666a844e8a1bd0e7c4a7672d8 | CC BY 4.0 | [licenses/CC-BY-4.0.txt](licenses/CC-BY-4.0.txt) |
+medieval sword | LowSeb (lowseb) | https://sketchfab.com/3d-models/medieval-sword-da574cba504e4b83a3293f3d3bd067fb | CC BY 4.0 | [licenses/CC-BY-4.0.txt](licenses/CC-BY-4.0.txt) |
+High Templar Fantasy Greatsword | Joan LP (joanlahots) | https://sketchfab.com/3d-models/high-templar-fantasy-greatsword-6daa63f4ab654b16877fab3527c0fd4b | CC BY 4.0 | [licenses/CC-BY-4.0.txt](licenses/CC-BY-4.0.txt) |
+Zweihander | Siesta (siesta) | https://sketchfab.com/3d-models/zweihander-bde0f0351bf443f6bed68aeff84b4129 | CC BY 4.0 | [licenses/CC-BY-4.0.txt](licenses/CC-BY-4.0.txt) |
+Damascus Longsword (game ready asset) | Aparicio Silva 3D (apariciosilva3D) | https://sketchfab.com/3d-models/damascus-longsword-game-ready-asset-32bbfe5bbad74d8f9640a60251ec31e9 | CC BY 4.0 | [licenses/CC-BY-4.0.txt](licenses/CC-BY-4.0.txt) |
+
+== Characters/animations ==
+skeleton.glb: "Free Pack - Human Skeleton" by PolyOne Studio, https://sketchfab.com/3d-models/free-pack-human-skeleton-950d0a46531f492ab8715777e312a5bf, CC BY 4.0. Changes: posed onto the Quaternius rig, decimated and repainted.
+wight_man/wight_woman.glb: "Skull downloadable" by martinjario, https://sketchfab.com/3d-models/skull-downloadable-1a9db900738d44298b0bc59f68123393, CC BY 4.0. Changes: simplified to 3,600 triangles, textures halved, bound to head joint, glowing eyes added.
+Spin_Mocap_*.glb: "The 100STYLE Dataset" by Ian Mason, Sebastian Starke, Taku Komura, https://www.ianxmason.com/100style/, CC BY 4.0. Changes: retargeted onto the Quaternius universal skeleton, heading removed, 2x speed, arms replaced by authored sword poses.
