@@ -54,11 +54,13 @@
 - 비고: Ashen Oath 인계분(i1 등록 2026-11-18), FBX→GLB 변환·텍스처 축소 적용된 게임용 바디. 표기·변경 명시 필수(팩 폴더 CREDITS.txt). 미리보기 없음. 파일명 접두 번호는 웹 업로드 방식의 한계
 
 ### The Lost Storm CC-BY 4.0 Models
+![The Lost Storm CC-BY 4.0 Models 미리보기](the-lost-storm-ccby-models/preview.jpg)
 - 파일: `the-lost-storm-ccby-models/the-lost-storm-ccby-models.zip` (9.6MB) — 저장소 내 포함
 - 제작: 다수(Sketchfab 헬멧 12종·무기 24종, PolyOne skeleton, martinjario skull, 100STYLE 스핀 클립) / 라이선스: CC BY 4.0 / 원본: https://github.com/sigco3111/the-lost-storm-ko
-- 비고: The Lost Storm 비공식 한국어 팬 번역 프로젝트의 게임용 GLB 변형분. 항목별 귀속·원본 링크·변경 내역은 팩 폴더 CREDITS.txt / LICENSE-SOURCE.txt / CC-BY-4.0.txt. CC0(Quaternius·KayKit·Poly Pizza·Avramania) 및 자체제작 모델은 제외. 미리보기 없음.
+- 비고: The Lost Storm 비공식 한국어 팬 번역 프로젝트의 게임용 GLB 변형분. 항목별 귀속·원본 링크·변경 내역은 팩 폴더 CREDITS.txt / LICENSE-SOURCE.txt / CC-BY-4.0.txt. CC0(Quaternius·KayKit·Poly Pizza·Avramania) 및 자체제작 모델은 제외.
 
 ### The Lost Storm CC0 PBR Textures
+![The Lost Storm CC0 PBR Textures 미리보기](the-lost-storm-cc0-textures/preview.jpg)
 - 파일: `the-lost-storm-cc0-textures/the-lost-storm-cc0-textures.zip` (15MB) — 저장소 내 포함
 - 제작: Poly Haven / 라이선스: CC0 1.0 / 원본: https://github.com/sigco3111/the-lost-storm-ko
-- 비고: The Lost Storm 배포 PBR 텍스처 세트(color/normal/orm WebP + half/ 모바일 절반 해상도). 출처·저작자는 팩 폴더 LICENSE-SOURCE.txt. 미리보기 없음.
+- 비고: The Lost Storm 배포 PBR 텍스처 세트(color/normal/orm WebP + half/ 모바일 절반 해상도). 출처·저작자는 팩 폴더 LICENSE-SOURCE.txt.
