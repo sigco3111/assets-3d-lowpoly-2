@@ -1,0 +1,15 @@
+{
+ "name": "Tree Stump",
+ "slug": "tree-stump",
+ "zip": "tree-stump.zip",
+ "file": "tree-stump/tree-stump.zip",
+ "author": "Polyfork",
+ "url": "https://polyfork.dev/asset/tree-stump-00f3bf",
+ "license": "CC-BY 4.0",
+ "attr": "Tree Stump by Polyfork (https://polyfork.dev/asset/tree-stump-00f3bf), CC BY 4.0",
+ "date": "2026-11-20",
+ "tags": "3d,polyfork,lowpoly",
+ "notes": "Polyfork 무료 모델, 메시(GLB)는 CC BY 4.0 선택 (https://polyfork.dev/licensing 확인); 미리보기는 GLB 를 러너에서 직접 렌더; 시험 수집 3개",
+ "preview": "preview.png",
+ "kind": "3D 모델"
+}
