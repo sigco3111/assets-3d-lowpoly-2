@@ -64,3 +64,18 @@
 - 파일: `the-lost-storm-cc0-textures/the-lost-storm-cc0-textures.zip` (15MB) — 저장소 내 포함
 - 제작: Poly Haven / 라이선스: CC0 1.0 / 원본: https://github.com/sigco3111/the-lost-storm-ko
 - 비고: The Lost Storm 배포 PBR 텍스처 세트(color/normal/orm WebP + half/ 모바일 절반 해상도). 출처·저작자는 팩 폴더 LICENSE-SOURCE.txt.
+
+### Cold Boot 할보르센 3D 머리 (MakeHuman CC0)
+![Cold Boot 할보르센 3D 머리 미리보기](cold-boot-halvorsen-head/preview.png)
+- 파일: `cold-boot-halvorsen-head.zip` (0.8MB) — 저장소 내 포함
+- 제작: MakeHuman team (가공: rossinek) / 라이선스: CC0 1.0 / 원본: https://github.com/rossinek/cold-boot
+
+### Cold Boot 토마스 3D 머리 (Lee Perry-Smith 스캔)
+![Cold Boot 토마스 3D 머리 미리보기](cold-boot-tomas-head/preview.png)
+- 파일: `cold-boot-tomas-head.zip` (0.5MB) — 저장소 내 포함
+- 제작: Lee Perry-Smith (Infinite Realities) / 라이선스: CC BY 3.0 (실존 인물 스캔, 초상권 별도 확인) / 원본: https://github.com/rossinek/cold-boot
+
+### Papertrails 팝업북 3D 모델 (타일·여행자)
+![Papertrails 팝업북 3D 모델 미리보기](papertrails-popup-models/preview.png)
+- 파일: `papertrails-popup-models.zip` (1.6MB) — 저장소 내 포함
+- 제작: xikhar (Shikhar) / 라이선스: MIT / 원본: https://github.com/xikhar/papertrails

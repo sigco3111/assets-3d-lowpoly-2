@@ -1,0 +1,8 @@
+Cold Boot 토마스 3D 머리 (Tomas head, COLD BOOT)
+
+Original work: "Infinite, 3D Head Scan" by Lee Perry-Smith (Infinite Realities)
+http://www.ir-ltd.net/ (CC BY 3.0, modified)
+As shipped in three.js examples (examples/models/gltf/LeePerrySmith) and
+modified by the COLD BOOT author: https://github.com/rossinek/cold-boot
+Korean localization fork (extraction copy): https://github.com/sigco3111/cold-boot-ko
+Collected and packaged 2026-11-20. Attribution required (CC BY 3.0).

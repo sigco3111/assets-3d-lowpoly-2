@@ -1,0 +1,7 @@
+Cold Boot 할보르센 3D 머리 (Halvorsen head, COLD BOOT)
+
+Original data: MakeHuman 1.x assets by the MakeHuman team
+https://www.makehumancommunity.org (CC0 1.0)
+Built by the COLD BOOT author's own script: https://github.com/rossinek/cold-boot
+Korean localization fork (extraction copy): https://github.com/sigco3111/cold-boot-ko
+Collected and packaged 2026-11-20. CC0 - no attribution required; credit appreciated.

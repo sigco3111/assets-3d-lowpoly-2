@@ -1,0 +1,15 @@
+{
+ "name": "Cold Boot 할보르센 3D 머리 (MakeHuman CC0)",
+ "slug": "cold-boot-halvorsen-head",
+ "zip": "cold-boot-halvorsen-head.zip",
+ "file": "cold-boot-halvorsen-head/cold-boot-halvorsen-head.zip",
+ "author": "MakeHuman team (가공: rossinek)",
+ "url": "https://github.com/rossinek/cold-boot",
+ "license": "CC0",
+ "attr": "선택: MakeHuman team (makehumancommunity.org), CC0 1.0",
+ "date": "2026-11-20",
+ "tags": "3d,character,head,human,male,realistic,glb,skinned",
+ "notes": "MakeHuman CC0 데이터(베이스 메시 hm08·모프·스킨·눈썹)를 원작 스크립트로 가공한 58세 남성 머리 GLB(14,783버텍스, 768x1280 컬러+노멀, 971KB). COLD BOOT 레벨3 인물. 실존 인물 아님. 가공 상세는 원작 docs/ASSETS.md. 한글판 포크(sigco3111/cold-boot-ko)에서 바이트 동일 추출. CC0 전문 LICENSE-CC0-1.0.txt 동봉",
+ "preview": "preview.png",
+ "kind": "3D 캐릭터"
+}

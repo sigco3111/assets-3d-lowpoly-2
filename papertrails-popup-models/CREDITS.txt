@@ -1,0 +1,6 @@
+Papertrails 팝업북 3D 모델 (pop-up book models, Papertrails)
+
+Original work: Papertrails by xikhar (Shikhar)
+https://github.com/xikhar/papertrails (MIT, Copyright (c) 2026 Shikhar)
+Korean localization fork (extraction copy): https://github.com/sigco3111/papertrails-ko
+Collected and packaged 2026-11-20. Keep the MIT notice (LICENSE.txt).
