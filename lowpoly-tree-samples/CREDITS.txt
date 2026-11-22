@@ -1,0 +1,7 @@
+Lowpoly Tree 샘플 모델 6종 (GLB, generated tree samples)
+
+Generated 2026-11-23 with Lowpoly Tree Generator by Rand Monster contributors
+https://github.com/pajama-studio/lowpoly-tree-generator (MIT License, checked 2026-11-23); upstream: https://github.com/rand-monster/lowpoly-tree-generator (same HEAD 4377dd6)
+Archetypes: ancientGuardian, windCrownedSentinel, weepingLantern, forkedShrine, stormClaw, groveBloom
+Generator code pack: sigco3111/assets-code lowpoly-tree-generator
+Collected and packaged 2026-11-23.

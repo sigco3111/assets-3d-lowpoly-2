@@ -1,0 +1,15 @@
+{
+ "name": "Lowpoly Tree 샘플 모델 6종 (GLB)",
+ "slug": "lowpoly-tree-samples",
+ "zip": "lowpoly-tree-samples.zip",
+ "file": "lowpoly-tree-samples/lowpoly-tree-samples.zip",
+ "author": "Rand Monster contributors",
+ "url": "https://github.com/pajama-studio/lowpoly-tree-generator",
+ "license": "MIT",
+ "attr": "required (MIT): 재배포 시 저작권 표기와 MIT 라이선스 전문 유지 (Copyright (c) 2026 Rand Monster contributors)",
+ "date": "2026-11-23",
+ "tags": "3d,lowpoly,tree,procedural,glb,nature,vegetation",
+ "notes": "MIT 생성기(lowpoly-tree-generator) 아키타입 6종을 GLB로 내보낸 샘플; 버텍스 컬러·무텍스처; 삼각형 705~1708; 덩굴 포함 모델 4종; MIT 전문 LICENSE 동봉; 코드 팩은 assets-code lowpoly-tree-generator",
+ "preview": "preview.png",
+ "kind": "3D 자연"
+}
