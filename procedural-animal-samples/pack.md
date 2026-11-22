@@ -1,6 +1,6 @@
 # Procedural Animals 베이크 샘플 6종 (.animal)
 
-MIT 라이선스 절차적 동물 생성기(threejs-procedural-animals)의 베이크 도구로 만든 개체 6종 샘플입니다. 리그·스킨·애니메이션 데이터가 포함된 전용 `.animal` 포맷으로, 같은 라이브러리로 약 20ms에 로드됩니다(GLB가 아니며 로드에 동일 라이브러리 필요). 생성기 없이 즉시 게임에 넣을 때 씁니다.
+**주의: 이 저장소의 로우폴리 팩들과 달리 고정점 수(high 품질, 개체당 64,814~75,503 버텍스) 샘플입니다.** MIT 라이선스 절차적 동물 생성기(threejs-procedural-animals)의 베이크 도구로 만든 개체 6종 샘플입니다. 리그·스킨·애니메이션 데이터가 포함된 전용 `.animal` 포맷으로, 같은 라이브러리로 약 20ms에 로드됩니다(GLB가 아니며 로드에 동일 라이브러리 필요). 생성기 없이 즉시 게임에 넣을 때 씁니다.
 
 **라이선스: MIT** (Copyright (c) 2026 Majid Manzarpour and procedural-animals contributors). 생성기 코드와 동일 조건: 재배포 시 저작권 표기와 MIT 전문 유지.
 

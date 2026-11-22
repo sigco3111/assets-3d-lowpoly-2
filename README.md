@@ -1,4 +1,15 @@
 
+### Procedural Animals 베이크 샘플 6종 (.animal)
+![Procedural Animals 베이크 샘플 6종 미리보기](procedural-animal-samples/preview.png)
+- 파일: `procedural-animal-samples/procedural-animal-samples.zip` (25MB, .animal 6개 + LICENSE + README.txt) — 저장소 내 포함
+- 제작: Majid Manzarpour and procedural-animals contributors / 라이선스: MIT / 원본: https://github.com/majidmanzarpour/threejs-procedural-animals
+- 비고: MIT 절차적 동물 생성기의 베이크 개체 6종(wolf·horse·eagle·shark·snake·spider, seed 3, quality high, 개체당 64,814~75,503 버텍스 — 이 저장소의 로우폴리 팩들과 달리 고정점 수). 전용 .animal 포맷(리그·스킨·애니메이션 포함, 로드에 동일 라이브러리 필요, GLB 아님). 코드 팩은 assets-code procedural-animals-threejs
+
+### Lowpoly Tree 샘플 모델 6종 (GLB)
+![Lowpoly Tree 샘플 모델 6종 미리보기](lowpoly-tree-samples/preview.png)
+- 파일: `lowpoly-tree-samples/lowpoly-tree-samples.zip` (141KB, GLB 6개 + LICENSE + README.txt) — 저장소 내 포함
+- 제작: Rand Monster contributors / 라이선스: MIT / 원본: https://github.com/pajama-studio/lowpoly-tree-generator
+- 비고: MIT 생성기(lowpoly-tree-generator) 아키타입 6종 GLB(버텍스 컬러·무텍스처, 삼각형 705~1708, 덩굴 포함 4종). 코드 팩은 assets-code lowpoly-tree-generator
 
 ### Fjordfall Boats & Vehicles
 ![Fjordfall Boats & Vehicles 미리보기](fjordfall-boats-and-vehicles/preview.jpg)
