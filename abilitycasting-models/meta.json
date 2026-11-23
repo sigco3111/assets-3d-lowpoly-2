@@ -1,5 +1,5 @@
 {
- "name": "AbilityCasting 결투장·생물·소품 3D 모델 6종 (GLB)",
+ "name": "AbilityCasting 결투장·생물·소품 3D 모델 5종 (GLB)",
  "slug": "abilitycasting-models",
  "zip": "abilitycasting-models.zip",
  "file": "releases/download/abilitycasting-models/abilitycasting-models.zip",
@@ -8,8 +8,8 @@
  "license": "MIT",
  "attr": "required (MIT): 재배포 시 저작권 표기와 MIT 라이선스 전문 유지 (Copyright (c) 2026 mohamedachrefelouafi). 환경 HDRI만 Poly Haven CC0(귀속 불필요)",
  "date": "2026-11-23",
- "tags": "3d,model,glb,fantasy,arena,hall,wolf,shark,tome,stones,rigged,animated,environment,hdri,blender",
- "notes": "원작자 Blender 제작 확인분 6종(duel_hall 환경, wolf 리그+클립 6종, shark Breach·Swim 클립, arcane_tome, wildroot_reliquary, amethyst_stones)+결투장 천 텍스처+환경 HDRI(Poly Haven Spruit Sunrise 2K, CC0)+Blender 원본 3종(.blend). 자작 근거: README가 art/ Duel Hall·wolf를 프로젝트 소스로 명시, 설정 주석 tome/reliquary/amethyst 'built in Blender', GLB 메타 Blender I/O, shark는 전용 클립(정황). zip 56MB로 Releases(abilitycasting-models) 첨부. 제외: Mixamo FBX·diffuse.png(재배포 금지); dragon·gyroscope·일부 텍스처는 권리 미확인 팩 abilitycasting-unverified. MIT 전문 동봉. 코드 팩은 assets-code abilitycasting-spell-vfx",
+ "tags": "3d,model,glb,fantasy,arena,hall,wolf,tome,stones,rigged,animated,environment,hdri,blender",
+ "notes": "원작자 자작 명시 근거가 있는 5종(duel_hall 환경·wolf: README가 art/ 소스로 명시+.blend 동봉, arcane_tome·wildroot_reliquary·amethyst_stones: 설정 주석 'built in Blender')+결투장 천 텍스처+환경 HDRI(Poly Haven Spruit Sunrise 2K, CC0)+Blender 원본 3종(.blend). zip 53MB로 Releases(abilitycasting-models) 첨부. shark.glb는 Blender 메타·전용 클립뿐인 정황이라 권리 미확인 팩 abilitycasting-unverified로 이동. Mixamo FBX·diffuse.png(재배포 금지) 미수록. MIT 전문 동봉. 코드 팩은 assets-code abilitycasting-spell-vfx",
  "preview": "preview.png",
  "kind": "3D 모델"
 }

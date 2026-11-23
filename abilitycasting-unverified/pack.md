@@ -6,6 +6,7 @@ AbilityCastingThreeJS(Elemental Sandbox)의 서드파티·출처 미확인 모�
 
 ## 내용 (zip)
 
+- `models/shark.glb` — 백상어, 클립 Breach·Swim (Blender 내보내기 메타와 전용 클립뿐, 자작 명시 근거 없음)
 - `models/dragon.glb` — 드래곤 (GLB 메타데이터: Sketchfab 다운로드, 원본 항목·라이선스 불명)
 - `models/magical_gyroscope.glb` — 마법 자이로스코프, 클립 gyro_spin·gyro rune enchanting (GLB 메타데이터: Sketchfab 다운로드, 원본 항목·라이선스 불명)
 - `textures/cathedral-*.jpg` — 대성당 PBR 4종(color·normal·roughness·ao, 출처 미확인)

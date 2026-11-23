@@ -1,4 +1,4 @@
-# AbilityCasting 결투장·생물·소품 3D 모델 6종 (GLB)
+# AbilityCasting 결투장·생물·소품 3D 모델 5종 (GLB)
 
 AbilityCastingThreeJS(Elemental Sandbox)에서 원작자가 Blender로 제작한 것이 확인되는 모델·텍스처·Blender 원본을 모은 팩입니다.
 
@@ -8,7 +8,6 @@ AbilityCastingThreeJS(Elemental Sandbox)에서 원작자가 Blender로 제작한
 
 - `models/duel_hall.glb` — 결투장 환경 (텍스처 미내장, 머티리얼은 원본 src/world 참고)
 - `models/wolf.glb` — 늑대, 리그 + 클립 6종 (01_Run·02_walk·03_creep·04_Idle·05_site·Gallop)
-- `models/shark.glb` — 백상어, 전용 클립 Breach·Swim
 - `models/arcane_tome.glb` — 마법서
 - `models/wildroot_reliquary.glb` — 뿌리 아치와 룬스톤
 - `models/amethyst_stones.glb` — 자수정 결정 5종
@@ -21,8 +20,9 @@ AbilityCastingThreeJS(Elemental Sandbox)에서 원작자가 Blender로 제작한
 
 - duel_hall·wolf: 원본 README 프로젝트 구조 절이 art/의 두 항목을 프로젝트 Blender 소스로 명시, .blend 원본 동봉
 - arcane_tome·wildroot_reliquary·amethyst_stones: 원본 설정 주석이 "built in Blender"/"cut in Blender"라고 기술
-- shark: GLB 메타데이터 Blender I/O + 이 주문 전용으로 제작된 Breach·Swim 클립 (정황 증거)
 - 전 모델 GLB 메타데이터가 Blender I/O 내보내기 (Sketchfab 등 서드파티 표기 없음)
+
+shark.glb는 Blender 내보내기 메타와 전용 클립뿐이라 자작 명시 근거가 부족해 MIT 판정에서 제외하고 권리 미확인 팩(abilitycasting-unverified)으로 옮겼습니다.
 
 ## 제외 항목
 
@@ -33,4 +33,4 @@ AbilityCastingThreeJS(Elemental Sandbox)에서 원작자가 Blender로 제작한
 
 - 이 모델을 쓰는 시네마틱 주문 코드는 코드 팩(assets-code abilitycasting-spell-vfx)에 있습니다.
 - 출처: https://github.com/achrefelouafi/AbilityCastingThreeJS
-- 수집일: 2026-11-23 · 파일: abilitycasting-models.zip (56MB, Releases 첨부)
+- 수집일: 2026-11-23 · 파일: abilitycasting-models.zip (53MB, Releases 첨부)
