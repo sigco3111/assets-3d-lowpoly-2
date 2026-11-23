@@ -2,12 +2,13 @@ AbilityCasting 결투장·생물·소품 3D 모델 6종 (AbilityCastingThreeJS)
 
 Original work: AbilityCastingThreeJS (Elemental Sandbox) by mohamedachrefelouafi
 https://github.com/achrefelouafi/AbilityCastingThreeJS (MIT, Copyright (c) 2026 mohamedachrefelouafi)
-Scope: author-made GLB models (duel_hall, wolf, shark, arcane_tome, wildroot_reliquary, amethyst_stones)
-and duel hall cloth textures. Author-made confirmed by GLB metadata (Blender I/O), authored clips,
-settings comments ("built in Blender") and art/*.blend sources in the origin repo.
+Scope: author-made GLB models (duel_hall, wolf, shark, arcane_tome, wildroot_reliquary, amethyst_stones),
+duel hall cloth textures, and Blender sources (duel_hall, duel_hall_day, wolf).
+Authorship basis: origin README lists art/ Duel Hall and wolf as the project's Blender sources;
+settings comments state tome/reliquary/amethyst were "built in Blender"; GLB metadata is Blender I/O;
+shark carries ability-specific authored clips (Breach/Swim). Shark authorship is circumstantial.
 Environment HDRI: Spruit Sunrise 2K by Greg Zaal, Poly Haven (https://polyhaven.com/a/spruit_sunrise), CC0.
-NOT included: dragon.glb / magical_gyroscope.glb (Sketchfab third-party, original license unverified),
-Mixamo character FBX and diffuse.png (Mixamo assets may not be redistributed),
-cathedral/banner/stained-glass/rune textures (origin unverifiable).
-Blender sources (.blend) remain in the origin repo under art/.
+NOT included: dragon.glb / magical_gyroscope.glb and cathedral/banner/stained-glass/rune textures
+(collected separately in pack abilitycasting-unverified, rights unconfirmed),
+Mixamo character FBX and diffuse.png (Mixamo assets may not be redistributed).
 Collected and packaged 2026-11-23. Keep the MIT notice (LICENSE.txt).

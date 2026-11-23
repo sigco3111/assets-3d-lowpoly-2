@@ -1,0 +1,10 @@
+AbilityCasting 드래곤·자이로스코프 모델·환경 텍스처 (권리 미확인)
+
+Source repo: AbilityCastingThreeJS (Elemental Sandbox) by mohamedachrefelouafi
+https://github.com/achrefelouafi/AbilityCastingThreeJS
+The origin README states only: "The HDR probe, the character FBX and third-party models keep their original licences."
+Individual licenses are NOT identified. dragon.glb and magical_gyroscope.glb carry Sketchfab download
+metadata; the original Sketchfab items and their licenses are unidentified. The cathedral PBR set and
+duel hall banner/stained-glass/rune textures have no verifiable origin.
+Reuse permission UNCONFIRMED: verify the original rights holder before use; removed on rights holder request.
+Collected 2026-11-23 under the owner's collection policy (collect unless explicitly forbidden).

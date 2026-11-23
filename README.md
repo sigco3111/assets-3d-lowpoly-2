@@ -1,9 +1,15 @@
 
+### AbilityCasting 드래곤·자이로스코프 모델·환경 텍스처 (권리 미확인)
+![AbilityCasting 드래곤·자이로스코프 모델·환경 텍스처 미리보기](abilitycasting-unverified/preview.png)
+- 파일: `abilitycasting-unverified/abilitycasting-unverified.zip` (17MB, GLB 2개 + 텍스처 10개 + CREDITS + README.txt) — 저장소 내 포함
+- 제작: mohamedachrefelouafi (서드파티 원권리자 불명) / 라이선스: 알 수 없음 / 원본: https://github.com/achrefelouafi/AbilityCastingThreeJS
+- 비고: 재사용 허락 미확인(사용 전 원권리자 확인 필요, 권리자 요청 시 즉시 내림). dragon·gyroscope는 Sketchfab 다운로드 메타, cathedral PBR·배너·스테인드글라스·룬 텍스처는 출처 미확인. Mixamo FBX·diffuse.png는 명시적 재배포 금지로 미수록
+
 ### AbilityCasting 결투장·생물·소품 3D 모델 6종 (GLB)
 ![AbilityCasting 결투장·생물·소품 3D 모델 6종 미리보기](abilitycasting-models/preview.png)
-- 파일: `abilitycasting-models/abilitycasting-models.zip` (33MB, GLB 6개 + 결투장 천 텍스처 + 환경 HDRI + LICENSE + CREDITS + README.txt) — 저장소 내 포함
+- 파일: `releases/download/abilitycasting-models/abilitycasting-models.zip` (56MB, GLB 6개 + 결투장 천 텍스처 + 환경 HDRI + Blender 원본 3종 + LICENSE + CREDITS + README.txt) — Releases 첨부
 - 제작: mohamedachrefelouafi / 라이선스: MIT (환경 HDRI만 Poly Haven CC0) / 원본: https://github.com/achrefelouafi/AbilityCastingThreeJS
-- 비고: 원작자 Blender 제작 확인분(duel_hall 환경, wolf 리그+클립 6종, shark Breach·Swim 클립, arcane_tome, wildroot_reliquary, amethyst_stones). dragon·gyroscope는 Sketchfab 서드파티(원라이선스 불명), Mixamo FBX·diffuse.png(재배포 금지), cathedral·배너·스테인드글라스 텍스처(출처 미확인)는 제외. .blend 원본은 원본 저장소 art/. 코드 팩은 assets-code abilitycasting-spell-vfx
+- 비고: 원작자 Blender 제작 확인분(duel_hall 환경, wolf 리그+클립 6종, shark Breach·Swim 클립, arcane_tome, wildroot_reliquary, amethyst_stones)과 .blend 원본(duel_hall·day·wolf). dragon·gyroscope·일부 텍스처는 권리 미확인 팩 abilitycasting-unverified, Mixamo FBX·diffuse.png(재배포 금지)는 미수록. 코드 팩은 assets-code abilitycasting-spell-vfx
 
 ### Procedural Animals 베이크 샘플 6종 (.animal)
 ![Procedural Animals 베이크 샘플 6종 미리보기](procedural-animal-samples/preview.png)

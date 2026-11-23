@@ -1,7 +1,7 @@
 Source: https://github.com/achrefelouafi/AbilityCastingThreeJS
-License: MIT (author-made models and cloth textures)
+License: MIT (author-made models, cloth textures, Blender sources)
 Checked: 2026-11-23 (default branch main clone, HEAD e856fac)
 Quote: MIT License / Copyright (c) 2026 mohamedachrefelouafi
 Carve-out in origin README: "The HDR probe, the character FBX and third-party models keep their original licences."
 HDRI identified as Poly Haven Spruit Sunrise (Greg Zaal, CC0, https://polyhaven.com/a/spruit_sunrise).
-Sketchfab-generated GLBs (dragon, magical_gyroscope) and Mixamo FBX excluded per that carve-out.
+Sketchfab-generated GLBs (dragon, magical_gyroscope) and unverified textures are in pack abilitycasting-unverified; Mixamo FBX excluded (redistribution forbidden).
