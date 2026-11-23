@@ -1,4 +1,58 @@
 
+### anymove Knight — CC0 애니메이션 크리처 (GLB)
+![anymove Knight 미리보기](releases/download/anymove/anymove-knight.png)
+- 파일: `releases/download/anymove/anymove-knight.zip` (8.5MB, GLB 1개 + CC0 전문 + CREDITS.txt) — Releases 첨부
+- 제작: Patch (@patch_gg) / 라이선스: CC0 / 원본: https://patch.gg/create/toolbox/assets/anymove:knight
+- 비고: anymove(AI 모션캡처) 제작. 리깅+애니메이션 9클립(Idle/Walk/Run/Attack/Hit/Jump/Kick 등), 59,281 tris. 릴리스: [anymove](https://github.com/sigco3111/assets-3d-lowpoly-2/releases/tag/anymove)
+
+### anymove T-Rex — CC0 애니메이션 크리처 (GLB)
+![anymove T-Rex 미리보기](releases/download/anymove/anymove-trex.png)
+- 파일: `releases/download/anymove/anymove-trex.zip` (8.2MB, GLB 1개 + CC0 전문 + CREDITS.txt) — Releases 첨부
+- 제작: Patch (@patch_gg) / 라이선스: CC0 / 원본: https://patch.gg/create/toolbox/assets/anymove:trex
+- 비고: anymove(AI 모션캡처) 제작. 리깅+애니메이션 9클립(Roar 포함), 57,914 tris. 릴리스: [anymove](https://github.com/sigco3111/assets-3d-lowpoly-2/releases/tag/anymove)
+
+### anymove Mech — CC0 애니메이션 크리처 (GLB)
+![anymove Mech 미리보기](releases/download/anymove/anymove-mech.png)
+- 파일: `releases/download/anymove/anymove-mech.zip` (7.3MB, GLB 1개 + CC0 전문 + CREDITS.txt) — Releases 첨부
+- 제작: Patch (@patch_gg) / 라이선스: CC0 / 원본: https://patch.gg/create/toolbox/assets/anymove:mech
+- 비고: anymove(AI 모션캡처) 제작. 리깅+애니메이션 9클립(Stomp 포함), 55,813 tris. 릴리스: [anymove](https://github.com/sigco3111/assets-3d-lowpoly-2/releases/tag/anymove)
+
+### anymove Ogre — CC0 애니메이션 크리처 (GLB)
+![anymove Ogre 미리보기](releases/download/anymove/anymove-ogre.png)
+- 파일: `releases/download/anymove/anymove-ogre.zip` (7.4MB, GLB 1개 + CC0 전문 + CREDITS.txt) — Releases 첨부
+- 제작: Patch (@patch_gg) / 라이선스: CC0 / 원본: https://patch.gg/create/toolbox/assets/anymove:ogre
+- 비고: anymove(AI 모션캡처) 제작. 리깅+애니메이션 8클립(GroundSlam 포함), 59,464 tris. 릴리스: [anymove](https://github.com/sigco3111/assets-3d-lowpoly-2/releases/tag/anymove)
+
+### anymove Scorpion — CC0 애니메이션 크리처 (GLB)
+![anymove Scorpion 미리보기](releases/download/anymove/anymove-scorpion.png)
+- 파일: `releases/download/anymove/anymove-scorpion.zip` (7.6MB, GLB 1개 + CC0 전문 + CREDITS.txt) — Releases 첨부
+- 제작: Patch (@patch_gg) / 라이선스: CC0 / 원본: https://patch.gg/create/toolbox/assets/anymove:scorpion
+- 비고: anymove(AI 모션캡처) 제작. 리깅+애니메이션 4클립, 57,077 tris. 릴리스: [anymove](https://github.com/sigco3111/assets-3d-lowpoly-2/releases/tag/anymove)
+
+### anymove Giant Ape — CC0 애니메이션 크리처 (GLB)
+![anymove Giant Ape 미리보기](releases/download/anymove/anymove-ape.png)
+- 파일: `releases/download/anymove/anymove-ape.zip` (9.4MB, GLB 1개 + CC0 전문 + CREDITS.txt) — Releases 첨부
+- 제작: Patch (@patch_gg) / 라이선스: CC0 / 원본: https://patch.gg/create/toolbox/assets/anymove:ape
+- 비고: anymove(AI 모션캡처) 제작. 리깅+애니메이션 6클립(ChestBeat 포함), 57,778 tris. 릴리스: [anymove](https://github.com/sigco3111/assets-3d-lowpoly-2/releases/tag/anymove)
+
+### anymove Centaur — CC0 애니메이션 크리처 (GLB)
+![anymove Centaur 미리보기](releases/download/anymove/anymove-centaur.png)
+- 파일: `releases/download/anymove/anymove-centaur.zip` (6.3MB, GLB 1개 + CC0 전문 + CREDITS.txt) — Releases 첨부
+- 제작: Patch (@patch_gg) / 라이선스: CC0 / 원본: https://patch.gg/create/toolbox/assets/anymove:centaur
+- 비고: anymove(AI 모션캡처) 제작. 리깅+애니메이션 9클립(Rear 포함), 59,615 tris. 릴리스: [anymove](https://github.com/sigco3111/assets-3d-lowpoly-2/releases/tag/anymove)
+
+### anymove Horse — CC0 애니메이션 크리처 (GLB)
+![anymove Horse 미리보기](releases/download/anymove/anymove-horse.png)
+- 파일: `releases/download/anymove/anymove-horse.zip` (5.7MB, GLB 1개 + CC0 전문 + CREDITS.txt) — Releases 첨부
+- 제작: Patch (@patch_gg) / 라이선스: CC0 / 원본: https://patch.gg/create/toolbox/assets/anymove:horse
+- 비고: anymove(AI 모션캡처) 제작. 리깅+애니메이션 7클립, 59,202 tris. 릴리스: [anymove](https://github.com/sigco3111/assets-3d-lowpoly-2/releases/tag/anymove)
+
+### anymove Woman — CC0 애니메이션 크리처 (GLB)
+![anymove Woman 미리보기](releases/download/anymove/anymove-woman.png)
+- 파일: `releases/download/anymove/anymove-woman.zip` (5.3MB, GLB 1개 + CC0 전문 + CREDITS.txt) — Releases 첨부
+- 제작: Patch (@patch_gg) / 라이선스: CC0 / 원본: https://patch.gg/create/toolbox/assets/anymove:woman
+- 비고: anymove(AI 모션캡처) 제작. 리깅+애니메이션 6클립(Kick 포함), 57,274 tris. 릴리스: [anymove](https://github.com/sigco3111/assets-3d-lowpoly-2/releases/tag/anymove)
+
 ### AbilityCasting 상어·드래곤·자이로스코프 모델·환경 텍스처 (권리 미확인)
 ![AbilityCasting 드래곤·자이로스코프 모델·환경 텍스처 미리보기](abilitycasting-unverified/preview.png)
 - 파일: `abilitycasting-unverified/abilitycasting-unverified.zip` (20MB, GLB 3개 + 텍스처 10개 + CREDITS + README.txt) — 저장소 내 포함
