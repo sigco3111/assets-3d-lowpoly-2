@@ -1,4 +1,10 @@
 
+### AbilityCasting 결투장·생물·소품 3D 모델 6종 (GLB)
+![AbilityCasting 결투장·생물·소품 3D 모델 6종 미리보기](abilitycasting-models/preview.png)
+- 파일: `abilitycasting-models/abilitycasting-models.zip` (33MB, GLB 6개 + 결투장 천 텍스처 + 환경 HDRI + LICENSE + CREDITS + README.txt) — 저장소 내 포함
+- 제작: mohamedachrefelouafi / 라이선스: MIT (환경 HDRI만 Poly Haven CC0) / 원본: https://github.com/achrefelouafi/AbilityCastingThreeJS
+- 비고: 원작자 Blender 제작 확인분(duel_hall 환경, wolf 리그+클립 6종, shark Breach·Swim 클립, arcane_tome, wildroot_reliquary, amethyst_stones). dragon·gyroscope는 Sketchfab 서드파티(원라이선스 불명), Mixamo FBX·diffuse.png(재배포 금지), cathedral·배너·스테인드글라스 텍스처(출처 미확인)는 제외. .blend 원본은 원본 저장소 art/. 코드 팩은 assets-code abilitycasting-spell-vfx
+
 ### Procedural Animals 베이크 샘플 6종 (.animal)
 ![Procedural Animals 베이크 샘플 6종 미리보기](procedural-animal-samples/preview.png)
 - 파일: `procedural-animal-samples/procedural-animal-samples.zip` (25MB, .animal 6개 + LICENSE + README.txt) — 저장소 내 포함
