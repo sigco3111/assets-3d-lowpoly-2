@@ -14,4 +14,4 @@
 - 원작 CREDITS가 Poly Haven 출처를 밝히고, 2026-11-24 rock_07_1k.gltf가 공식 dl.polyhaven.org 다운로드와 MD5 일치함을 확인했습니다.
 - 에셋별 원본 페이지: https://polyhaven.com/a/<이름>
 - 출처(발견): https://github.com/jbang2004/long-wind · 한글판: https://github.com/sigco3111/long-wind
-- 수집일: 2026-11-24 · 파일: Releases(long-wind-ph-rocks) 첨부 (zip 27MB로 5MB 초과)
+- 수집일: 2026-11-24 · 파일: Releases(long-wind-ph-rocks)에 분할 압축으로 첨부. 25MB 업로드 제한으로 zip 27MB를 나눴습니다. long-wind-ph-rocks.z01~.z02와 .zip 3개를 모두 내려받아 같은 폴더에서 `zip -s 0 long-wind-ph-rocks.zip --out full.zip`을 실행한 뒤 full.zip을 풀면 됩니다.
