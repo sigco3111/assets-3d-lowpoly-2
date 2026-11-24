@@ -1,0 +1,11 @@
+Kervan 지형·양피지 텍스처와 하늘 HDR (CC0)
+
+Source: https://github.com/Furkiozknn/kervan (asset credits in CREDITS.md, checked 2026-11-24)
+All source assets CC0 1.0: https://creativecommons.org/publicdomain/zero/1.0/
+- terrain_detail.jpg: channels composited by the author from Poly Haven CC0 — Sandy Gravel 02 (Dario Barresi),
+  Aerial Grass Rock (Rob Tuytel), Aerial Rocks 02 (Rob Tuytel)
+- parchment.webp: ambientCG Paper006 (Lennart Demes), CC0
+- qwantani_late_afternoon_512.hdr: Poly Haven "Qwantani Late Afternoon (Pure Sky)" (Greg Zaal, Jarod Guest),
+  CC0, downscaled to 512px by the author
+Poly Haven license page (all assets CC0) verified 2026-11-24: https://polyhaven.com/license
+Collected and packaged 2026-11-24.

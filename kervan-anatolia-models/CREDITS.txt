@@ -1,0 +1,10 @@
+Kervan 아나톨리아 도시·카라반 3D 모델 11종 (GLB)
+
+Source: https://github.com/Furkiozknn/kervan (MIT License, checked 2026-11-24)
+Author: Furkiozknn. Per the project's CREDITS.md, the models in assets/models/ were built for this game
+from the Blender scripts in assets/src/ (headless Blender via the asset-forge tool) and are covered by
+the game's MIT licence.
+Models: aksaray, bursa, goreme, izmir, kayseri, konya, urfa (city landmarks), bazaar, han (caravanserai),
+camel, riders.
+Generator code pack: sigco3111/assets-code kervan-asset-forge
+Collected and packaged 2026-11-24.

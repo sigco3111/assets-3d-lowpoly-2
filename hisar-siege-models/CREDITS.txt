@@ -1,0 +1,11 @@
+Hisar 중세 공성전 3D 모델 12종 (GLB)
+
+Source: https://github.com/Furkiozknn/kale-savunmasi (MIT License, checked 2026-11-24)
+Author: Furkiozknn. Per docs/assets.md, the models were generated for this game with Higgsfield tripo_3d
+(text-to-3D), then normalised with glTF-Transform (center/resize/webp).
+Higgsfield Terms of Use 4.4 (verified 2026-11-24): users own their outputs and commercial use is not
+restricted: https://higgsfield.ai/creator-hub/help-center/account/who-owns-my-generations-and-can-i-use-them-commercially
+Note: AI-generated output; copyright subsistence is uncertain. The repo distributes them under MIT.
+Models: raider, rider, shield, ram, fortress, tower-archer, tower-cannon, tower-tar, head-archer,
+head-cannon, head-tar, boat. (fortress and the three tower bases are unused in the current redesign but kept.)
+Collected and packaged 2026-11-24.

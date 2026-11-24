@@ -1,0 +1,15 @@
+{
+ "name": "Hisar 중세 공성전 3D 모델 12종",
+ "slug": "hisar-siege-models",
+ "zip": "hisar-siege-models.zip",
+ "file": "hisar-siege-models/hisar-siege-models.zip",
+ "author": "Furkiozknn",
+ "url": "https://github.com/Furkiozknn/kale-savunmasi",
+ "license": "MIT",
+ "attr": "required (MIT): 재배포 시 저작권 표기와 MIT 라이선스 전문 유지 (Copyright (c) 2026 Furkiozknn)",
+ "date": "2026-11-24",
+ "tags": "3d,lowpoly,glb,medieval,tower,castle,siege,defense,soldier,cannon,boat,ai-generated",
+ "notes": "Higgsfield tripo_3d(text-to-3D) 생성+glTF-Transform 정규화(docs/assets.md); Higgsfield 약관 4.4 출력물 소유·상업 이용 제한 없음 2026-11-24 확인, 원작 저장소 MIT; AI 생성물이라 저작권 성립은 불확실; fortress·탑 기반 3종은 현 리디자인 미사용이나 수록",
+ "preview": "preview.jpg",
+ "kind": "3D 모델"
+}

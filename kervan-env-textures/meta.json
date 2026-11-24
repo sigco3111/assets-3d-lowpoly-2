@@ -1,0 +1,15 @@
+{
+ "name": "Kervan 지형·양피지 텍스처와 하늘 HDR (CC0)",
+ "slug": "kervan-env-textures",
+ "zip": "kervan-env-textures.zip",
+ "file": "kervan-env-textures/kervan-env-textures.zip",
+ "author": "Poly Haven · ambientCG (Kervan 프로젝트 가공)",
+ "url": "https://github.com/Furkiozknn/kervan",
+ "license": "CC0 1.0",
+ "attr": "불필요 (CC0); 파일별 원저작자는 팩 CREDITS.txt 참조",
+ "date": "2026-11-24",
+ "tags": "texture,terrain,sand,grass,rock,parchment,hdr,sky,polyhaven,ambientcg,cc0",
+ "notes": "terrain_detail.jpg는 Poly Haven CC0 3종 채널 합성(원작 가공), parchment.webp는 ambientCG Paper006, HDR은 Poly Haven Qwantani Late Afternoon 512px; polyhaven.com/license 전 자산 CC0 2026-11-24 확인",
+ "preview": "preview.jpg",
+ "kind": "텍스처"
+}

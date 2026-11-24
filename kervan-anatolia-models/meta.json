@@ -1,0 +1,15 @@
+{
+ "name": "Kervan 아나톨리아 도시·카라반 3D 모델 11종",
+ "slug": "kervan-anatolia-models",
+ "zip": "kervan-anatolia-models.zip",
+ "file": "kervan-anatolia-models/kervan-anatolia-models.zip",
+ "author": "Furkiozknn",
+ "url": "https://github.com/Furkiozknn/kervan",
+ "license": "MIT",
+ "attr": "required (MIT): 재배포 시 저작권 표기와 MIT 라이선스 전문 유지 (Copyright (c) 2026 Furkiozknn)",
+ "date": "2026-11-24",
+ "tags": "3d,lowpoly,glb,city,building,camel,caravan,bazaar,medieval,anatolia,landmark",
+ "notes": "도시 랜드마크 7(aksaray·bursa·goreme·izmir·kayseri·konya·urfa)+시장+카라반사라이+낙타+라이더; 원작 CREDITS.md에 assets/src Blender 스크립트 자체 제작·MIT 적용 명시; 생성 코드는 assets-code kervan-asset-forge; MIT 전문 LICENSE 동봉",
+ "preview": "preview.jpg",
+ "kind": "3D 모델"
+}

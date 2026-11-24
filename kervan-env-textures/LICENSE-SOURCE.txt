@@ -1,0 +1,3 @@
+Source: https://github.com/Furkiozknn/kervan/blob/main/CREDITS.md
+License: CC0 1.0 for all listed sources (Poly Haven, ambientCG); https://polyhaven.com/license verified 2026-11-24
+Checked: 2026-11-24 (CREDITS.md table read directly; Poly Haven license page fetched live)
