@@ -156,3 +156,9 @@
 ![Papertrails 팝업북 3D 모델 미리보기](papertrails-popup-models/preview.png)
 - 파일: `papertrails-popup-models.zip` (1.6MB) — 저장소 내 포함
 - 제작: xikhar (Shikhar) / 라이선스: MIT / 원본: https://github.com/xikhar/papertrails
+
+### Long Wind Poly Haven 바위 모델 9종 (glTF 1K)
+![Long Wind Poly Haven 바위 모델 미리보기](long-wind-ph-rocks/preview.png)
+- 파일: `releases/download/long-wind-ph-rocks/long-wind-ph-rocks.zip` (27MB 분할: z01~z02+zip 3개 모두 받아 `zip -s 0 long-wind-ph-rocks.zip --out full.zip` 병합) — [릴리스 long-wind-ph-rocks](https://github.com/sigco3111/assets-3d-lowpoly-2/releases/tag/long-wind-ph-rocks)
+- 제작: Poly Haven / 라이선스: CC0 / 원본: https://polyhaven.com (사용 게임: https://github.com/jbang2004/long-wind)
+- 비고: gltf+bin+1K 텍스처 세트 9종. 원작 CREDITS 출처 명시, rock_07 gltf 공식 다운로드 MD5 일치 확인(2026-11-24)
