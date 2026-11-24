@@ -1,0 +1,15 @@
+{
+ "name": "Long Wind Poly Haven 바위 모델 9종 (glTF 1K)",
+ "slug": "long-wind-ph-rocks",
+ "zip": "long-wind-ph-rocks.zip",
+ "file": "releases/download/long-wind-ph-rocks/long-wind-ph-rocks.zip",
+ "author": "Poly Haven",
+ "url": "https://polyhaven.com",
+ "license": "CC0",
+ "attr": "optional: Poly Haven (polyhaven.com)",
+ "date": "2026-11-24",
+ "tags": "3d,rock,boulder,stone,scan,polyhaven,gltf,1k,environment",
+ "notes": "Long Wind(jbang2004/long-wind) 사용분 9종(gltf+bin+1K 텍스처). 원작 CREDITS 출처 명시 + rock_07 gltf 공식 다운로드 MD5 일치 확인(2026-11-24). zip 27MB로 Releases(long-wind-ph-rocks) 첨부. CC0",
+ "preview": "preview.png",
+ "kind": "3D 모델"
+}
