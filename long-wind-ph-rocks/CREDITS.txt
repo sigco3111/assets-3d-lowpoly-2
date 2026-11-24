@@ -1,0 +1,11 @@
+Long Wind Poly Haven 바위 모델 9종 (glTF 1K + 텍스처)
+
+Original assets: Poly Haven (https://polyhaven.com) — CC0 (https://polyhaven.com/license)
+Found in: Long Wind by jbang2004 — https://github.com/jbang2004/long-wind (public/assets/ph/models)
+Korean fork: https://github.com/sigco3111/long-wind
+Provenance spot-check 2026-11-24: rock_07_1k.gltf MD5 = official dl.polyhaven.org download.
+
+Models (gltf + bin + textures):
+rock_moss_set_01, rock_moss_set_02, namaqualand_boulder_02, namaqualand_boulder_05, boulder_01, stone_01, rock_face_01, rock_07, rock_09
+Per-asset pages: https://polyhaven.com/a/<name>
+Collected and packaged 2026-11-24. CC0: no attribution required; credit appreciated.
