@@ -1,0 +1,15 @@
+{
+ "name": "Poly Haven Combination Wrench",
+ "slug": "polyhaven-combination-wrench",
+ "zip": "polyhaven-combination-wrench.zip",
+ "file": "polyhaven-combination-wrench/polyhaven-combination-wrench.zip",
+ "author": "BKS",
+ "url": "https://polyhaven.com/a/combination_wrench",
+ "license": "CC0",
+ "attr": "Combination Wrench by BKS, Poly Haven (https://polyhaven.com/a/combination_wrench), CC0",
+ "date": "2026-11-27",
+ "tags": "3d,polyhaven,model,gltf,cc0",
+ "notes": "Poly Haven 1K glTF 모델 zip (gltf + 텍스처). 라이선스 CC0 (polyhaven.com/license 확인)",
+ "preview": "preview.png",
+ "kind": "3D 모델"
+}

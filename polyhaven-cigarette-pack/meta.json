@@ -1,0 +1,15 @@
+{
+ "name": "Poly Haven Cigarette Pack",
+ "slug": "polyhaven-cigarette-pack",
+ "zip": "polyhaven-cigarette-pack.zip",
+ "file": "polyhaven-cigarette-pack/polyhaven-cigarette-pack.zip",
+ "author": "Ulrich Büch",
+ "url": "https://polyhaven.com/a/cigarette_pack",
+ "license": "CC0",
+ "attr": "Cigarette Pack by Ulrich Büch, Poly Haven (https://polyhaven.com/a/cigarette_pack), CC0",
+ "date": "2026-11-27",
+ "tags": "3d,polyhaven,model,gltf,cc0",
+ "notes": "Poly Haven 1K glTF 모델 zip (gltf + 텍스처). 라이선스 CC0 (polyhaven.com/license 확인)",
+ "preview": "preview.png",
+ "kind": "3D 모델"
+}

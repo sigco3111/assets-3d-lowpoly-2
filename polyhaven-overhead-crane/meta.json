@@ -1,0 +1,15 @@
+{
+ "name": "Poly Haven Overhead Crane",
+ "slug": "polyhaven-overhead-crane",
+ "zip": "polyhaven-overhead-crane.zip",
+ "file": "release:pack-polyhaven-overhead-crane/polyhaven-overhead-crane.zip",
+ "author": "Timothy3D",
+ "url": "https://polyhaven.com/a/overhead_crane",
+ "license": "CC0",
+ "attr": "Overhead Crane by Timothy3D, Poly Haven (https://polyhaven.com/a/overhead_crane), CC0",
+ "date": "2026-11-27",
+ "tags": "3d,polyhaven,model,gltf,cc0",
+ "notes": "Poly Haven 1K glTF 모델 zip (gltf + 텍스처). 라이선스 CC0 (polyhaven.com/license 확인)",
+ "preview": "preview.png",
+ "kind": "3D 모델"
+}
