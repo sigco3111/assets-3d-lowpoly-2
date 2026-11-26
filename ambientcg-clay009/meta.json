@@ -1,0 +1,15 @@
+{
+ "name": "ambientCG Clay 009",
+ "slug": "ambientcg-clay009",
+ "zip": "ambientcg-clay009.zip",
+ "file": "release:pack-ambientcg-clay009/ambientcg-clay009.zip",
+ "author": "ambientCG",
+ "url": "https://ambientcg.com/a/Clay009",
+ "license": "CC0",
+ "attr": "Clay 009 by ambientCG (https://ambientcg.com/a/Clay009), CC0",
+ "date": "2026-11-27",
+ "tags": "texture,ambientcg,pbr,cc0",
+ "notes": "ambientCG 1K-JPG PBR 텍스처 zip. 라이선스 CC0 (docs.ambientcg.com/license 확인)",
+ "preview": "preview.png",
+ "kind": "텍스처"
+}

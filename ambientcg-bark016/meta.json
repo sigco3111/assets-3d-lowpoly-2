@@ -1,0 +1,15 @@
+{
+ "name": "ambientCG Bark 016",
+ "slug": "ambientcg-bark016",
+ "zip": "ambientcg-bark016.zip",
+ "file": "release:pack-ambientcg-bark016/ambientcg-bark016.zip",
+ "author": "ambientCG",
+ "url": "https://ambientcg.com/a/Bark016",
+ "license": "CC0",
+ "attr": "Bark 016 by ambientCG (https://ambientcg.com/a/Bark016), CC0",
+ "date": "2026-11-27",
+ "tags": "texture,ambientcg,pbr,cc0",
+ "notes": "ambientCG 1K-JPG PBR 텍스처 zip. 라이선스 CC0 (docs.ambientcg.com/license 확인)",
+ "preview": "preview.png",
+ "kind": "텍스처"
+}
