@@ -1,0 +1,99 @@
+name: tmp-t88-pack1
+on:
+  workflow_dispatch:
+permissions:
+  contents: write
+jobs:
+  pack:
+    runs-on: ubuntu-latest
+    timeout-minutes: 30
+    steps:
+      - uses: actions/checkout@v4
+        with:
+          fetch-depth: 1
+      - uses: actions/setup-python@v5
+        with:
+          python-version: "3.12"
+      - name: pack
+        env:
+          GH_TOKEN: ${{ secrets.GITHUB_TOKEN }}
+        run: |
+          pip install -q pillow
+          python3 - <<'PY'
+          import os, io, json, zipfile, subprocess, urllib.request, datetime
+          from PIL import Image
+          REPO = 'sigco3111/assets-3d-lowpoly-2'
+          UA = {'User-Agent': 'Mozilla/5.0 asset-collector'}
+          TODAY = datetime.date.today().isoformat()
+          LIMIT = 5 * 1000 * 1000
+          def get(u):
+              req = urllib.request.Request(u, headers=UA)
+              with urllib.request.urlopen(req, timeout=600) as r:
+                  return r.read()
+          def gj(u):
+              return json.loads(get(u).decode('utf-8'))
+          def topng(data, path, size=512):
+              im = Image.open(io.BytesIO(data)); im.seek(0)
+              im = im.convert('RGBA'); im.thumbnail((size, size)); im.save(path, 'PNG', optimize=True)
+          def cc0(src, who):
+              try:
+                  body = get('https://creativecommons.org/publicdomain/zero/1.0/legalcode.txt').decode('utf-8', 'replace')
+              except Exception as e:
+                  body = 'legalcode fetch failed: %s' % e
+              return 'CC0 1.0 Universal\nSource: ' + src + '\nAuthor: ' + who + '\nChecked: ' + TODAY + ' (GitHub Actions runner)\n\n' + body
+          def place(d, zipname, zb, tag):
+              if len(zb) > LIMIT:
+                  tmp = '/tmp/' + zipname
+                  open(tmp, 'wb').write(zb)
+                  subprocess.run(['gh', 'release', 'create', tag, tmp, '--repo', REPO, '--title', tag, '--notes', 'Asset pack zip (5MB 초과, Releases 보관)'], check=True)
+                  return 'release:%s/%s' % (tag, zipname)
+              open(os.path.join(d, zipname), 'wb').write(zb)
+              return '%s/%s' % (d, zipname)
+          def meta(d, name, author, url, tags, attr, notes, kind, file_, zipname):
+              m = {'name': name, 'slug': d, 'zip': zipname, 'file': file_, 'author': author, 'url': url, 'license': 'CC0', 'attr': attr, 'date': TODAY, 'tags': tags, 'notes': notes, 'preview': 'preview.png', 'kind': kind}
+              open(os.path.join(d, 'meta.json'), 'w', encoding='utf-8').write(json.dumps(m, ensure_ascii=False, indent=1) + '\n')
+          DONE = []
+          def pack_pvc():
+              d = 'polyhaven-weathered-pvc-tank'; os.makedirs(d, exist_ok=True)
+              b = gj('https://api.polyhaven.com/files/weathered_pvc_tank')['blend']['1k']['blend']
+              buf = io.BytesIO()
+              with zipfile.ZipFile(buf, 'w', zipfile.ZIP_DEFLATED) as z:
+                  z.writestr('weathered_pvc_tank_1k.blend', get(b['url']))
+                  for rel, v in b['include'].items():
+                      z.writestr(rel, get(v['url']))
+              zn = 'polyhaven-weathered-pvc-tank.zip'
+              fp = place(d, zn, buf.getvalue(), 'pack-polyhaven-weathered-pvc-tank')
+              topng(get('https://cdn.polyhaven.com/asset_img/thumbs/weathered_pvc_tank.png?width=256&height=256&format=webp'), os.path.join(d, 'preview.png'))
+              src = 'https://polyhaven.com/a/weathered_pvc_tank'
+              open(os.path.join(d, 'LICENSE.txt'), 'w', encoding='utf-8').write(cc0(src, 'Amal Kumar (Poly Haven)'))
+              meta(d, 'Poly Haven Weathered PVC Tank', 'Amal Kumar (Poly Haven)', src, 'texture,polyhaven,pvc,weathered,tank,pbr,cc0', 'Weathered PVC Tank by Amal Kumar, Poly Haven (https://polyhaven.com/a/weathered_pvc_tank), CC0', 'Poly Haven 1K blend + 텍스처(diff/disp/nor_gl/rough) zip. 라이선스 CC0 (polyhaven.com/license 확인)', '텍스처', fp, zn)
+              DONE.append(d)
+          def pack_ambient(key, d, tag, src_id):
+              os.makedirs(d, exist_ok=True)
+              zb = get('https://ambientcg.com/get?file=%s_1K-JPG.zip' % src_id)
+              zn = d + '.zip'
+              fp = place(d, zn, zb, tag)
+              topng(get('https://acg-media.struffelproductions.com/file/ambientCG-Web/media/thumbnail/2048-WEBP/%s.webp' % src_id), os.path.join(d, 'preview.png'))
+              src = 'https://ambientcg.com/a/%s' % src_id
+              open(os.path.join(d, 'LICENSE.txt'), 'w', encoding='utf-8').write(cc0(src, 'ambientCG'))
+              meta(d, 'ambientCG ' + key, 'ambientCG', src, 'texture,ambientcg,pbr,cc0', key + ' by ambientCG (' + src + '), CC0', 'ambientCG 1K-JPG PBR 텍스처 zip. 라이선스 CC0 (docs.ambientcg.com/license 확인)', '텍스처', fp, zn)
+              DONE.append(d)
+          for fn in (pack_pvc,):
+              try:
+                  fn()
+              except Exception as e:
+                  print('FAIL', fn.__name__, repr(e))
+          for args in (('Paving Stones 153', 'ambientcg-pavingstones153', 'pack-ambientcg-pavingstones153', 'PavingStones153'), ('Fabric 087', 'ambientcg-fabric087', 'pack-ambientcg-fabric087', 'Fabric087')):
+              try:
+                  pack_ambient(*args)
+              except Exception as e:
+                  print('FAIL', args[0], repr(e))
+          subprocess.run(['git', 'config', 'user.name', 'asset-collector'], check=True)
+          subprocess.run(['git', 'config', 'user.email', 'asset-collector@users.noreply.github.com'], check=True)
+          if DONE:
+              subprocess.run(['git', 'add'] + DONE, check=True)
+              subprocess.run(['git', 'commit', '-m', '에셋: Weathered PVC Tank, Paving Stones 153, Fabric 087 추가'], check=True)
+              subprocess.run(['git', 'pull', '--rebase', '-q', 'origin', 'main'], check=True)
+              subprocess.run(['git', 'push', '-q', 'origin', 'HEAD:main'], check=True)
+          print('DONE', DONE)
+          PY
