@@ -1,0 +1,15 @@
+{
+ "name": "ambientCG Fabric 087",
+ "slug": "ambientcg-fabric087",
+ "zip": "ambientcg-fabric087.zip",
+ "file": "release:pack-ambientcg-fabric087/ambientcg-fabric087.zip",
+ "author": "ambientCG",
+ "url": "https://ambientcg.com/a/Fabric087",
+ "license": "CC0",
+ "attr": "Fabric 087 by ambientCG (https://ambientcg.com/a/Fabric087), CC0",
+ "date": "2026-11-26",
+ "tags": "texture,ambientcg,pbr,cc0",
+ "notes": "ambientCG 1K-JPG PBR 텍스처 zip. 라이선스 CC0 (docs.ambientcg.com/license 확인)",
+ "preview": "preview.png",
+ "kind": "텍스처"
+}
