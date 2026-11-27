@@ -1,4 +1,9 @@
 
+### Solar 나무 우주선 — MIT 우주선 모델 (GLB)
+![Solar 우주선 미리보기](solar-ship/preview.png)
+- 파일: `solar-ship/solar-ship.zip` (12.8MB, GLB 1개 + 라이트맵 WebP 4종 + Blender 빌드 스크립트 9개 + LICENSE.txt)
+- 제작: Patch (@blendi) / 라이선스: MIT / 원본: https://patch.gg/games/blendi/solar
+- 비고: 원작이 Blender 스크립트로 만든 자작 디자인(네 다리 나무 오두막 우주선, 내부 조종석 포함). GLB는 meshopt 압축(three meshopt 디코더 필요). 미리보기는 원작 공식 스크린샷
 ### anymove Knight — CC0 애니메이션 크리처 (GLB)
 ![anymove Knight 미리보기](releases/download/anymove/anymove-knight.png)
 - 파일: `releases/download/anymove/anymove-knight.zip` (8.5MB, GLB 1개 + CC0 전문 + CREDITS.txt) — Releases 첨부
