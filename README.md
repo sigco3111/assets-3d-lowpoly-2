@@ -162,3 +162,15 @@
 - 파일: `releases/download/long-wind-ph-rocks/long-wind-ph-rocks.zip` (27MB 분할: z01~z02+zip 3개 모두 받아 `zip -s 0 long-wind-ph-rocks.zip --out full.zip` 병합) — [릴리스 long-wind-ph-rocks](https://github.com/sigco3111/assets-3d-lowpoly-2/releases/tag/long-wind-ph-rocks)
 - 제작: Poly Haven / 라이선스: CC0 / 원본: https://polyhaven.com (사용 게임: https://github.com/jbang2004/long-wind)
 - 비고: gltf+bin+1K 텍스처 세트 9종. 원작 CREDITS 출처 명시, rock_07 gltf 공식 다운로드 MD5 일치 확인(2026-11-24)
+
+### Don't Look Away 천사 석상 4종·예배당 의자 GLB (AI 생성)
+![미리보기](dont-look-away-models/preview.png)
+- 파일: `dont-look-away-models/dont-look-away-models.zip`
+- 제작: Blendi Bylygbashi (Patch @blendi) / 라이선스: CC0 1.0 / 원본: https://patch.gg/games/blendi/dont-look-away
+- 비고: 천사 4포즈(standing·reaching·lunging·weeping)와 의자 GLB 5개, meshopt 압축, 각 3.5~3.8MB
+
+### Don't Look Away 석재·목재 PBR 텍스처 (Poly Haven CC0)
+![미리보기](dont-look-away-textures/preview.png)
+- 파일: `dont-look-away-textures/dont-look-away-textures.zip`
+- 제작: Rob Tuytel, Dimitrios Savva (Poly Haven) / 라이선스: CC0 1.0 / 원본: https://patch.gg/games/blendi/dont-look-away
+- 비고: Poly Haven CC0: Medieval Blocks 05·Medieval Wall 01(Rob Tuytel) color·normal·roughness JPG 6장과 Worn Planks(Dimitrios Savva) basecolor·normal·roughness WebP 3장

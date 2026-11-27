@@ -1,0 +1,15 @@
+{
+ "name": "Don't Look Away 석재·목재 PBR 텍스처 (Poly Haven CC0)",
+ "slug": "dont-look-away-textures",
+ "zip": "dont-look-away-textures.zip",
+ "file": "dont-look-away-textures/dont-look-away-textures.zip",
+ "author": "Rob Tuytel, Dimitrios Savva (Poly Haven)",
+ "url": "https://patch.gg/games/blendi/dont-look-away",
+ "license": "CC0 1.0",
+ "attr": "귀속 불필요 (CC0). Poly Haven 표기 권장",
+ "date": "2026-11-27",
+ "tags": "texture,pbr,cc0,polyhaven,stone,wall,medieval,wood,planks",
+ "kind": "3D 모델",
+ "notes": "Poly Haven CC0: Medieval Blocks 05·Medieval Wall 01(Rob Tuytel) color·normal·roughness JPG 6장과 Worn Planks(Dimitrios Savva) basecolor·normal·roughness WebP 3장. 게임에 쓰인 해상도 그대로(원본 대비 변환 여부 미대조). Don't Look Away 자체 CREDITS.md가 CC0-1.0 명시",
+ "preview": "preview.png"
+}
