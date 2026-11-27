@@ -1,0 +1,6 @@
+All models CC0 1.0 by Poly Haven (https://polyhaven.com):
+- shrub_02 (https://polyhaven.com/a/shrub_02)
+- rock_moss_set_01 (https://polyhaven.com/a/rock_moss_set_01)
+
+Collected from Timberfall by Patch (@blendi): https://patch.gg/blendi/timberfall ,
+source https://git.patch.gg/blendi/timberfall.git (LICENSE-ART). Collected 2026-11-27.

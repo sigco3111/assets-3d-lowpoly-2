@@ -1,0 +1,15 @@
+{
+ "name": "Timberfall 자연 모델 2종: 관목·이끼 낀 바위 (glTF, CC0)",
+ "slug": "timberfall-nature-models",
+ "zip": "timberfall-nature-models.zip",
+ "file": "timberfall-nature-models/timberfall-nature-models.zip",
+ "author": "Patch (@blendi)",
+ "url": "https://patch.gg/games/blendi/timberfall",
+ "license": "CC0 1.0",
+ "attr": "불필요 (CC0); Poly Haven 표기 권장",
+ "date": "2026-11-27",
+ "tags": "3d,model,gltf,shrub,rock,moss,nature,vegetation,polyhaven,cc0",
+ "preview": "preview.png",
+ "kind": "3D 모델",
+ "notes": "Poly Haven shrub_02·rock_moss_set_01 glTF+bin+1K 텍스처. grass_medium_01은 polyhaven-grass-medium-01 단독 팩으로 등록돼 있어 제외. 원작 LICENSE-ART CC0 명시"
+}
