@@ -1,0 +1,15 @@
+{
+ "name": "Timberfall 환경 PBR 텍스처 10종·잎사귀 카드·하늘 HDR (CC0)",
+ "slug": "timberfall-env-textures",
+ "zip": "timberfall-env-textures.zip",
+ "file": "timberfall-env-textures/timberfall-env-textures.zip",
+ "author": "Patch (@blendi)",
+ "url": "https://patch.gg/games/blendi/timberfall",
+ "license": "CC0 1.0",
+ "attr": "불필요 (CC0); 파일별 원저작자는 팩 CREDITS.txt 참조",
+ "date": "2026-11-27",
+ "tags": "texture,pbr,wood,roof,rock,concrete,metal,grass,gravel,bark,foliage,hdri,sky,polyhaven,ambientcg,webp,cc0",
+ "preview": "preview.jpg",
+ "kind": "텍스처",
+ "notes": "Poly Haven PBR 10종×3맵(WebP 1K)+ambientCG 컷아웃 카드 2종+Qwantani Late Afternoon 1K HDR. 원작 LICENSE-ART가 CC0 명시(2026-11-27 확인). zip 9MB대로 Releases 첨부"
+}

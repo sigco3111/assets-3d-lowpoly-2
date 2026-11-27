@@ -1,0 +1,11 @@
+All assets CC0 1.0. Per-file original authors:
+
+- Textures (rough_wood, fine_grained_wood, clay_roof_tiles_02, rock_surface, rough_concrete,
+  rusty_metal_sheet, green_metal_rust, leafy_grass, sparse_grass, gravel_floor, bark_brown_02):
+  Poly Haven (https://polyhaven.com), CC0. WebP conversions shipped with Timberfall.
+- leaf_cluster.webp, grass_tuft.webp: cut-outs from ambientCG LeafSet004 / Foliage001 / Foliage006
+  (https://ambientcg.com), CC0; composed into cards by Timberfall's art-build/foliage.py and grass.py.
+- qwantani_late_afternoon_puresky_1k.hdr: Poly Haven "Qwantani Late Afternoon" (puresky, 1k), CC0.
+
+Collected from Timberfall by Patch (@blendi): https://patch.gg/games/blendi/timberfall ,
+source https://git.patch.gg/blendi/timberfall.git (LICENSE-ART). Collected 2026-11-27.

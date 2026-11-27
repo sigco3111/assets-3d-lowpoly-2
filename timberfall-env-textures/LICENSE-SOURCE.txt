@@ -1,0 +1,5 @@
+License source: Timberfall repository LICENSE-ART (https://git.patch.gg/blendi/timberfall.git).
+The textures, sky light and grass/shrub/rock assets are stated CC0 1.0:
+- public/textures, public/hdri, public/models: Poly Haven, CC0 (https://polyhaven.com/license)
+- leaf/grass-blade cut-outs (leaf_cluster.webp, grass_tuft.webp): ambientCG, CC0 (https://ambientcg.com)
+Checked 2026-11-27.
