@@ -1,0 +1,15 @@
+{
+ "name": "ambientCG Fabric 086",
+ "slug": "ambientcg-fabric086",
+ "zip": "ambientcg-fabric086.zip",
+ "file": "release:pack-ambientcg-fabric086/ambientcg-fabric086.zip",
+ "author": "ambientCG",
+ "url": "https://ambientcg.com/a/Fabric086",
+ "license": "CC0",
+ "attr": "Fabric 086 by ambientCG (https://ambientcg.com/a/Fabric086), CC0",
+ "date": "2026-11-27",
+ "tags": "texture,ambientcg,pbr,cc0",
+ "notes": "ambientCG 1K JPG 팩 (docs.ambientcg.com/license 확인, CC0)",
+ "preview": "preview.png",
+ "kind": "텍스처"
+}

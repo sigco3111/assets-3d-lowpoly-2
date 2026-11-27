@@ -1,0 +1,15 @@
+{
+ "name": "ambientCG Night Environment HDRI 011",
+ "slug": "ambientcg-nightenvironmenthdri011",
+ "zip": "ambientcg-nightenvironmenthdri011.zip",
+ "file": "ambientcg-nightenvironmenthdri011/ambientcg-nightenvironmenthdri011.zip",
+ "author": "ambientCG",
+ "url": "https://ambientcg.com/a/NightEnvironmentHDRI011",
+ "license": "CC0",
+ "attr": "Night Environment HDRI 011 by ambientCG (https://ambientcg.com/a/NightEnvironmentHDRI011), CC0",
+ "date": "2026-11-27",
+ "tags": "hdri,ambientcg,cc0",
+ "notes": "ambientCG 1K HDRI 팩 (docs.ambientcg.com/license 확인, CC0)",
+ "preview": "preview.png",
+ "kind": "HDRI"
+}

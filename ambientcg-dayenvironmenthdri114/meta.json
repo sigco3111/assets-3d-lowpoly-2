@@ -1,0 +1,15 @@
+{
+ "name": "ambientCG Day Environment HDRI 114",
+ "slug": "ambientcg-dayenvironmenthdri114",
+ "zip": "ambientcg-dayenvironmenthdri114.zip",
+ "file": "ambientcg-dayenvironmenthdri114/ambientcg-dayenvironmenthdri114.zip",
+ "author": "ambientCG",
+ "url": "https://ambientcg.com/a/DayEnvironmentHDRI114",
+ "license": "CC0",
+ "attr": "Day Environment HDRI 114 by ambientCG (https://ambientcg.com/a/DayEnvironmentHDRI114), CC0",
+ "date": "2026-11-27",
+ "tags": "hdri,ambientcg,cc0",
+ "notes": "ambientCG 1K HDRI 팩 (docs.ambientcg.com/license 확인, CC0)",
+ "preview": "preview.png",
+ "kind": "HDRI"
+}

@@ -1,0 +1,15 @@
+{
+ "name": "ambientCG Bricks 113 B",
+ "slug": "ambientcg-bricks113b",
+ "zip": "ambientcg-bricks113b.zip",
+ "file": "release:pack-ambientcg-bricks113b/ambientcg-bricks113b.zip",
+ "author": "ambientCG",
+ "url": "https://ambientcg.com/a/Bricks113B",
+ "license": "CC0",
+ "attr": "Bricks 113 B by ambientCG (https://ambientcg.com/a/Bricks113B), CC0",
+ "date": "2026-11-27",
+ "tags": "texture,ambientcg,pbr,cc0",
+ "notes": "ambientCG 1K JPG 팩 (docs.ambientcg.com/license 확인, CC0)",
+ "preview": "preview.png",
+ "kind": "텍스처"
+}

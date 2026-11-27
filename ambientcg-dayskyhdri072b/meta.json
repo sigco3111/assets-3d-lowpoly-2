@@ -1,0 +1,15 @@
+{
+ "name": "ambientCG Day Sky HDRI 072 B",
+ "slug": "ambientcg-dayskyhdri072b",
+ "zip": "ambientcg-dayskyhdri072b.zip",
+ "file": "ambientcg-dayskyhdri072b/ambientcg-dayskyhdri072b.zip",
+ "author": "ambientCG",
+ "url": "https://ambientcg.com/a/DaySkyHDRI072B",
+ "license": "CC0",
+ "attr": "Day Sky HDRI 072 B by ambientCG (https://ambientcg.com/a/DaySkyHDRI072B), CC0",
+ "date": "2026-11-27",
+ "tags": "hdri,ambientcg,cc0",
+ "notes": "ambientCG 1K HDRI 팩 (docs.ambientcg.com/license 확인, CC0)",
+ "preview": "preview.png",
+ "kind": "HDRI"
+}
