@@ -1,0 +1,46 @@
+name: tmp-t8z-polyhaven
+on:
+  workflow_dispatch: {}
+permissions:
+  contents: write
+jobs:
+  build:
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v4
+      - name: build and push
+        run: |
+          cat > /tmp/run.sh <<'EOS'
+          set -euo pipefail
+          TODAY=$(date -u +%F)
+          curl -sfL https://raw.githubusercontent.com/sigco3111/assets-3d-lowpoly-2/main/polyhaven-weathered-pvc-tank/LICENSE.txt -o /tmp/lic_base.txt
+          mk_lic() { sed -e "s|^Source:.*|Source: https://polyhaven.com/a/$1|" -e "s|^Author:.*|Author: $2|" -e "s|^Checked:.*|Checked: $TODAY (GitHub Actions runner)|" /tmp/lic_base.txt > "$3/LICENSE.txt"; }
+          for id in dashed_anti_skid_tiles ribbed_block_wall raw_wooden_floor_01 gravel_embedded_concrete_02 square_pavers herringbone_concrete_tile_03 white_stucco_02 multicolored_pebble_floor; do
+            d=polyhaven-$(echo $id | tr _ -); mkdir -p $d/src
+            j=$(curl -sfL https://api.polyhaven.com/files/$id)
+            author=$(curl -sfL https://api.polyhaven.com/info/$id | jq -r '.authors|keys|join(", ")')
+            for k in Diffuse Displacement nor_gl Rough; do u=$(echo "$j" | jq -r ".$k[\"1k\"].jpg.url"); curl -sfL "$u" -o $d/src/$(basename $u); done
+            zip -qj $d/$d.zip $d/src/*.jpg; rm -rf $d/src
+            curl -sfL "https://cdn.polyhaven.com/asset_img/thumbs/$id.png?height=256" -o $d/preview.png
+            mk_lic $id "$author" $d
+            name=$(echo $id | tr _ ' ' | sed 's/\b\(.\)/\u\1/g')
+            jq -n --arg name "Poly Haven $name" --arg slug "$d" --arg zip "$d.zip" --arg author "$author" --arg url "https://polyhaven.com/a/$id" --arg date "$TODAY" --arg attr "Poly Haven $name by $author (https://polyhaven.com/a/$id), CC0" --arg tags "texture,polyhaven,pbr,cc0" --arg kind "텍스처" --arg notes "Poly Haven 1K jpg(diff/disp/nor_gl/rough) zip. 라이선스 CC0" '{name:$name,slug:$slug,zip:$zip,file:($slug+"/"+$zip),author:$author,url:$url,license:"CC0",attr:$attr,date:$date,tags:$tags,notes:$notes,preview:"preview.png",kind:$kind}' > $d/meta.json
+          done
+          for id in glasshouse_sunset aarfontein_dawn; do
+            d=polyhaven-$(echo $id | tr _ -); mkdir -p $d
+            j=$(curl -sfL https://api.polyhaven.com/files/$id)
+            author=$(curl -sfL https://api.polyhaven.com/info/$id | jq -r '.authors|keys|join(", ")')
+            u=$(echo "$j" | jq -r '.hdri["1k"].hdr.url'); hf=$(basename $u); curl -sfL "$u" -o $d/$hf
+            curl -sfL "https://cdn.polyhaven.com/asset_img/thumbs/$id.png?height=256" -o $d/preview.png
+            mk_lic $id "$author" $d
+            name=$(echo $id | tr _ ' ' | sed 's/\b\(.\)/\u\1/g')
+            jq -n --arg name "Poly Haven $name" --arg slug "$d" --arg zip "$hf" --arg author "$author" --arg url "https://polyhaven.com/a/$id" --arg date "$TODAY" --arg attr "Poly Haven $name by $author (https://polyhaven.com/a/$id), CC0" --arg tags "hdri,polyhaven,sky,cc0" --arg kind "HDRI" --arg notes "Poly Haven 1K HDR 환경맵. 라이선스 CC0" '{name:$name,slug:$slug,zip:$zip,file:($slug+"/"+$zip),author:$author,url:$url,license:"CC0",attr:$attr,date:$date,tags:$tags,notes:$notes,preview:"preview.png",kind:$kind}' > $d/meta.json
+          done
+          du -sh polyhaven-*; ls -l polyhaven-*/
+          git config user.name github-actions; git config user.email actions@github.com
+          git add polyhaven-*/
+          git commit -m 'Poly Haven 신규 10팩 (tmp-t8z)'
+          git push origin HEAD:main
+          git log -1 --oneline
+          EOS
+          bash /tmp/run.sh
