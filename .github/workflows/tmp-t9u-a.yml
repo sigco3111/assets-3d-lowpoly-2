@@ -1,0 +1,53 @@
+name: tmp-t9u-a
+on:
+  push:
+    paths: ['.github/triggers/t9u-a.txt']
+  workflow_dispatch:
+permissions:
+  contents: write
+jobs:
+  add:
+    runs-on: ubuntu-latest
+    timeout-minutes: 60
+    steps:
+      - uses: actions/checkout@v4
+        with:
+          fetch-depth: 1
+      - name: add ambientCG 16 packs (1K-JPG)
+        env:
+          GH_TOKEN: ${{ secrets.GITHUB_TOKEN }}
+        run: |
+          set -euo pipefail
+          mkdir -p /tmp/rel
+          while IFS='|' read -r ID NAME ZIPNAME SLUG; do
+            [ -z "$ID" ] && continue
+            mkdir -p "$SLUG"
+            curl -fsSL -o "/tmp/rel/$SLUG.zip" "https://ambientcg.com/get?file=$ZIPNAME" < /dev/null
+            curl -fsSL -o "$SLUG/preview.png" "https://acg-media.struffelproductions.com/file/ambientCG-Web/media/thumbnail/512-PNG/$ID.png" < /dev/null
+            gh release create "pack-$SLUG" "/tmp/rel/$SLUG.zip" --repo "$GITHUB_REPOSITORY" --title "pack-$SLUG" --notes "ambientCG $ID (CC0)" < /dev/null
+            printf '{"name":"ambientCG %s","slug":"%s","zip":"%s.zip","file":"release:pack-%s/%s.zip","author":"ambientCG","url":"https://ambientcg.com/a/%s","license":"CC0","attr":"%s by ambientCG (https://ambientcg.com/a/%s), CC0","date":"2026-11-28","tags":"texture,ambientcg,pbr,cc0","notes":"ambientCG 1K JPG pack (CC0)","preview":"preview.png","kind":"texture"}\n' "$NAME" "$SLUG" "$SLUG" "$SLUG" "$SLUG" "$ID" "$NAME" "$ID" > "$SLUG/meta.json"
+            printf 'CC0 1.0 Universal (ambientCG %s, https://ambientcg.com/a/%s)\n' "$NAME" "$ID" > "$SLUG/LICENSE.txt"
+          done <<'LIST'
+          Bricks106A|Bricks 106 A|Bricks106A_1K-JPG.zip|ambientcg-bricks106a
+          Bricks106B|Bricks 106 B|Bricks106B_1K-JPG.zip|ambientcg-bricks106b
+          Bricks107A|Bricks 107 A|Bricks107A_1K-JPG.zip|ambientcg-bricks107a
+          Bricks107B|Bricks 107 B|Bricks107B_1K-JPG.zip|ambientcg-bricks107b
+          Bricks108A|Bricks 108 A|Bricks108A_1K-JPG.zip|ambientcg-bricks108a
+          Bricks108B|Bricks 108 B|Bricks108B_1K-JPG.zip|ambientcg-bricks108b
+          Bricks109A|Bricks 109 A|Bricks109A_1K-JPG.zip|ambientcg-bricks109a
+          Bricks109B|Bricks 109 B|Bricks109B_1K-JPG.zip|ambientcg-bricks109b
+          Bricks110A|Bricks 110 A|Bricks110A_1K-JPG.zip|ambientcg-bricks110a
+          Bricks110B|Bricks 110 B|Bricks110B_1K-JPG.zip|ambientcg-bricks110b
+          Bricks111A|Bricks 111 A|Bricks111A_1K-JPG.zip|ambientcg-bricks111a
+          Bricks111B|Bricks 111 B|Bricks111B_1K-JPG.zip|ambientcg-bricks111b
+          Bricks112A|Bricks 112 A|Bricks112A_1K-JPG.zip|ambientcg-bricks112a
+          Bricks112B|Bricks 112 B|Bricks112B_1K-JPG.zip|ambientcg-bricks112b
+          Clay007|Clay 007|Clay007_1K-JPG.zip|ambientcg-clay007
+          Clay008|Clay 008|Clay008_1K-JPG.zip|ambientcg-clay008
+          LIST
+          git config user.name "github-actions[bot]"
+          git config user.email "41898282+github-actions[bot]@users.noreply.github.com"
+          git add -- ambientcg-bricks106a ambientcg-bricks106b ambientcg-bricks107a ambientcg-bricks107b ambientcg-bricks108a ambientcg-bricks108b ambientcg-bricks109a ambientcg-bricks109b ambientcg-bricks110a ambientcg-bricks110b ambientcg-bricks111a ambientcg-bricks111b ambientcg-bricks112a ambientcg-bricks112b ambientcg-clay007 ambientcg-clay008
+          git commit -m "카탈로그: ambientCG 16팩 수집 (tmp-t9u-a, 1K-JPG, CC0)"
+          git pull --rebase origin main
+          git push origin HEAD:main
